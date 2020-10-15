@@ -1,7 +1,0 @@
-package interfaz;
-
-interface datosentrenadorjugador {
-	
-	
-
-}
