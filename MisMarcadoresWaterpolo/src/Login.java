@@ -27,9 +27,9 @@ import java.awt.SystemColor;
 public class Login extends JFrame {
 	
 	private JTextField usertxt;
-	private JPasswordField passwordField;
-	private Image img;
 	CrearCuenta cc = new CrearCuenta();
+	private JPasswordField pass;
+	
 	
 	/**
 	 * Launch the application.
@@ -94,12 +94,13 @@ public class Login extends JFrame {
 		getContentPane().add(usertxt);
 		usertxt.setColumns(10);
 		
-		//En este caso passwordfield
-		passwordField = new JPasswordField();
-		passwordField.setBackground(SystemColor.controlHighlight);
-		passwordField.setBounds(44, 230, 299, 43);
-		getContentPane().add(passwordField);
 		
+		//Passwordfield para la contraseña
+		pass = new JPasswordField();
+		pass.setForeground(Color.BLACK);
+		pass.setBackground(SystemColor.controlHighlight);
+		pass.setBounds(44, 226, 299, 47);
+		getContentPane().add(pass);
 		
 		//Checkbox de mostrar contraseña
 		JCheckBox showpass = new JCheckBox("Mostrar Contrase\u00F1a");
@@ -107,6 +108,18 @@ public class Login extends JFrame {
 		showpass.setBackground(UIManager.getColor("Button.highlight"));
 		showpass.setBounds(204, 280, 152, 23);
 		getContentPane().add(showpass);
+		showpass.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+			if(showpass.isSelected()) {
+				pass.setEchoChar((char)0);
+			}else {
+				pass.setEchoChar('*');
+			}
+			}
+		});
 		
 		
 		//Los botones
