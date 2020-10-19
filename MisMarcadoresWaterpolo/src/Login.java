@@ -3,6 +3,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import java.awt.Image;
 
@@ -128,6 +130,21 @@ public class Login extends JFrame {
 		loginbtn.setBackground(SystemColor.textHighlight);
 		loginbtn.setBounds(44, 328, 299, 43);
 		getContentPane().add(loginbtn);
+		loginbtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if(usertxt.getText().length() == 0 || pass.getPassword().length == 0){
+					JOptionPane.showMessageDialog(null, "Asegurese de que todos los campos estan completados", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+					user.setForeground(Color.RED);
+					contra.setForeground(Color.RED);
+				}else {
+					System.out.println("Login OK");
+				}
+			}
+		});
 		
 		JButton crear = new JButton("REGISTRARSE");
 		crear.setBackground(Color.LIGHT_GRAY);
