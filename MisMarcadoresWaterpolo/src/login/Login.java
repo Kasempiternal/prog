@@ -3,6 +3,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
+
+import basedatos.conexion;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
@@ -33,6 +36,7 @@ public class Login extends JFrame {
 	CrearCuenta cc = new CrearCuenta();
 	private JPasswordField pass;
 	
+
 	
 	/**
 	 * Launch the application.
@@ -141,7 +145,7 @@ public class Login extends JFrame {
 							JOptionPane.ERROR_MESSAGE);
 					user.setForeground(Color.RED);
 					contra.setForeground(Color.RED);
-				}else {
+				}else if(usertxt.getText().equals("patata")){
 					System.out.println("Login OK");
 				}
 			}
@@ -175,12 +179,6 @@ public class Login extends JFrame {
 				System.exit(0);
 			}
 		});
-		
-		
-		//Panel para el icono
-
-		
-		//Aplicamos un icono de usuario al Jpanel
 		
 		
 		

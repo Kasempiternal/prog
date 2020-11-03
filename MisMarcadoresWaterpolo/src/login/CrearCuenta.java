@@ -10,9 +10,13 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.PreparedStatement;
 import java.util.Arrays;
 
 import javax.swing.SwingConstants;
+
+import basedatos.conexion;
+
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
@@ -25,6 +29,7 @@ public class CrearCuenta extends JFrame {
 	private JTextField mailtxt;
 	private JPasswordField contra;
 	private JPasswordField comprobacion;
+	private conexion con  = new conexion();
 
 	/**
 	 * Launch the application.
@@ -67,7 +72,7 @@ public class CrearCuenta extends JFrame {
 		titulo.setBounds(226, 11, 165, 45);
 		getContentPane().add(titulo);
 
-		JLabel nombre = new JLabel("Nombre");
+		JLabel nombre = new JLabel("Nombre Usuario");
 		nombre.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		nombre.setBounds(33, 107, 63, 29);
 		getContentPane().add(nombre);
@@ -146,10 +151,25 @@ public class CrearCuenta extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (Arrays.equals(contra.getPassword(), comprobacion.getPassword())) {
+				if (nombretxt.getText().length() == 0 
+						&& apellidotxt.getText().length() == 0 
+						&& contra.getPassword().length == 0 
+						&& comprobacion.getPassword().length == 0
+						&& mailtxt.getText().length() == 0) {
+					
+					JOptionPane.showMessageDialog(null, "Asegurese de que todos los campos estan completados", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+					nombre.setForeground(Color.RED);
+					apellido.setForeground(Color.RED);
+					lblContrasea.setForeground(Color.RED);
+					lblcomprobar.setForeground(Color.RED);
+					
+				}else if (Arrays.equals(contra.getPassword(), comprobacion.getPassword())) {
+					
 					setVisible(false);
 					System.out.println("Password OK");
-					
+					JOptionPane.showMessageDialog(null, "Cuenta creada correctamente. Inicie sesion.", "CUENTA CREADA",
+						JOptionPane.DEFAULT_OPTION);
 					Login login = null;
 					try {
 						login = new Login();
@@ -158,7 +178,8 @@ public class CrearCuenta extends JFrame {
 						e1.printStackTrace();
 					}
 					login.setVisible(true);
-				} else {
+					
+				}else if (!(comprobacion.getPassword().equals(contra.getPassword()))){
 					JOptionPane.showMessageDialog(null, "Las contrase�as no coinciden", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
 					lblContrasea.setForeground(Color.RED);
