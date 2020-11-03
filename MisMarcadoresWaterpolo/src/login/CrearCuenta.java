@@ -27,8 +27,8 @@ public class CrearCuenta extends JFrame {
 	private JTextField nombretxt;
 	private JTextField apellidotxt;
 	private JTextField mailtxt;
-	private JPasswordField contra;
-	private JPasswordField comprobacion;
+	private JTextField contra;
+	private JTextField comprobacion;
 	private conexion con  = new conexion();
 
 	/**
@@ -120,11 +120,11 @@ public class CrearCuenta extends JFrame {
 		getContentPane().add(mailtxt);
 
 		// Los passwordfield
-		contra = new JPasswordField();
+		contra = new JTextField();
 		contra.setBounds(106, 293, 138, 45);
 		getContentPane().add(contra);
 
-		comprobacion = new JPasswordField();
+		comprobacion = new JTextField();
 		comprobacion.setBounds(425, 293, 138, 45);
 		getContentPane().add(comprobacion);
 
@@ -151,21 +151,27 @@ public class CrearCuenta extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+
 				if (nombretxt.getText().length() == 0 
-						&& apellidotxt.getText().length() == 0 
-						&& contra.getPassword().length == 0 
-						&& comprobacion.getPassword().length == 0
-						&& mailtxt.getText().length() == 0) {
+						|| apellidotxt.getText().length() == 0 
+						|| contra.getText().length() == 0 
+						|| comprobacion.getText().length() == 0
+						|| mailtxt.getText().length() == 0) {
 					
 					JOptionPane.showMessageDialog(null, "Asegurese de que todos los campos estan completados", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
 					nombre.setForeground(Color.RED);
 					apellido.setForeground(Color.RED);
 					lblContrasea.setForeground(Color.RED);
+					lblcomprobar.setForeground(Color.RED);}
+					
+				else if ( !comprobacion.getText().equals(contra.getText()) ){
+					JOptionPane.showMessageDialog(null, "Las contrase\u00F1as no coinciden", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+					lblContrasea.setForeground(Color.RED);
 					lblcomprobar.setForeground(Color.RED);
-					
-				}else if (Arrays.equals(contra.getPassword(), comprobacion.getPassword())) {
-					
+				}
+				else {
 					setVisible(false);
 					System.out.println("Password OK");
 					JOptionPane.showMessageDialog(null, "Cuenta creada correctamente. Inicie sesion.", "CUENTA CREADA",
@@ -178,12 +184,6 @@ public class CrearCuenta extends JFrame {
 						e1.printStackTrace();
 					}
 					login.setVisible(true);
-					
-				}else if (!(comprobacion.getPassword().equals(contra.getPassword()))){
-					JOptionPane.showMessageDialog(null, "Las contrase�as no coinciden", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					lblContrasea.setForeground(Color.RED);
-					lblcomprobar.setForeground(Color.RED);
 				}
 
 			}
