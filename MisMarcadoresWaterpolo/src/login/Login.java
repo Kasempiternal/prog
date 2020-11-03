@@ -14,6 +14,8 @@ import java.awt.Image;
 
 import javax.swing.JTextField;
 import javax.swing.JCheckBox;
+import javax.swing.JFormattedTextField;
+
 import java.awt.Color;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
@@ -34,7 +36,7 @@ public class Login extends JFrame {
 	
 	private JTextField usertxt;
 	CrearCuenta cc = new CrearCuenta();
-	private JPasswordField pass;
+	private JTextField pass;
 	
 
 	
@@ -121,9 +123,9 @@ public class Login extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 			if(showpass.isSelected()) {
-				pass.setEchoChar((char)0);
+				((JPasswordField) pass).setEchoChar((char)0);
 			}else {
-				pass.setEchoChar('*');
+				((JPasswordField) pass).setEchoChar('*');
 			}
 			}
 		});
@@ -140,7 +142,7 @@ public class Login extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(usertxt.getText().length() == 0 || pass.getPassword().length == 0){
+				if(usertxt.getText().length() == 0 || pass.getText().length() == 0){
 					JOptionPane.showMessageDialog(null, "Asegurese de que todos los campos estan completados", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
 					user.setForeground(Color.RED);

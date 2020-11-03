@@ -14,12 +14,14 @@ import java.sql.PreparedStatement;
 import java.util.Arrays;
 
 import javax.swing.SwingConstants;
+import javax.swing.UIManager;
 
 import basedatos.conexion;
 
 import javax.swing.JTextField;
 import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JPasswordField;
 
 public class CrearCuenta extends JFrame {
@@ -27,8 +29,8 @@ public class CrearCuenta extends JFrame {
 	private JTextField nombretxt;
 	private JTextField apellidotxt;
 	private JTextField mailtxt;
-	private JPasswordField contra;
-	private JPasswordField comprobacion;
+	private JTextField contra;
+	private JTextField comprobacion;
 	private conexion con  = new conexion();
 
 	/**
@@ -74,7 +76,7 @@ public class CrearCuenta extends JFrame {
 
 		JLabel nombre = new JLabel("Nombre Usuario");
 		nombre.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		nombre.setBounds(33, 107, 63, 29);
+		nombre.setBounds(33, 107, 104, 29);
 		getContentPane().add(nombre);
 
 		JLabel apellido = new JLabel("Apellido");
@@ -85,7 +87,7 @@ public class CrearCuenta extends JFrame {
 		JLabel lblEmail = new JLabel("@gmail.com");
 		lblEmail.setForeground(Color.GRAY);
 		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblEmail.setBounds(328, 208, 144, 29);
+		lblEmail.setBounds(336, 208, 144, 29);
 		getContentPane().add(lblEmail);
 
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
@@ -105,7 +107,7 @@ public class CrearCuenta extends JFrame {
 
 		// Los JTextField
 		nombretxt = new JTextField();
-		nombretxt.setBounds(106, 99, 138, 45);
+		nombretxt.setBounds(147, 100, 138, 45);
 		getContentPane().add(nombretxt);
 		nombretxt.setColumns(10);
 
@@ -119,14 +121,15 @@ public class CrearCuenta extends JFrame {
 		mailtxt.setBounds(106, 201, 222, 45);
 		getContentPane().add(mailtxt);
 
-		// Los passwordfield
-		contra = new JPasswordField();
+		contra = new JTextField();
 		contra.setBounds(106, 293, 138, 45);
 		getContentPane().add(contra);
+		
 
-		comprobacion = new JPasswordField();
+		comprobacion = new JTextField();
 		comprobacion.setBounds(425, 293, 138, 45);
 		getContentPane().add(comprobacion);
+		
 
 		// Jbutton cerrar
 		JButton cerrar = new JButton("CERRAR");
@@ -151,11 +154,12 @@ public class CrearCuenta extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+
 				if (nombretxt.getText().length() == 0 
-						&& apellidotxt.getText().length() == 0 
-						&& contra.getPassword().length == 0 
-						&& comprobacion.getPassword().length == 0
-						&& mailtxt.getText().length() == 0) {
+						|| apellidotxt.getText().length() == 0 
+						|| contra.getText().length() == 0 
+						|| comprobacion.getText().length() == 0
+						|| mailtxt.getText().length() == 0) {
 					
 					JOptionPane.showMessageDialog(null, "Asegurese de que todos los campos estan completados", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
@@ -166,7 +170,15 @@ public class CrearCuenta extends JFrame {
 					lblEmail.setForeground(Color.RED);
 					gmailcom.setForeground(Color.RED);
 					
-				}else if (Arrays.equals(contra.getPassword(), comprobacion.getPassword())) {
+				}
+					
+				else if ( !comprobacion.getText().equals(contra.getText()) ){
+					JOptionPane.showMessageDialog(null, "Las contrase\u00F1as no coinciden", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+					lblContrasea.setForeground(Color.RED);
+					lblcomprobar.setForeground(Color.RED);
+			
+				}else if (contra.getText().equals(comprobacion.getText())) {
 					
 					setVisible(false);
 					System.out.println("Password OK");
@@ -180,12 +192,6 @@ public class CrearCuenta extends JFrame {
 						e1.printStackTrace();
 					}
 					login.setVisible(true);
-					
-				}else if (!(comprobacion.getPassword().equals(contra.getPassword()))){
-					JOptionPane.showMessageDialog(null, "Las contrase�as no coinciden", "ERROR",
-							JOptionPane.ERROR_MESSAGE);
-					lblContrasea.setForeground(Color.RED);
-					lblcomprobar.setForeground(Color.RED);
 				}
 
 			}
