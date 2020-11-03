@@ -25,12 +25,13 @@ public class conexion {
 		Connection conn = null;
 		String URL = String.format("jdbc:mysql://%s:%d/%s?useSSL=false", HOST, PORT, DB);
 		try {
-			Class.forName(CONTROLADOR);
-			conn = DriverManager.getConnection(URL, USUARIO, CONTRA);
-			if (conexion != null) {
-				System.out.println("Conexion exitosa!");
-			} else {
+			Class.forName("com.mysql.jdbc.Driver");
+			String BaseDeDatos = "jdbc:mysql://localhost/sys?user="+USUARIO+"&password="+CONTRA;
+			setConexion(DriverManager.getConnection(BaseDeDatos));
+			if (conexion == null) {
 				System.out.println("Conexion fallida!");
+			} else {
+				System.out.println("Conexion exitosa!");
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
