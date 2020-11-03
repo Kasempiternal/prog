@@ -163,6 +163,8 @@ public class CrearCuenta extends JFrame {
 					apellido.setForeground(Color.RED);
 					lblContrasea.setForeground(Color.RED);
 					lblcomprobar.setForeground(Color.RED);
+					lblEmail.setForeground(Color.RED);
+					gmailcom.setForeground(Color.RED);
 					
 				}else if (Arrays.equals(contra.getPassword(), comprobacion.getPassword())) {
 					

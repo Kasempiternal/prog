@@ -5,7 +5,7 @@ import java.sql.*;
 public class conexion {
 	private static final int PORT = 3306;
 	private static final String HOST = "localhost";
-	private static final String DB = "mismarcadoreswaterpolo";
+	private static final String DB = "sys";
 	private static final String CONTROLADOR = "com.mysql.jdbc.Driver";
     private static final String USUARIO = "root";
     private static final String CONTRA = "123456789";
