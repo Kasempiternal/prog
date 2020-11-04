@@ -1,3 +1,5 @@
 # prog
-ChurrucaMoyoCristobal
+Jon Churruca
+Koldo Moya
+Izotz Cristobal
 
