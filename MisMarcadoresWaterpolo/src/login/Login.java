@@ -24,6 +24,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.Statement;
 
 import javax.swing.JPasswordField;
 import javax.swing.ImageIcon;
@@ -31,12 +35,16 @@ import javax.swing.JButton;
 import java.awt.SystemColor;
 
 
+//LAST VERSION COMMIT 29
 
 public class Login extends JFrame {
 	
 	private JTextField usertxt;
 	CrearCuenta cc = new CrearCuenta();
 	private JTextField pass;
+	
+	private String comproNombre = "";
+	private String comproContra = "";
 	
 
 	
@@ -136,19 +144,30 @@ public class Login extends JFrame {
 		loginbtn.setForeground(new Color(255, 255, 255));
 		loginbtn.setBackground(SystemColor.textHighlight);
 		loginbtn.setBounds(44, 328, 299, 43);
-		getContentPane().add(loginbtn);
+		getContentPane().add(loginbtn);   
+		
 		loginbtn.addActionListener(new ActionListener() {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(usertxt.getText().length() == 0 || pass.getText().length() == 0){
+				comprobarLogin();
+				
+				if(usertxt.getText().equals(comproNombre) && pass.getText().equals(comproContra)){
+					System.out.println("Login OK");
+					
+				}else if(!(usertxt.getText().equals(comproNombre) && pass.getText().equals(comproContra))){
+					JOptionPane.showMessageDialog(null, "Error al iniciar sesion. Compruebe que sus credenciales son correctos", "ERROR",
+							JOptionPane.ERROR_MESSAGE);
+					user.setForeground(Color.RED);
+					contra.setForeground(Color.RED);
+					
+				}else if(usertxt.getText().length() == 0 || pass.getText().length() == 0){
 					JOptionPane.showMessageDialog(null, "Asegurese de que todos los campos estan completados", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
 					user.setForeground(Color.RED);
 					contra.setForeground(Color.RED);
-				}else if(usertxt.getText().equals("patata")){
-					System.out.println("Login OK");
+					
 				}
 			}
 		});
@@ -185,5 +204,27 @@ public class Login extends JFrame {
 		
 		
 
+	}
+	public void comprobarLogin() {
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			java.sql.Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/sys?user="+ "root" +"&password="+ 123456789 + "&useSSL=false");
+			
+			String queryINSERT = "SELECT * FROM usuario";
+			
+			Statement stmt = conexion.createStatement();
+			ResultSet rs = stmt.executeQuery(queryINSERT);
+			
+			rs.next();
+			
+			comproNombre = rs.getString("nombre");
+			comproContra = rs.getString("contraseña");
+		
+			
+			
+		} catch (Exception e1){
+	        System.out.println("Error al selecionar los datos. Pruebe de nuevo");
+	        e1.printStackTrace();
+	      }  
 	}
 }

@@ -10,7 +10,12 @@ import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.IOException;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Arrays;
 
 import javax.swing.SwingConstants;
@@ -26,12 +31,15 @@ import javax.swing.JPasswordField;
 
 public class CrearCuenta extends JFrame {
 
-	private JTextField nombretxt;
-	private JTextField apellidotxt;
-	private JTextField mailtxt;
-	private JTextField contra;
-	private JTextField comprobacion;
-	private conexion con  = new conexion();
+	 private JTextField nombretxt;
+	 private JTextField apellidotxt;
+	 private JTextField mailtxt;
+	 private JTextField contra;
+	 private JTextField comprobacion;
+	 
+	 
+
+	
 
 	/**
 	 * Launch the application.
@@ -182,6 +190,32 @@ public class CrearCuenta extends JFrame {
 					
 					setVisible(false);
 					System.out.println("Password OK");
+					
+
+						try {
+						Class.forName("com.mysql.jdbc.Driver");
+						java.sql.Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost/sys?user="+ "root" +"&password="+ 123456789 + "&useSSL=false");
+						Statement stmt = conexion.createStatement();	
+							
+							
+						String nombre = nombretxt.getText();
+						String apellido = apellidotxt.getText();
+						String email = mailtxt.getText();
+						String contraseña = comprobacion.getText();
+							
+						String queryINSERT = "INSERT INTO usuario (idusuario,nombre, apellido, email, contraseña) VALUES"
+									+ " ('0','"+nombre+"', '"+apellido+"','"+email+"', '"+contraseña+"')";
+							
+						stmt.executeUpdate(queryINSERT);
+						
+						System.out.println("Los datos se insertaron correctamente");
+						
+					} catch (Exception e1){
+				        System.out.println("Error al insertar los datos. Pruebe de nuevo");
+				        e1.printStackTrace();
+				      }           
+					
+					
 					JOptionPane.showMessageDialog(null, "Cuenta creada correctamente. Inicie sesion.", "CUENTA CREADA",
 						JOptionPane.DEFAULT_OPTION);
 					Login login = null;
