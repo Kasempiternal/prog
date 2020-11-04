@@ -214,7 +214,6 @@ public class Login extends JFrame {
 			
 			Statement stmt = conexion.createStatement();
 			ResultSet rs = stmt.executeQuery(queryINSERT);
-			
 			rs.next();
 			
 			comproNombre = rs.getString("nombre");
