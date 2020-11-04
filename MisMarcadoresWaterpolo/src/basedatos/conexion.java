@@ -1,6 +1,14 @@
 package basedatos;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.sql.*;
+
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+
+import login.CrearCuenta;
+
+
 
 public class conexion {
 	private static final int PORT = 3306;
@@ -11,10 +19,26 @@ public class conexion {
     private static final String CONTRA = "123456789";
 
 
-	private Connection conexion;
+	private static Connection conexion;
 
-	public Connection getConexion() {
-		return conexion;
+	public static Connection getConexion() {
+		 Connection conexion = null;
+	        
+	        MysqlDataSource datasource = new MysqlDataSource();
+	        
+	        datasource.setServerName(HOST);
+	        datasource.setUser(USUARIO);
+	        datasource.setPassword(CONTRA);
+	        datasource.setDatabaseName(DB);
+	        datasource.setPortNumber(PORT);
+	        
+	        try {
+	            conexion = datasource.getConnection();
+	        } catch (SQLException ex) {
+	            Logger.getLogger(" Get Connection -> " + conexion.class.getName()).log(Level.SEVERE, null, ex);
+	        }
+	        
+	        return conexion;
 	}
 
 	public void setConexion(Connection conexion) {
@@ -38,7 +62,7 @@ public class conexion {
 		return this;
 	}
 
-	public void cerrar() {
+	public static void cerrar() {
 		try {
 			conexion.close();
 		} catch (SQLException e) {
@@ -70,6 +94,35 @@ public class conexion {
 			return false;
 		}
 		return true;
+	}
+	
+	
+	public static void crearCuenta(int idusuario, String dni, String nombre, String apellido, String email, int tipo_usuario ) {
+		
+		PreparedStatement ps;
+        ResultSet rs;
+        String registerUserQuery = "INSERT INTO usuario (id_usuario, dni, nombre, apellido, email, tipo_usuario) VALUES (?,?,?,?,?,?)";
+        
+        try {
+            
+            ps = getConexion().prepareStatement(registerUserQuery);
+            ps.setInt(1, idusuario);
+            ps.setString(2, dni);
+            ps.setString(3, nombre);
+            ps.setString(4, apellido);
+            ps.setString(5, email);
+            ps.setInt(6, tipo_usuario);
+            
+            if(ps.executeUpdate() != 0){
+                System.out.println("Cuenta creada");
+            }else{
+                System.out.println("Fallo en creacion de cuenta");
+            }
+        }
+        catch(SQLException ex) {
+        Logger.getLogger(CrearCuenta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+		
 	}
 
 	public static void main(String[] args) {
