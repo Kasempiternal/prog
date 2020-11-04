@@ -4,9 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class MenuInicio {
-
-	private JFrame frame;
+public class MenuInicio extends JFrame {
 
 	/**
 	 * Launch the application.
@@ -16,7 +14,7 @@ public class MenuInicio {
 			public void run() {
 				try {
 					MenuInicio window = new MenuInicio();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -35,9 +33,8 @@ public class MenuInicio {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 }
