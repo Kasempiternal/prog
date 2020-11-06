@@ -182,8 +182,8 @@ public class CrearCuenta extends JFrame {
 				} else if (contra.getText().equals(comprobacion.getText())) {
 
 					int idusuario = (int) Math.floor(Math.random() * 1000); // hay que poner autoincrement en la base de
-																			// datos
-					int tipo_usuario = 0; // hay q poner el boton para lo de admin
+																			
+					int tipo_usuario = 0;
 
 					conexion.crearCuenta(idusuario, nombretxt.getText(), apellidotxt.getText(), mailtxt.getText(),
 							contra.getText(), tipo_usuario);

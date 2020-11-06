@@ -43,10 +43,9 @@ public class Login extends JFrame {
 	private JTextField usertxt;
 	CrearCuenta cc = new CrearCuenta();
 	MenuInicio mi = new MenuInicio();
+	AdminLogin adminlog = new AdminLogin();
 	private JTextField pass;
 
-	private String comproNombre = "";
-	private String comproContra = "";
 
 	private int esAdmin = 0;
 
@@ -138,6 +137,22 @@ public class Login extends JFrame {
 				}
 			}
 		});
+		
+		//Checkbox administrador
+		JCheckBox admincheckbox = new JCheckBox("Administrador");
+		admincheckbox.setBackground(Color.WHITE);
+		admincheckbox.setForeground(SystemColor.textHighlight);
+		admincheckbox.setBounds(6, 7, 129, 23);
+		getContentPane().add(admincheckbox);
+		admincheckbox.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				adminlog.setVisible(true);
+				setVisible(false);
+			}
+		});
 
 		// Los botones
 		JButton loginbtn = new JButton("LOGIN");
@@ -195,6 +210,8 @@ public class Login extends JFrame {
 		cerrar.setBackground(Color.LIGHT_GRAY);
 		cerrar.setBounds(206, 389, 137, 36);
 		getContentPane().add(cerrar);
+		
+
 		cerrar.addActionListener(new ActionListener() {
 
 			@Override
@@ -205,5 +222,4 @@ public class Login extends JFrame {
 		});
 
 	}
-
 }
