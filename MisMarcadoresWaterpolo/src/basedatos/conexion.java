@@ -143,6 +143,31 @@ public class conexion {
 		return ok;
 
 	}
+	public static void getusuario(String usuario) {
+		String selectuser = "SELECT nombre FROM usuario";
+		ResultSet rs = consultar(selectuser);
+		try {
+			if(rs.next()) {
+				usuario = rs.getString("nombre");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void getid(String id) {
+		String selectid = "SELECT idusuario FROM usuario";
+		ResultSet rs = consultar(selectid);
+		try {
+			if(rs.next()) {
+				id = rs.getString("idusuario");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
 
 	public static void main(String[] args) {
 		conexion baseDatos = new conexion().conectar();
