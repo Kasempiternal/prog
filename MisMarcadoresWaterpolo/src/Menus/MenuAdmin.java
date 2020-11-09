@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class MenuEquipos {
+public class MenuAdmin {
 
 	private JFrame frame;
 
@@ -15,7 +15,7 @@ public class MenuEquipos {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuEquipos window = new MenuEquipos();
+					MenuAdmin window = new MenuAdmin();
 					window.frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -27,7 +27,7 @@ public class MenuEquipos {
 	/**
 	 * Create the application.
 	 */
-	public MenuEquipos() {
+	public MenuAdmin() {
 		initialize();
 	}
 
