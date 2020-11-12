@@ -124,10 +124,32 @@ public class conexion {
 
 	}
 
+	public static boolean comprobarUsuario(String nombre) {
+		// TODO Auto-generated method stub
+		String user = "SELECT nombre from USUARIO WHERE nombre='" + nombre + "';";
+		ResultSet rsuser = consultar(user);
+		Boolean ok = false;
+		try {
+			if (rsuser.next()) {
+				if (user.equals(rsuser.getString("nombre"))) {
+					ok = false;
+				} else {
+					ok = true;
+				}
+
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return ok;
+	}
+
 	public static boolean comprobarLogin(String user, String contra) {
 
-		String pasahitza = "SELECT contraseña from USUARIO WHERE nombre='" + user + "';";
-		ResultSet rspas = consultar(pasahitza);
+		String pass = "SELECT contraseña from USUARIO WHERE nombre='" + user + "';";
+		ResultSet rspas = consultar(pass);
 		Boolean ok = false;
 		try {
 			if (rspas.next()) {
@@ -147,11 +169,12 @@ public class conexion {
 		return ok;
 
 	}
+
 	public static void getusuario(String usuario) {
 		String selectuser = "SELECT nombre FROM usuario";
 		ResultSet rs = consultar(selectuser);
 		try {
-			if(rs.next()) {
+			if (rs.next()) {
 				usuario = rs.getString("nombre");
 			}
 		} catch (SQLException e) {
@@ -159,11 +182,12 @@ public class conexion {
 			e.printStackTrace();
 		}
 	}
+
 	public static void getid(String id) {
 		String selectid = "SELECT idusuario FROM usuario";
 		ResultSet rs = consultar(selectid);
 		try {
-			if(rs.next()) {
+			if (rs.next()) {
 				id = rs.getString("idusuario");
 			}
 		} catch (SQLException e) {
@@ -171,6 +195,7 @@ public class conexion {
 			e.printStackTrace();
 		}
 	}
+
 	public static void tabladatos(DefaultTableModel modelo, JTable table, String[] datos, Statement st, String sql) {
 		sql = "SELECT * FROM equipos";
 		modelo = new DefaultTableModel();
@@ -182,14 +207,14 @@ public class conexion {
 		modelo.addColumn("inic_temporada");
 		modelo.addColumn("fin_temporada");
 		modelo.addColumn("idliga");
-		
+
 		datos = new String[5];
-		
+
 		try {
 			st = conexion.createStatement();
 			ResultSet rs = st.executeQuery(sql);
-			
-			while(rs.next()) {
+
+			while (rs.next()) {
 				datos[0] = rs.getString(1);
 				datos[1] = rs.getString(2);
 				datos[2] = rs.getString(3);
@@ -202,7 +227,6 @@ public class conexion {
 			// TODO: handle exception
 		}
 	}
-
 
 	public static void main(String[] args) {
 		conexion baseDatos = new conexion().conectar();

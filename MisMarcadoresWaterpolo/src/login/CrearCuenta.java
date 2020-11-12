@@ -181,26 +181,37 @@ public class CrearCuenta extends JFrame {
 
 				} else if (contra.getText().equals(comprobacion.getText())) {
 
-					int idusuario = (int) Math.floor(Math.random() * 1000); // hay que poner autoincrement en la base de
-																			
-					int tipo_usuario = 0;
+					boolean usuariousado = conexion.comprobarUsuario(nombretxt.getText());
 
-					conexion.crearCuenta(idusuario, nombretxt.getText(), apellidotxt.getText(), mailtxt.getText(),
-							contra.getText(), tipo_usuario);
+					if (usuariousado == true) {
 
-					setVisible(false);
-					System.out.println("Password OK");
+						System.out.println("Usuario repetido");
+						JOptionPane.showMessageDialog(null, "Este usuario ya esta usado, use otro", "ERROR",
+								JOptionPane.ERROR_MESSAGE);
+					} else {
+						int idusuario = (int) Math.floor(Math.random() * 1000); // hay que poner autoincrement en la
+																				// base de
 
-					JOptionPane.showMessageDialog(null, "Cuenta creada correctamente. Inicie sesion.", "CUENTA CREADA",
-							JOptionPane.DEFAULT_OPTION);
-					Login login = null;
-					try {
-						login = new Login();
-					} catch (IOException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
+						int tipo_usuario = 0;
+
+						conexion.crearCuenta(idusuario, nombretxt.getText(), apellidotxt.getText(), mailtxt.getText(),
+								contra.getText(), tipo_usuario);
+
+						setVisible(false);
+						System.out.println("Password OK");
+
+						JOptionPane.showMessageDialog(null, "Cuenta creada correctamente. Inicie sesion.",
+								"CUENTA CREADA", JOptionPane.DEFAULT_OPTION);
+						Login login = null;
+						try {
+							login = new Login();
+						} catch (IOException e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+						login.setVisible(true);
 					}
-					login.setVisible(true);
+
 				}
 
 			}
