@@ -1,4 +1,4 @@
-package basedatos;
+ package basedatos;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -200,13 +200,14 @@ public class conexion {
 		sql = "SELECT * FROM equipos";
 		modelo = new DefaultTableModel();
 		table = new JTable();
-		table.setModel(modelo);
+		
 		modelo.addColumn("idequipo");
 		modelo.addColumn("nombre_equipo");
 		modelo.addColumn("puntos");
 		modelo.addColumn("inic_temporada");
 		modelo.addColumn("fin_temporada");
 		modelo.addColumn("idliga");
+		table.setModel(modelo);
 
 		datos = new String[5];
 
@@ -226,6 +227,9 @@ public class conexion {
 		} catch (Exception e) {
 			// TODO: handle exception
 		}
+	}
+	public static void mostrarlista(String listsql) {
+		 listsql = "SELECT nombre_liga FROM ligas";
 	}
 
 	public static void main(String[] args) {
