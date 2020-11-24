@@ -55,16 +55,16 @@ public class MenuAdmin extends JFrame{
 		
 		
 		//LOS LABEL
-		JLabel lblNewLabel = new JLabel("MENU INICIO");
+		JLabel lblNewLabel = new JLabel("MENU ADMINISTRADOR");
 		lblNewLabel.setForeground(SystemColor.textHighlight);
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(85, 25, 220, 30);
+		lblNewLabel.setBounds(83, 33, 220, 30);
 		getContentPane().add(lblNewLabel);
 		
 			// TODOS LOS BOTONES
 		
-		JButton clasificacion = new JButton("Clasificacion");
+		JButton clasificacion = new JButton("Ir a Menu Inicio como usuario");
 		clasificacion.setBackground(new Color(135, 206, 250));
 		clasificacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
@@ -75,24 +75,23 @@ public class MenuAdmin extends JFrame{
 		clasificacion.setBounds(10, 103, 375, 43);
 		getContentPane().add(clasificacion);
 		
-		JButton resultados = new JButton("Resultados");
-		resultados.setBackground(new Color(135, 206, 250));
-		resultados.setBounds(10, 171, 375, 43);
-		getContentPane().add(resultados);
-		
-		JButton goleadores = new JButton("Goleadores");
+		JButton goleadores = new JButton("Verificar jugadores");
 		goleadores.setBackground(new Color(135, 206, 250));
-		goleadores.setBounds(10, 243, 375, 43);
+		goleadores.setBounds(10, 170, 375, 43);
 		getContentPane().add(goleadores);
 		
-		JButton identificarse = new JButton("Identificate como Jugador");
+		JButton identificarse = new JButton("Buscador");
 		identificarse.setBackground(new Color(135, 206, 250));
-		identificarse.setBounds(10, 313, 375, 43);
+		identificarse.setBounds(10, 240, 375, 43);
 		getContentPane().add(identificarse);
 		
-		JButton editarusuario = new JButton("Edita tus datos de usuario");
+		JButton editarusuario = new JButton("Ver consultas de usuario");
+		editarusuario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+			}
+		});
 		editarusuario.setBackground(new Color(135, 206, 250));
-		editarusuario.setBounds(10, 380, 375, 43);
+		editarusuario.setBounds(10, 370, 375, 43);
 		getContentPane().add(editarusuario);
 
 		
@@ -104,6 +103,21 @@ public class MenuAdmin extends JFrame{
 		JLabel ID = new JLabel("ADMINISTRADOR");
 		ID.setBounds(10, 11, 121, 14);
 		getContentPane().add(ID);
+		
+		JButton btnEditarUsuarios = new JButton("Editar Usuarios");
+		btnEditarUsuarios.setBackground(new Color(135, 206, 250));
+		btnEditarUsuarios.setBounds(10, 301, 375, 43);
+		getContentPane().add(btnEditarUsuarios);
+		
+		JButton editarusuario_1_1 = new JButton("Cerrar");
+		editarusuario_1_1.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
+		editarusuario_1_1.setBackground(new Color(135, 206, 250));
+		editarusuario_1_1.setBounds(132, 435, 130, 36);
+		getContentPane().add(editarusuario_1_1);
 	}
 
 }

@@ -13,7 +13,11 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 
+import interfaceUser.clasificacionU;
+
 public class MenuInicio extends JFrame {
+	
+	clasificacionU cU = new clasificacionU();
 	/**
 	 * Launch the application.
 	 */
@@ -21,7 +25,7 @@ public class MenuInicio extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					MenuAdmin window = new MenuAdmin();
+					MenuInicio window = new MenuInicio();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -78,34 +82,36 @@ public class MenuInicio extends JFrame {
 		btnNewButton_4.setBackground(new Color(135, 206, 250));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				cU.setVisible(true);
+				setVisible(false);
 			}
 		});
 		btnNewButton_4.setBounds(10, 103, 375, 43);
 		getContentPane().add(btnNewButton_4);
 		
-		JButton btnNewButton_5 = new JButton("Resultados");
-		btnNewButton_5.setBackground(new Color(135, 206, 250));
-		btnNewButton_5.setBounds(10, 171, 375, 43);
-		getContentPane().add(btnNewButton_5);
+		JButton Resultados = new JButton("Resultados");
+		Resultados.setBackground(new Color(135, 206, 250));
+		Resultados.setBounds(10, 171, 375, 43);
+		getContentPane().add(Resultados);
 		
-		JButton btnNewButton_5_1 = new JButton("Goleadores");
-		btnNewButton_5_1.setBackground(new Color(135, 206, 250));
-		btnNewButton_5_1.setBounds(10, 243, 375, 43);
-		getContentPane().add(btnNewButton_5_1);
+		JButton Goleadores = new JButton("Goleadores");
+		Goleadores.setBackground(new Color(135, 206, 250));
+		Goleadores.setBounds(10, 243, 375, 43);
+		getContentPane().add(Goleadores);
 		
-		JButton btnNewButton_3_1 = new JButton("Edita tus datos de usuario");
-		btnNewButton_3_1.setBackground(new Color(135, 206, 250));
-		btnNewButton_3_1.setBounds(10, 380, 375, 43);
-		getContentPane().add(btnNewButton_3_1);
+		JButton editarusuario = new JButton("Edita tus datos de usuario");
+		editarusuario.setBackground(new Color(135, 206, 250));
+		editarusuario.setBounds(10, 380, 375, 43);
+		getContentPane().add(editarusuario);
 		
-		JButton btnNewButton_3_1_1 = new JButton("Consulta al Admin");
-		btnNewButton_3_1_1.setBackground(new Color(135, 206, 250));
-		btnNewButton_3_1_1.setBounds(10, 446, 375, 43);
-		getContentPane().add(btnNewButton_3_1_1);
+		JButton Consulta = new JButton("Consulta al Admin");
+		Consulta.setBackground(new Color(135, 206, 250));
+		Consulta.setBounds(10, 446, 375, 43);
+		getContentPane().add(Consulta);
 		
-		JLabel lblNewLabel_1 = new JLabel("Mis Marcadores Waterpolo");
-		lblNewLabel_1.setForeground(Color.BLACK);
-		lblNewLabel_1.setBounds(224, 11, 161, 14);
-		getContentPane().add(lblNewLabel_1);
+		JLabel mismarcadores = new JLabel("Mis Marcadores Waterpolo");
+		mismarcadores.setForeground(Color.BLACK);
+		mismarcadores.setBounds(224, 11, 161, 14);
+		getContentPane().add(mismarcadores);
 	}
 }
