@@ -88,6 +88,7 @@ public class clasificacionA extends JFrame{
 		DefaultTableModel dtm = new DefaultTableModel();
 		table = new JTable();
 
+		dtm.addColumn("Posicion");
 		dtm.addColumn("IdEquipo");
 		dtm.addColumn("Nombre_Equipo");
 		dtm.addColumn("Puntos");
@@ -104,17 +105,17 @@ public class clasificacionA extends JFrame{
 
 		String sqlclasificacion = "SELECT * FROM equipos where idliga = " + idliga + ";";
 		ResultSet rs = conexion.consultar(sqlclasificacion);
-
+		int posicion = 0;
 		try {
 			while (rs.next()) {
-				int rsid = rs.getInt("idliga");
+				int rsid = rs.getInt("idequipo");
 				String rsnombre = rs.getString("nombre_equipo");
 				int rspuntos = rs.getInt("puntos");
 				Date rsdateinit = rs.getDate("inic_temporada");
 				Date rsdatefin = rs.getDate("fin_temporada");
 				int rsidliga = rs.getInt("idliga");
-
-				dtm.addRow(new Object[] { rsid, rsnombre, rspuntos, rsdateinit, rsdatefin, rsidliga });
+				posicion = posicion +1;
+				dtm.addRow(new Object[] { posicion, rsid, rsnombre, rspuntos, rsdateinit, rsdatefin, rsidliga });
 
 			}
 
