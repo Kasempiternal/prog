@@ -95,10 +95,10 @@ public class MenuAdmin extends JFrame{
 		getContentPane().add(editarusuario);
 
 		
-		JLabel lblNewLabel_1 = new JLabel("Mis Marcadores Waterpolo");
-		lblNewLabel_1.setForeground(UIManager.getColor("ToolTip.foreground"));
-		lblNewLabel_1.setBounds(224, 11, 161, 14);
-		getContentPane().add(lblNewLabel_1);
+		JLabel mismarcadores = new JLabel("Mis Marcadores Waterpolo");
+		mismarcadores.setForeground(UIManager.getColor("ToolTip.foreground"));
+		mismarcadores.setBounds(224, 11, 161, 14);
+		getContentPane().add(mismarcadores);
 		
 		JLabel ID = new JLabel("ADMINISTRADOR");
 		ID.setBounds(10, 11, 121, 14);
