@@ -16,6 +16,7 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import Menus.MenuAdmin;
 import Menus.MenuInicio;
 import java.awt.Font;
 
@@ -25,7 +26,7 @@ public class AdminLogin extends JFrame {
 	/**
 	 * Launch the application.
 	 */
-	MenuInicio mi = new MenuInicio();
+	MenuAdmin ma = new MenuAdmin();
 	private String admin = "admin";
 	
 	public static void main(String[] args) {
@@ -90,7 +91,7 @@ public class AdminLogin extends JFrame {
 				if(adminpass.getText().equals("admin")) {
 					System.out.println("WELCOME ADMIN");
 					setVisible(false);
-					mi.setVisible(true);
+					ma.setVisible(true);
 					
 				}else if(!adminpass.getText().equals("admin")) {
 					JOptionPane.showMessageDialog(null, "CONTRASEÑA INCORRECTA", "ERROR", JOptionPane.ERROR_MESSAGE);

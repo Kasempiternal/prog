@@ -4,9 +4,9 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class MenuAdmin {
+public class MenuAdmin extends JFrame{
 
-	private JFrame frame;
+
 
 	/**
 	 * Launch the application.
@@ -16,7 +16,7 @@ public class MenuAdmin {
 			public void run() {
 				try {
 					MenuAdmin window = new MenuAdmin();
-					window.frame.setVisible(true);
+					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -35,9 +35,8 @@ public class MenuAdmin {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setBounds(100, 100, 450, 300);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 
 }

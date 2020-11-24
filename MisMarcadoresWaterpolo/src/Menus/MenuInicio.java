@@ -4,6 +4,7 @@ import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 import javax.swing.JFrame;
@@ -18,6 +19,7 @@ import javax.swing.JScrollPane;
 public class MenuInicio extends JFrame {
 	private JTable table;
 	
+	Connection conn = conexion.getConexion();
 	
 
 	/**
@@ -58,16 +60,18 @@ public class MenuInicio extends JFrame {
 		usuario.setBounds(10, 24, 54, 14);
 		getContentPane().add(usuario);
 		
+		
+	
 		JLabel id = new JLabel();
 		id.setBounds(27, 11, 72, 14);
 		getContentPane().add(id);
 		
+	
+	
 		JLabel user = new JLabel();
 		user.setBounds(62, 24, 72, 14);
 		getContentPane().add(user);
-		
 
-		
 		JLabel liga = new JLabel("Liga:");
 		liga.setBounds(27, 89, 46, 14);
 		getContentPane().add(liga);
@@ -98,7 +102,6 @@ public class MenuInicio extends JFrame {
 		modelo.addColumn("IdLiga");
 		table.setModel(modelo);
 		
-		Connection conn = conexion.getConexion();
 		
 		String[] datos = new String[5];
 		Statement st = null;
