@@ -12,12 +12,18 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 import basedatos.conexion;
+import objetos.ComboItem;
+
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 
 public class clasificacionU extends JFrame {
@@ -109,32 +115,62 @@ public class clasificacionU extends JFrame {
 		
 		JLabel lblNewLabel = new JLabel("CLASIFICACION");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(344, 24, 146, 43);
+		lblNewLabel.setBounds(341, 22, 146, 43);
 		getContentPane().add(lblNewLabel);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(70, 85, 113, 22);
+		comboBox.setBounds(67, 85, 113, 22);
 		getContentPane().add(comboBox);
+		comboBox.addItem(new ComboItem("Española", "0"));
+		comboBox.addItem(new ComboItem("Australiana", "1"));
+		comboBox.addItem(new ComboItem("Mejicana", "2"));
+		
+		JButton crear = new JButton("REGISTRARSE");
+		crear.setBackground(Color.LIGHT_GRAY);
+		crear.setBounds(693, 11, 161, 14);
+		getContentPane().add(crear);
+		
+		crear.addActionListener(new ActionListener() {
 
-		String sqlclasificacion = "SELECT * FROM equipos where idliga = " + idliga + " ORDER BY puntos DESC;";
-		ResultSet rs = conexion.consultar(sqlclasificacion);
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				if (dtm.getRowCount() > 0) {
+				    for (int i = dtm.getRowCount() - 1; i > -1; i--) {
+				        dtm.removeRow(i);
+				    }
+				}
+				
+				
+				Object item = comboBox.getSelectedItem();
+				String value = ((ComboItem)item).getValue();
+				System.out.println(value);
+				
+				String sqlclasificacion = "SELECT * FROM equipos where idliga = " + value + " ORDER BY puntos DESC;";
+				ResultSet rs = conexion.consultar(sqlclasificacion);
+				int posicion = 0;
+				
 
-		int posicion = 0;
-		try {
-			while (rs.next()) {
+				try {
+					while (rs.next()) {
+					
+						String rsnombre = rs.getString("nombre_equipo");
+						int rspuntos = rs.getInt("puntos");
+						Date rsdateinit = rs.getDate("inic_temporada");
+						Date rsdatefin = rs.getDate("fin_temporada");
+		
+						posicion = posicion +1;
+						dtm.addRow(new Object[] { posicion, rsnombre, rspuntos, rsdateinit, rsdatefin });
 
-				String rsnombre = rs.getString("nombre_equipo");
-				int rspuntos = rs.getInt("puntos");
-				Date rsdateinit = rs.getDate("inic_temporada");
-				Date rsdatefin = rs.getDate("fin_temporada");
-				posicion = posicion +1;
-				dtm.addRow(new Object[] {posicion, rsnombre, rspuntos, rsdateinit, rsdatefin });
+					}
+
+				} catch (Exception eg) {
+					// TODO: handle exception
+				}
 
 			}
+		});
 
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
 
 	}
 }
