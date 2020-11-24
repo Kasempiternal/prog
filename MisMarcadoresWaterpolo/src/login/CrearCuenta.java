@@ -152,6 +152,11 @@ public class CrearCuenta extends JFrame {
 		crear.setBackground(SystemColor.textHighlight);
 		crear.setBounds(209, 376, 234, 45);
 		getContentPane().add(crear);
+		
+		JLabel lblNewLabel_1 = new JLabel("Mis Marcadores Waterpolo");
+		lblNewLabel_1.setForeground(Color.BLACK);
+		lblNewLabel_1.setBounds(441, 11, 181, 14);
+		getContentPane().add(lblNewLabel_1);
 		crear.addActionListener(new ActionListener() {
 
 			@Override

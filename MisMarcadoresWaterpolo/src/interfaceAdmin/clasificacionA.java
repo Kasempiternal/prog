@@ -14,6 +14,9 @@ import javax.swing.table.DefaultTableModel;
 
 import basedatos.conexion;
 import interfaceUser.clasificacionU;
+import java.awt.Color;
+import javax.swing.JComboBox;
+import java.awt.Font;
 
 public class clasificacionA extends JFrame{
 	private JTable table;
@@ -50,30 +53,14 @@ public class clasificacionA extends JFrame{
 		setBounds(100, 100, 880, 529);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-		JLabel ID = new JLabel("ID:");
-		ID.setBounds(10, 11, 46, 14);
+		setLocationRelativeTo(null);
+		JLabel ID = new JLabel("ADMINISTRADOR");
+		ID.setBounds(10, 11, 133, 14);
 		getContentPane().add(ID);
-
-		JLabel usuario = new JLabel("Usuario:");
-		usuario.setBounds(10, 24, 54, 14);
-		getContentPane().add(usuario);
-
-		JLabel id = new JLabel();
-		id.setBounds(27, 11, 72, 14);
-		getContentPane().add(id);
-
-		JLabel user = new JLabel();
-		user.setBounds(62, 24, 72, 14);
-		getContentPane().add(user);
 
 		JLabel liga = new JLabel("Liga:");
 		liga.setBounds(27, 89, 46, 14);
 		getContentPane().add(liga);
-
-		// Lista de ligas
-		JList list = new JList();
-		list.setBounds(62, 88, 88, 20);
-		getContentPane().add(list);
 
 		// JTABLE CON LOS DATOS DE LA BD
 		JScrollPane scrollPane = new JScrollPane();
@@ -102,6 +89,20 @@ public class clasificacionA extends JFrame{
 		getContentPane().add(scrollPane);
 
 		scrollPane.setViewportView(table);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(55, 85, 113, 22);
+		getContentPane().add(comboBox);
+		
+		JLabel lblNewLabel_1 = new JLabel("Mis Marcadores Waterpolo");
+		lblNewLabel_1.setForeground(Color.BLACK);
+		lblNewLabel_1.setBounds(693, 11, 161, 14);
+		getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel = new JLabel("CLASIFICACION");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setBounds(341, 22, 146, 43);
+		getContentPane().add(lblNewLabel);
 
 		String sqlclasificacion = "SELECT * FROM equipos where idliga = " + idliga + ";";
 		ResultSet rs = conexion.consultar(sqlclasificacion);

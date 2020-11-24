@@ -16,6 +16,8 @@ import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
+import java.awt.Color;
+import java.awt.Font;
 
 public class clasificacionU extends JFrame {
 	private JTable table;
@@ -52,6 +54,7 @@ public class clasificacionU extends JFrame {
 		setBounds(100, 100, 880, 529);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+		setLocationRelativeTo(null);
 		JLabel ID = new JLabel("ID:");
 		ID.setBounds(10, 11, 46, 14);
 		getContentPane().add(ID);
@@ -102,6 +105,16 @@ public class clasificacionU extends JFrame {
 		getContentPane().add(scrollPane);
 
 		scrollPane.setViewportView(table);
+		
+		JLabel lblNewLabel_1 = new JLabel("Mis Marcadores Waterpolo");
+		lblNewLabel_1.setForeground(Color.BLACK);
+		lblNewLabel_1.setBounds(693, 11, 161, 14);
+		getContentPane().add(lblNewLabel_1);
+		
+		JLabel lblNewLabel = new JLabel("CLASIFICACION");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setBounds(344, 24, 146, 43);
+		getContentPane().add(lblNewLabel);
 
 		String sqlclasificacion = "SELECT * FROM equipos where idliga = " + idliga + " ORDER BY puntos DESC;";
 		ResultSet rs = conexion.consultar(sqlclasificacion);
