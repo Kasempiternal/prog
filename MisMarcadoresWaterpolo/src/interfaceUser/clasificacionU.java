@@ -18,6 +18,7 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.JScrollPane;
 import java.awt.Color;
 import java.awt.Font;
+import javax.swing.JComboBox;
 
 public class clasificacionU extends JFrame {
 	private JTable table;
@@ -75,11 +76,6 @@ public class clasificacionU extends JFrame {
 		liga.setBounds(27, 89, 46, 14);
 		getContentPane().add(liga);
 
-		// Lista de ligas
-		JList list = new JList();
-		list.setBounds(62, 88, 88, 20);
-		getContentPane().add(list);
-
 		// JTABLE CON LOS DATOS DE LA BD
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 153, 844, 326);
@@ -115,6 +111,10 @@ public class clasificacionU extends JFrame {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel.setBounds(344, 24, 146, 43);
 		getContentPane().add(lblNewLabel);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setBounds(70, 85, 113, 22);
+		getContentPane().add(comboBox);
 
 		String sqlclasificacion = "SELECT * FROM equipos where idliga = " + idliga + " ORDER BY puntos DESC;";
 		ResultSet rs = conexion.consultar(sqlclasificacion);

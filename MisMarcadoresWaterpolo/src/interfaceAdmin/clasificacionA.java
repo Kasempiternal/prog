@@ -91,7 +91,7 @@ public class clasificacionA extends JFrame{
 		scrollPane.setViewportView(table);
 		
 		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(55, 85, 113, 22);
+		comboBox.setBounds(67, 85, 113, 22);
 		getContentPane().add(comboBox);
 		
 		JLabel lblNewLabel_1 = new JLabel("Mis Marcadores Waterpolo");
