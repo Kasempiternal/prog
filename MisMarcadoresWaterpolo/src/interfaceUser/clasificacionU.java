@@ -110,7 +110,7 @@ public class clasificacionU extends JFrame {
 		
 		JLabel lblNewLabel_1 = new JLabel("Mis Marcadores Waterpolo");
 		lblNewLabel_1.setForeground(Color.BLACK);
-		lblNewLabel_1.setBounds(693, 11, 161, 14);
+		lblNewLabel_1.setBounds(618, 11, 161, 14);
 		getContentPane().add(lblNewLabel_1);
 		
 		JLabel lblNewLabel = new JLabel("CLASIFICACION");
@@ -121,13 +121,13 @@ public class clasificacionU extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(67, 85, 113, 22);
 		getContentPane().add(comboBox);
-		comboBox.addItem(new ComboItem("Española", "0"));
-		comboBox.addItem(new ComboItem("Australiana", "1"));
-		comboBox.addItem(new ComboItem("Mejicana", "2"));
+		comboBox.addItem(new ComboItem("Liga Premaat", "0"));
+		comboBox.addItem(new ComboItem("Primera Nacional", "1"));
+		comboBox.addItem(new ComboItem("Segunda Nacional", "2"));
 		
-		JButton crear = new JButton("REGISTRARSE");
+		JButton crear = new JButton("Mostrar");
 		crear.setBackground(Color.LIGHT_GRAY);
-		crear.setBounds(693, 11, 161, 14);
+		crear.setBounds(205, 83, 89, 27);
 		getContentPane().add(crear);
 		
 		crear.addActionListener(new ActionListener() {
