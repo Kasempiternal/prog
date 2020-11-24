@@ -104,7 +104,7 @@ public class clasificacionA extends JFrame{
 		lblNewLabel.setBounds(341, 22, 146, 43);
 		getContentPane().add(lblNewLabel);
 
-		String sqlclasificacion = "SELECT * FROM equipos where idliga = " + idliga + ";";
+		String sqlclasificacion = "SELECT * FROM equipos where idliga = " + idliga + " ORDER BY DESC;";
 		ResultSet rs = conexion.consultar(sqlclasificacion);
 		int posicion = 0;
 		try {
