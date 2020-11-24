@@ -181,7 +181,7 @@ public class conexion {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	} 
 
 	public static void getid(String id) {
 		String selectid = "SELECT idusuario FROM usuario";

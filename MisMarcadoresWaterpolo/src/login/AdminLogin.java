@@ -37,7 +37,7 @@ public class AdminLogin extends JFrame {
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				}
+				} 
 			}
 		});
 	}

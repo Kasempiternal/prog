@@ -18,7 +18,7 @@ public class MenuAdmin extends JFrame{
 					MenuAdmin window = new MenuAdmin();
 					window.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					e.printStackTrace(); 
 				}
 			}
 		});

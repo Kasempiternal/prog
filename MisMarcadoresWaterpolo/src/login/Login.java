@@ -157,7 +157,7 @@ public class Login extends JFrame {
 		// Los botones
 		JButton loginbtn = new JButton("LOGIN");
 		loginbtn.setForeground(new Color(255, 255, 255));
-		loginbtn.setBackground(SystemColor.textHighlight);
+		loginbtn.setBackground(SystemColor.textHighlight); 
 		loginbtn.setBounds(44, 328, 299, 43);
 		getContentPane().add(loginbtn);
 

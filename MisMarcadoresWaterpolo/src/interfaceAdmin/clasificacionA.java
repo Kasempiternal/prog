@@ -1,26 +1,24 @@
-package clases;
+package interfaceAdmin;
 
-import java.awt.Dimension;
 import java.awt.EventQueue;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.util.Date;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import basedatos.conexion;
 import javax.swing.JList;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
 
-public class clasificacion extends JFrame {
+import basedatos.conexion;
+import interfaceUser.clasificacionU;
+
+public class clasificacionA extends JFrame{
 	private JTable table;
-	
+
 	Connection conn = conexion.getConexion();
-	
 
 	/**
 	 * Launch the application.
@@ -29,7 +27,7 @@ public class clasificacion extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					clasificacion window = new clasificacion();
+					clasificacionA window = new clasificacionA();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,7 +39,7 @@ public class clasificacion extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public clasificacion() {
+	public clasificacionA() {
 		initialize();
 	}
 
@@ -51,23 +49,19 @@ public class clasificacion extends JFrame {
 	private void initialize() {
 		setBounds(100, 100, 880, 529);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		getContentPane().setLayout(null);		
+		getContentPane().setLayout(null);
 		JLabel ID = new JLabel("ID:");
 		ID.setBounds(10, 11, 46, 14);
 		getContentPane().add(ID);
-		
+
 		JLabel usuario = new JLabel("Usuario:");
 		usuario.setBounds(10, 24, 54, 14);
 		getContentPane().add(usuario);
-		
-		
-	
+
 		JLabel id = new JLabel();
 		id.setBounds(27, 11, 72, 14);
 		getContentPane().add(id);
-		
-	
-	
+
 		JLabel user = new JLabel();
 		user.setBounds(62, 24, 72, 14);
 		getContentPane().add(user);
@@ -76,63 +70,57 @@ public class clasificacion extends JFrame {
 		liga.setBounds(27, 89, 46, 14);
 		getContentPane().add(liga);
 
-		//Lista de ligas
+		// Lista de ligas
 		JList list = new JList();
 		list.setBounds(62, 88, 88, 20);
 		getContentPane().add(list);
-		
-	
-		
-		
-		
-		//JTABLE CON LOS DATOS DE LA BD
+
+		// JTABLE CON LOS DATOS DE LA BD
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 153, 844, 326);
 		getContentPane().add(scrollPane);
-		
-		String sql = "SELECT * FROM equipos";
-		DefaultTableModel modelo = new DefaultTableModel();
+
+		int idliga = 0; // DE ALGUNA MANERA CAMBIARLO CUANDO EL USUARIO META LA LIGA DESEADA
+
+		// HAY Q ORDENAR POR PUNTOS
+		// TABLA DE ADMINISTRADOS CON IDS
+
+		DefaultTableModel dtm = new DefaultTableModel();
 		table = new JTable();
-		
-		modelo.addColumn("IdEquipo");
-		modelo.addColumn("Nombre_Equipo");
-		modelo.addColumn("Puntos");
-		modelo.addColumn("Inic_Temporada");
-		modelo.addColumn("Fin_Temporada");
-		modelo.addColumn("IdLiga");
-		table.setModel(modelo);
-		
-		
-		String[] datos = new String[5];
-		Statement st = null;
-		try {
-			st = conn.createStatement();
-			ResultSet rs = st.executeQuery(sql);
 
-			while (rs.next()) {
-				datos[0] = rs.getString(1);
-				datos[1] = rs.getString(2);
-				datos[2] = rs.getString(3);
-				datos[3] = rs.getString(4);
-				datos[4] = rs.getString(5);
-				datos[5] = rs.getString(6);
-				modelo.addRow(datos);
-		
-			}
-		} catch (Exception e) {
-				// TODO: handle exception
-		}
-		
-	
+		dtm.addColumn("IdEquipo");
+		dtm.addColumn("Nombre_Equipo");
+		dtm.addColumn("Puntos");
+		dtm.addColumn("Inic_Temporada");
+		dtm.addColumn("Fin_Temporada");
+		dtm.addColumn("IdLiga");
+		table.setModel(dtm);
+
+		JScrollPane scrollPane1 = new JScrollPane();
+		scrollPane.setBounds(10, 153, 844, 326);
+		getContentPane().add(scrollPane);
+
 		scrollPane.setViewportView(table);
-		
-		
-	
-		
 
-		
+		String sqlclasificacion = "SELECT * FROM equipos where idliga = " + idliga + ";";
+		ResultSet rs = conexion.consultar(sqlclasificacion);
 
-		
-	
+		try {
+			while (rs.next()) {
+				int rsid = rs.getInt("idliga");
+				String rsnombre = rs.getString("nombre_equipo");
+				int rspuntos = rs.getInt("puntos");
+				Date rsdateinit = rs.getDate("inic_temporada");
+				Date rsdatefin = rs.getDate("fin_temporada");
+				int rsidliga = rs.getInt("idliga");
+
+				dtm.addRow(new Object[] { rsid, rsnombre, rspuntos, rsdateinit, rsdatefin, rsidliga });
+
+			}
+
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
+
 	}
 }
