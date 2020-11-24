@@ -142,7 +142,7 @@ public class Login extends JFrame {
 		JCheckBox admincheckbox = new JCheckBox("Administrador");
 		admincheckbox.setBackground(Color.WHITE);
 		admincheckbox.setForeground(SystemColor.textHighlight);
-		admincheckbox.setBounds(6, 7, 129, 23);
+		admincheckbox.setBounds(6, 7, 129, 23); 
 		getContentPane().add(admincheckbox);
 		admincheckbox.addActionListener(new ActionListener() {
 			
