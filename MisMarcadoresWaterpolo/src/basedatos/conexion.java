@@ -11,6 +11,7 @@ import java.sql.*;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 import login.CrearCuenta;
+import objetos.usuario;
 
 public class conexion {
 	private static final int PORT = 3306;
@@ -19,6 +20,7 @@ public class conexion {
 	private static final String USUARIO = "root";
 	private static final String CONTRA = "123456789";
 
+	
 	private static Connection conexion;
 
 	public static Connection getConexion() {
@@ -170,31 +172,104 @@ public class conexion {
 
 	}
 
-	public static void getusuario(String usuario) {
-		String selectuser = "SELECT nombre FROM usuario";
+	public static String getusuariodb(int id) {
+		String selectuser = "SELECT nombre FROM usuario where idusuario = '"+id+"';";
 		ResultSet rs = consultar(selectuser);
+		String usuario = null;
 		try {
 			if (rs.next()) {
-				usuario = rs.getString("nombre");
+				 usuario = rs.getString("nombre");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return usuario;
+	} 
+	public static String getapellidodb(int id) {
+		String selectuser = "SELECT apellido FROM usuario where idusuario = '"+id+"';";
+		ResultSet rs = consultar(selectuser);
+		String apellido = null;
+		try {
+			if (rs.next()) {
+				 apellido = rs.getString("apellido");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return apellido;
+	} 
+	public static String getemaildb(int id) {
+		String selectuser = "SELECT email FROM usuario where idusuario = '"+id+"';";
+		ResultSet rs = consultar(selectuser);
+		String email = null;
+		try {
+			if (rs.next()) {
+				 email = rs.getString("email");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return email;
+	} 
+	
+	public static String getcontraseña(int id) {
+		String selectuser = "SELECT contraseña FROM usuario where idusuario = '"+id+"';";
+		ResultSet rs = consultar(selectuser);
+		String contraseña = null;
+		try {
+			if (rs.next()) {
+				contraseña = rs.getString("contraseña");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return contraseña;
 	} 
 
-	public static void getid(String id) {
-		String selectid = "SELECT idusuario FROM usuario";
+	public static int getid(String user) {
+		String selectid = "SELECT idusuario FROM usuario where nombre = '"+ user+"';";
 		ResultSet rs = consultar(selectid);
+		int id = 0;
 		try {
 			if (rs.next()) {
-				id = rs.getString("idusuario");
+				id = rs.getInt("idusuario");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return id;
 	}
+	
+	public static usuario setuserdata(String username) {
+		String selectid = "SELECT * FROM usuario where nombre = '"+ username+"';";
+		ResultSet rs = consultar(selectid);
+		usuario user = new usuario();
+		
+		try {
+			if (rs.next()) {
+				user.setId(rs.getInt("idusuario")); 
+				user.setNombre(rs.getString("nombre")); 
+				user.setApellido(rs.getString("apellido")); 
+				user.setContraseña(rs.getString("contraseña")); 
+				user.setEmail(rs.getString("email")); 
+				
+				System.out.println(user.getNombre());
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return user;
+	
+	}
+
+	
+	
 
 	public static void tabladatos(DefaultTableModel modelo, JTable table, String[] datos, Statement st, String sql) {
 		sql = "SELECT * FROM equipos";
@@ -229,8 +304,10 @@ public class conexion {
 		}
 	}
 
+
 	public static void main(String[] args) {
 		conexion baseDatos = new conexion().conectar();
 
 	}
+
 }

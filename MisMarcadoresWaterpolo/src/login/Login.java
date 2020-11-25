@@ -7,6 +7,7 @@ import javax.swing.UIManager;
 
 import Menus.MenuInicio;
 import basedatos.conexion;
+import objetos.usuario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -44,8 +45,10 @@ public class Login extends JFrame {
 	CrearCuenta cc = new CrearCuenta();
 	MenuInicio mi = new MenuInicio();
 	AdminLogin adminlog = new AdminLogin();
+	static usuario userr;
 	private JTextField pass;
 
+	public static int idusuarioglobal = 0;
 
 	private int esAdmin = 0;
 
@@ -137,15 +140,15 @@ public class Login extends JFrame {
 				}
 			}
 		});
-		
-		//Checkbox administrador
+
+		// Checkbox administrador
 		JCheckBox admincheckbox = new JCheckBox("Administrador");
 		admincheckbox.setBackground(Color.WHITE);
 		admincheckbox.setForeground(SystemColor.textHighlight);
-		admincheckbox.setBounds(6, 7, 129, 23); 
+		admincheckbox.setBounds(6, 7, 129, 23);
 		getContentPane().add(admincheckbox);
 		admincheckbox.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -157,7 +160,7 @@ public class Login extends JFrame {
 		// Los botones
 		JButton loginbtn = new JButton("LOGIN");
 		loginbtn.setForeground(new Color(255, 255, 255));
-		loginbtn.setBackground(SystemColor.textHighlight); 
+		loginbtn.setBackground(SystemColor.textHighlight);
 		loginbtn.setBounds(44, 328, 299, 43);
 		getContentPane().add(loginbtn);
 
@@ -178,7 +181,9 @@ public class Login extends JFrame {
 					ok = conexion.comprobarLogin(usertxt.getText(), pass.getText());
 
 					if (ok == true) {
-						mi.setVisible(true);
+						userr = conexion.setuserdata(usertxt.getText());
+						idusuarioglobal = conexion.getid(userr.getNombre());
+						mi.main(idusuarioglobal);
 						setVisible(false);
 					} else {
 						JOptionPane.showMessageDialog(null, "Las contrase\u00F1a o el usuario es incorrecto", "ERROR",
@@ -210,12 +215,11 @@ public class Login extends JFrame {
 		cerrar.setBackground(Color.LIGHT_GRAY);
 		cerrar.setBounds(206, 389, 137, 36);
 		getContentPane().add(cerrar);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Mis Marcadores Waterpolo");
 		lblNewLabel_1.setForeground(Color.BLACK);
 		lblNewLabel_1.setBounds(204, 11, 181, 14);
 		getContentPane().add(lblNewLabel_1);
-		
 
 		cerrar.addActionListener(new ActionListener() {
 
@@ -227,4 +231,10 @@ public class Login extends JFrame {
 		});
 
 	}
+
+	public static int setUsuarioglobal() {
+		// TODO Auto-generated method stub
+		return idusuarioglobal;
+	}
+
 }
