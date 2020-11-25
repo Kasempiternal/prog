@@ -228,9 +228,6 @@ public class conexion {
 			// TODO: handle exception
 		}
 	}
-	public static void mostrarlista(String listsql                                                         ) {
-		 listsql = "SELECT nombre_liga FROM ligas";
-	}
 
 	public static void main(String[] args) {
 		conexion baseDatos = new conexion().conectar();

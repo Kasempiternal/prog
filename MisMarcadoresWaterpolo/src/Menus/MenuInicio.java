@@ -13,11 +13,14 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 
+import interfaceUser.CuentaUsuario;
 import interfaceUser.clasificacionU;
 
 public class MenuInicio extends JFrame {
 	
 	clasificacionU cU = new clasificacionU();
+
+	
 	/**
 	 * Launch the application.
 	 */
@@ -102,6 +105,16 @@ public class MenuInicio extends JFrame {
 		JButton editarusuario = new JButton("Edita tus datos de usuario");
 		editarusuario.setBackground(new Color(135, 206, 250));
 		editarusuario.setBounds(10, 380, 375, 43);
+		editarusuario.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				CuentaUsuario cuenta = new CuentaUsuario();
+				cuenta.setVisible(true);
+				setVisible(false);
+			}
+		});
 		getContentPane().add(editarusuario);
 		
 		JButton Consulta = new JButton("Consulta al Admin");

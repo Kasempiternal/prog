@@ -5,6 +5,7 @@ import java.awt.Font;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -13,12 +14,14 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import interfaceAdmin.clasificacionA;
+import login.Login;
 
 import java.awt.Color;
 
 public class MenuAdmin extends JFrame{
 		
 		clasificacionA cA = new clasificacionA();
+		Login log = null;
 
 
 	/**
@@ -68,8 +71,14 @@ public class MenuAdmin extends JFrame{
 		clasificacion.setBackground(new Color(135, 206, 250));
 		clasificacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cA.setVisible(true);
-				setVisible(false);
+			try {
+				log = new Login();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			log.setVisible(true);
+			setVisible(false);
 			}
 		});
 		clasificacion.setBounds(10, 103, 375, 43);
@@ -85,39 +94,39 @@ public class MenuAdmin extends JFrame{
 		identificarse.setBounds(10, 240, 375, 43);
 		getContentPane().add(identificarse);
 		
-		JButton editarusuario = new JButton("Ver consultas de usuario");
-		editarusuario.addActionListener(new ActionListener() {
+		JButton verconsultas = new JButton("Ver consultas de usuario");
+		verconsultas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		editarusuario.setBackground(new Color(135, 206, 250));
-		editarusuario.setBounds(10, 370, 375, 43);
-		getContentPane().add(editarusuario);
+		verconsultas.setBackground(new Color(135, 206, 250));
+		verconsultas.setBounds(10, 370, 375, 43);
+		getContentPane().add(verconsultas);
 
 		
 		JLabel mismarcadores = new JLabel("Mis Marcadores Waterpolo");
 		mismarcadores.setForeground(UIManager.getColor("ToolTip.foreground"));
-		mismarcadores.setBounds(224, 11, 161, 14);
+		mismarcadores.setBounds(234, 11, 161, 14);
 		getContentPane().add(mismarcadores);
 		
-		JLabel ID = new JLabel("ADMINISTRADOR");
-		ID.setBounds(10, 11, 121, 14);
-		getContentPane().add(ID);
+		JLabel administrador = new JLabel("ADMINISTRADOR");
+		administrador.setBounds(10, 11, 121, 14);
+		getContentPane().add(administrador);
 		
-		JButton btnEditarUsuarios = new JButton("Editar Usuarios");
-		btnEditarUsuarios.setBackground(new Color(135, 206, 250));
-		btnEditarUsuarios.setBounds(10, 301, 375, 43);
-		getContentPane().add(btnEditarUsuarios);
+		JButton editarusuarios = new JButton("Editar Usuarios");
+		editarusuarios.setBackground(new Color(135, 206, 250));
+		editarusuarios.setBounds(10, 301, 375, 43);
+		getContentPane().add(editarusuarios);
 		
-		JButton editarusuario_1_1 = new JButton("Cerrar");
-		editarusuario_1_1.addActionListener(new ActionListener() {
+		JButton Cerrar = new JButton("Cerrar");
+		Cerrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 			}
 		});
-		editarusuario_1_1.setBackground(new Color(135, 206, 250));
-		editarusuario_1_1.setBounds(132, 435, 130, 36);
-		getContentPane().add(editarusuario_1_1);
+		Cerrar.setBackground(new Color(135, 206, 250));
+		Cerrar.setBounds(132, 435, 130, 36);
+		getContentPane().add(Cerrar);
 	}
 
 }
