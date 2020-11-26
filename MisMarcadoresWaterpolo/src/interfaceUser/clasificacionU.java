@@ -28,13 +28,14 @@ import javax.swing.JComboBox;
 
 public class clasificacionU extends JFrame {
 	private JTable table;
-
+	public static int idusuarioglobal = 0;
 	Connection conn = conexion.getConexion();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
+	public static void main(int id) {
+		idusuarioglobal = id;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -70,11 +71,12 @@ public class clasificacionU extends JFrame {
 		usuario.setBounds(10, 24, 54, 14);
 		getContentPane().add(usuario);
 
-		JLabel id = new JLabel();
+		JLabel id = new JLabel(Integer.toString(idusuarioglobal));
 		id.setBounds(27, 11, 72, 14);
 		getContentPane().add(id);
 
-		JLabel user = new JLabel();
+		JLabel user = new JLabel(conexion.getusuariodb(idusuarioglobal));
+		System.out.println(conexion.getusuariodb(idusuarioglobal));
 		user.setBounds(62, 24, 72, 14);
 		getContentPane().add(user);
 

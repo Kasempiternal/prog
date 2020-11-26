@@ -91,7 +91,7 @@ public class MenuInicio extends JFrame {
 		btnNewButton_4.setBackground(new Color(135, 206, 250));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				cU.setVisible(true);
+				cU.main(idusuarioglobal);
 				setVisible(false);
 			}
 		});
