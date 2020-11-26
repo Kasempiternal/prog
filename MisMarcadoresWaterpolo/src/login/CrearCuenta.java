@@ -23,6 +23,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import basedatos.conexion;
+import mail.mandarMail;
 
 import javax.swing.JTextField;
 import java.awt.Color;
@@ -37,6 +38,8 @@ public class CrearCuenta extends JFrame {
 	private JTextField mailtxt;
 	private JTextField contra;
 	private JTextField comprobacion;
+	private JTextField codigotext;
+	private int codigoverificacion;
 
 	/**
 	 * Launch the application.
@@ -152,17 +155,34 @@ public class CrearCuenta extends JFrame {
 		crear.setBackground(SystemColor.textHighlight);
 		crear.setBounds(209, 376, 234, 45);
 		getContentPane().add(crear);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Mis Marcadores Waterpolo");
 		lblNewLabel_1.setForeground(Color.BLACK);
 		lblNewLabel_1.setBounds(441, 11, 181, 14);
 		getContentPane().add(lblNewLabel_1);
+
+		codigotext = new JTextField();
+		codigotext.setBounds(452, 180, 122, 20);
+		getContentPane().add(codigotext);
+		codigotext.setColumns(10);
+
+		JButton btnNewButton = new JButton("Recibir codigo");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				String recipiente = mailtxt.getText();
+				codigoverificacion = mandarMail.mandarMail(recipiente + "@gmail.com");
+
+			}
+		});
+		btnNewButton.setBounds(452, 212, 122, 23);
+		getContentPane().add(btnNewButton);
 		crear.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 
+				// COMPROBACION DE QUE LOS CAMPOS ESTAN RELLENADOS
 				if (nombretxt.getText().length() == 0 || apellidotxt.getText().length() == 0
 						|| contra.getText().length() == 0 || comprobacion.getText().length() == 0
 						|| mailtxt.getText().length() == 0) {
@@ -177,14 +197,22 @@ public class CrearCuenta extends JFrame {
 					gmailcom.setForeground(Color.RED);
 
 				}
-
+				// ERROR DE CONTRASEÑA NO HA METIDO LAS DOS IGUALES
 				else if (!comprobacion.getText().equals(contra.getText())) {
 					JOptionPane.showMessageDialog(null, "Las contrase\u00F1as no coinciden", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
 					lblContrasea.setForeground(Color.RED);
 					lblcomprobar.setForeground(Color.RED);
 
-				} else if (contra.getText().equals(comprobacion.getText())) {
+				}
+
+				// COMPROBRACION DE CODIGO DE EMAIL
+				else if (!codigotext.getText().equals(Integer.toString(codigoverificacion)) ) {
+					System.out.println("El codigo introducido es erroneo" + codigotext.getText() + codigoverificacion);
+				}
+
+				// COMPROBACION USUARIO EXISTENTE O NO PARA CREARLO FINALMENTE
+				else if (contra.getText().equals(comprobacion.getText())) {
 
 					boolean usuariousado = conexion.comprobarUsuario(nombretxt.getText());
 
@@ -193,7 +221,9 @@ public class CrearCuenta extends JFrame {
 						System.out.println("Usuario repetido");
 						JOptionPane.showMessageDialog(null, "Este usuario ya esta usado, use otro", "ERROR",
 								JOptionPane.ERROR_MESSAGE);
-					} else {
+					}
+
+					else {
 						int idusuario = (int) Math.floor(Math.random() * 1000); // hay que poner autoincrement en la
 																				// base de
 
@@ -209,6 +239,7 @@ public class CrearCuenta extends JFrame {
 								"CUENTA CREADA", JOptionPane.DEFAULT_OPTION);
 						Login login = null;
 						try {
+
 							login = new Login();
 						} catch (IOException e1) {
 							// TODO Auto-generated catch block
