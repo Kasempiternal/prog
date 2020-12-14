@@ -92,11 +92,6 @@ public class CrearCuenta extends JFrame {
 		apellido.setBounds(364, 107, 58, 29);
 		getContentPane().add(apellido);
 
-		JLabel lblEmail = new JLabel("@gmail.com");
-		lblEmail.setForeground(Color.GRAY);
-		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblEmail.setBounds(336, 208, 144, 29);
-		getContentPane().add(lblEmail);
 
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
 		lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -170,7 +165,7 @@ public class CrearCuenta extends JFrame {
 		recibircodigo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String recipiente = mailtxt.getText();
-				codigoverificacion = mandarMail.mandarMail(recipiente + "@gmail.com");
+				codigoverificacion = mandarMail.mandarMail(recipiente);
 
 			}
 		});
@@ -193,7 +188,6 @@ public class CrearCuenta extends JFrame {
 					apellido.setForeground(Color.RED);
 					lblContrasea.setForeground(Color.RED);
 					lblcomprobar.setForeground(Color.RED);
-					lblEmail.setForeground(Color.RED);
 					gmailcom.setForeground(Color.RED);
 
 				}
