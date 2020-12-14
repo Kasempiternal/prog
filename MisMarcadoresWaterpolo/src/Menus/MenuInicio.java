@@ -13,10 +13,10 @@ import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
 
+import aainiciador.Login;
 import basedatos.conexion;
 import interfaceUser.CuentaUsuario;
 import interfaceUser.clasificacionU;
-import login.Login;
 
 public class MenuInicio extends JFrame {
 
@@ -117,7 +117,7 @@ public class MenuInicio extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				CuentaUsuario cuenta = new CuentaUsuario();
-				cuenta.setVisible(true);
+				cuenta.main(idusuarioglobal);
 				setVisible(false);
 			}
 		});
