@@ -17,6 +17,7 @@ import aainiciador.Login;
 import basedatos.conexion;
 import interfaceUser.CuentaUsuario;
 import interfaceUser.clasificacionU;
+import interfaceUser.resultados;
 
 public class MenuInicio extends JFrame {
 
@@ -101,6 +102,17 @@ public class MenuInicio extends JFrame {
 		JButton Resultados = new JButton("Resultados");
 		Resultados.setBackground(new Color(135, 206, 250));
 		Resultados.setBounds(10, 171, 375, 43);
+		getContentPane().add(Resultados);
+		Resultados.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				resultados resultados = new resultados();
+				resultados.main(idusuarioglobal);
+				setVisible(false);
+			}
+		});
 		getContentPane().add(Resultados);
 
 		JButton Goleadores = new JButton("Goleadores");
