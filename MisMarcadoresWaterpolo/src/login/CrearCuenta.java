@@ -65,15 +65,21 @@ public class CrearCuenta extends JFrame {
 	}
 
 	/**
-	 * Initialize the contents of the frame.
+	 * Inicializamos todos los elementos de la ventana crearcuenta los cuales separaremos mas adelante mediante mas usuarios
 	 */
+	
+	
 	private void initialize() {
+		
+		/**
+		 * Valores propios de la ventana JFRAME
+		 */
 		setBounds(100, 100, 638, 503);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
 
-		// Inizializamos los Jlabel
+		// Inizializamos todos los  Jlabel de dentro de la ventana y los retocamos para que sea mas bonitos visualmente hablando
 		JLabel titulo = new JLabel("Registrarse");
 		titulo.setToolTipText("");
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -107,6 +113,20 @@ public class CrearCuenta extends JFrame {
 		gmailcom.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		gmailcom.setBounds(33, 216, 63, 29);
 		getContentPane().add(gmailcom);
+		
+		
+		//Esto es un aviso para que el usuario vea que es obligatoria la verificacion por mail
+		JLabel aviso = new JLabel("*Es necesario verificar el correo electronico de la cuenta mediante el codigo aleatorio");
+		aviso.setForeground(Color.GRAY);
+		aviso.setFont(new Font("Tahoma", Font.PLAIN, 9));
+		aviso.setBounds(137, 409, 390, 23);
+		getContentPane().add(aviso);
+		
+
+		JLabel nombreapp = new JLabel("Mis Marcadores Waterpolo");
+		nombreapp.setForeground(Color.BLACK);
+		nombreapp.setBounds(441, 11, 181, 14);
+		getContentPane().add(nombreapp);
 
 		// Los JTextField
 		nombretxt = new JTextField();
@@ -131,8 +151,9 @@ public class CrearCuenta extends JFrame {
 		comprobacion = new JTextField();
 		comprobacion.setBounds(425, 293, 138, 45);
 		getContentPane().add(comprobacion);
+		
 
-		// Jbutton cerrar
+		//Jbutton cerrar. Simplemente cierra la aplicacion
 		JButton cerrar = new JButton("CERRAR");
 		cerrar.setBackground(SystemColor.controlShadow);
 		cerrar.setBounds(509, 430, 89, 23);
@@ -145,23 +166,15 @@ public class CrearCuenta extends JFrame {
 				System.exit(0);
 			}
 		});
-
+		
 		JButton crear = new JButton("Crear Cuenta");
 		crear.setBackground(SystemColor.textHighlight);
-		crear.setBounds(209, 376, 234, 45);
+		crear.setBounds(378, 201, 234, 45);
 		getContentPane().add(crear);
 
-		JLabel nombreapp = new JLabel("Mis Marcadores Waterpolo");
-		nombreapp.setForeground(Color.BLACK);
-		nombreapp.setBounds(441, 11, 181, 14);
-		getContentPane().add(nombreapp);
-
-		codigotext = new JTextField();
-		codigotext.setBounds(452, 180, 122, 20);
-		getContentPane().add(codigotext);
-		codigotext.setColumns(10);
-
+		
 		JButton recibircodigo = new JButton("Recibir codigo");
+		recibircodigo.setBackground(SystemColor.textHighlight);
 		recibircodigo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String recipiente = mailtxt.getText();
@@ -169,9 +182,33 @@ public class CrearCuenta extends JFrame {
 
 			}
 		});
-		recibircodigo.setBounds(452, 212, 122, 23);
+		recibircodigo.setBounds(188, 368, 234, 45);
 		getContentPane().add(recibircodigo);
-		crear.addActionListener(new ActionListener() {
+		
+		JButton Volverbtn = new JButton("VOLVER");
+		Volverbtn.setBackground(SystemColor.controlShadow);
+		Volverbtn.setBounds(10, 430, 89, 23);
+		getContentPane().add(Volverbtn);
+		Volverbtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				Login login = null;
+				try {
+
+					login = new Login();
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				setVisible(false);
+				login.setVisible(true);
+			}
+		});
+		
+		
+		recibircodigo.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
