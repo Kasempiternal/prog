@@ -156,26 +156,26 @@ public class CrearCuenta extends JFrame {
 		crear.setBounds(209, 376, 234, 45);
 		getContentPane().add(crear);
 
-		JLabel lblNewLabel_1 = new JLabel("Mis Marcadores Waterpolo");
-		lblNewLabel_1.setForeground(Color.BLACK);
-		lblNewLabel_1.setBounds(441, 11, 181, 14);
-		getContentPane().add(lblNewLabel_1);
+		JLabel nombreapp = new JLabel("Mis Marcadores Waterpolo");
+		nombreapp.setForeground(Color.BLACK);
+		nombreapp.setBounds(441, 11, 181, 14);
+		getContentPane().add(nombreapp);
 
 		codigotext = new JTextField();
 		codigotext.setBounds(452, 180, 122, 20);
 		getContentPane().add(codigotext);
 		codigotext.setColumns(10);
 
-		JButton btnNewButton = new JButton("Recibir codigo");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton recibircodigo = new JButton("Recibir codigo");
+		recibircodigo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				String recipiente = mailtxt.getText();
 				codigoverificacion = mandarMail.mandarMail(recipiente + "@gmail.com");
 
 			}
 		});
-		btnNewButton.setBounds(452, 212, 122, 23);
-		getContentPane().add(btnNewButton);
+		recibircodigo.setBounds(452, 212, 122, 23);
+		getContentPane().add(recibircodigo);
 		crear.addActionListener(new ActionListener() {
 
 			@Override
