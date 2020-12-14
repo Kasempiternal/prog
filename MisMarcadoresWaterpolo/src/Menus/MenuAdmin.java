@@ -13,8 +13,8 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
+import aainiciador.Login;
 import interfaceAdmin.clasificacionA;
-import login.Login;
 
 import java.awt.Color;
 

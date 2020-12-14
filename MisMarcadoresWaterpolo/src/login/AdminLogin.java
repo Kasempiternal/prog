@@ -18,9 +18,9 @@ import javax.swing.UIManager;
 
 import Menus.MenuAdmin;
 import Menus.MenuInicio;
+import aainiciador.Login;
+
 import java.awt.Font;
-
-
 
 public class AdminLogin extends JFrame {
 	/**
@@ -28,7 +28,7 @@ public class AdminLogin extends JFrame {
 	 */
 	MenuAdmin ma = new MenuAdmin();
 	private String admin = "admin";
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -37,7 +37,7 @@ public class AdminLogin extends JFrame {
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
-				} 
+				}
 			}
 		});
 	}
@@ -61,45 +61,44 @@ public class AdminLogin extends JFrame {
 		getContentPane().setLayout(null);
 		setVisible(false);
 		setTitle("ADMINISTRADOR");
-		
+
 		JTextField adminpass = new JTextField();
 		adminpass.setForeground(new Color(0, 0, 0));
 		adminpass.setBackground(new Color(255, 255, 255));
 		adminpass.setBounds(150, 75, 150, 25);
 		getContentPane().add(adminpass);
-		
-		JLabel contratextolbl = new JLabel("Introduzca la contrase\u00F1a correcta para iniciar sesion como administrador");
+
+		JLabel contratextolbl = new JLabel(
+				"Introduzca la contrase\u00F1a correcta para iniciar sesion como administrador");
 		contratextolbl.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		contratextolbl.setHorizontalAlignment(SwingConstants.CENTER);
 		contratextolbl.setBounds(0, 26, 434, 14);
 		getContentPane().add(contratextolbl);
-		
+
 		JLabel contralbl = new JLabel("Contrase\u00F1a:");
 		contralbl.setBounds(77, 80, 84, 14);
 		getContentPane().add(contralbl);
-		
 
 		JButton aceptar = new JButton("ACEPTAR");
 		aceptar.setBackground(new Color(173, 216, 230));
 		aceptar.setBounds(118, 131, 89, 23);
 		getContentPane().add(aceptar);
 		aceptar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if(adminpass.getText().equals("admin")) {
+				if (adminpass.getText().equals("admin")) {
 					System.out.println("WELCOME ADMIN");
 					setVisible(false);
 					ma.setVisible(true);
-					
-				}else if(!adminpass.getText().equals("admin")) {
+
+				} else if (!adminpass.getText().equals("admin")) {
 					JOptionPane.showMessageDialog(null, "CONTRASEÑA INCORRECTA", "ERROR", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});
-		
-		
+
 		JButton cancelar = new JButton("CANCELAR");
 		cancelar.setBackground(new Color(173, 216, 230));
 		cancelar.addActionListener(new ActionListener() {
@@ -113,18 +112,11 @@ public class AdminLogin extends JFrame {
 					e1.printStackTrace();
 				}
 				login.setVisible(true);
-				
+
 			}
 		});
 		cancelar.setBounds(227, 131, 97, 23);
 		getContentPane().add(cancelar);
-		
-	
 
-		
-
-		
 	}
 }
-
-
