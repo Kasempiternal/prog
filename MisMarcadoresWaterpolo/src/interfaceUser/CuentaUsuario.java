@@ -39,7 +39,7 @@ public class CuentaUsuario extends JFrame {
 				try {
 					CuentaUsuario window = new CuentaUsuario();
 					window.setVisible(true);
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -120,7 +120,7 @@ public class CuentaUsuario extends JFrame {
 		contra.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		contra.setBounds(43, 331, 90, 29);
 		getContentPane().add(contra);
-		
+
 		usuariotxt.setText(basedatos.getusuariodb(idusuarioglobal));
 		apellidotxt.setText(basedatos.getapellidodb(idusuarioglobal));
 		mailtxt.setText(basedatos.getapellidodb(idusuarioglobal));

@@ -109,59 +109,57 @@ public class clasificacionU extends JFrame {
 		getContentPane().add(scrollPane);
 
 		scrollPane.setViewportView(table);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Mis Marcadores Waterpolo");
 		lblNewLabel_1.setForeground(Color.BLACK);
 		lblNewLabel_1.setBounds(618, 11, 161, 14);
 		getContentPane().add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel = new JLabel("CLASIFICACION");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel.setBounds(341, 22, 146, 43);
 		getContentPane().add(lblNewLabel);
-		
+
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(67, 85, 113, 22);
 		getContentPane().add(comboBox);
 		comboBox.addItem(new ComboItem("Liga Premaat", "0"));
 		comboBox.addItem(new ComboItem("Primera Nacional", "1"));
 		comboBox.addItem(new ComboItem("Segunda Nacional", "2"));
-		
+
 		JButton crear = new JButton("Mostrar");
 		crear.setBackground(Color.LIGHT_GRAY);
 		crear.setBounds(205, 83, 89, 27);
 		getContentPane().add(crear);
-		
+
 		crear.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (dtm.getRowCount() > 0) {
-				    for (int i = dtm.getRowCount() - 1; i > -1; i--) {
-				        dtm.removeRow(i);
-				    }
+					for (int i = dtm.getRowCount() - 1; i > -1; i--) {
+						dtm.removeRow(i);
+					}
 				}
-				
-				
+
 				Object item = comboBox.getSelectedItem();
-				String value = ((ComboItem)item).getValue();
+				String value = ((ComboItem) item).getValue();
 				System.out.println(value);
-				
+
 				String sqlclasificacion = "SELECT * FROM equipos where idliga = " + value + " ORDER BY puntos DESC;";
 				ResultSet rs = conexion.consultar(sqlclasificacion);
 				int posicion = 0;
-				
 
 				try {
 					while (rs.next()) {
-					
+
 						String rsnombre = rs.getString("nombre_equipo");
 						int rspuntos = rs.getInt("puntos");
 						Date rsdateinit = rs.getDate("inic_temporada");
 						Date rsdatefin = rs.getDate("fin_temporada");
-		
-						posicion = posicion +1;
+
+						posicion = posicion + 1;
 						dtm.addRow(new Object[] { posicion, rsnombre, rspuntos, rsdateinit, rsdatefin });
 
 					}
@@ -172,7 +170,6 @@ public class clasificacionU extends JFrame {
 
 			}
 		});
-
 
 	}
 }

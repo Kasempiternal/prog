@@ -66,12 +66,12 @@ public class CrearCuenta extends JFrame {
 	}
 
 	/**
-	 * Inicializamos todos los elementos de la ventana crearcuenta los cuales separaremos mas adelante mediante mas usuarios
+	 * Inicializamos todos los elementos de la ventana crearcuenta los cuales
+	 * separaremos mas adelante mediante mas usuarios
 	 */
-	
-	
+
 	private void initialize() {
-		
+
 		/**
 		 * Valores propios de la ventana JFRAME
 		 */
@@ -80,7 +80,8 @@ public class CrearCuenta extends JFrame {
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
 
-		// Inizializamos todos los  Jlabel de dentro de la ventana y los retocamos para que sea mas bonitos visualmente hablando
+		// Inizializamos todos los Jlabel de dentro de la ventana y los retocamos para
+		// que sea mas bonitos visualmente hablando
 		JLabel titulo = new JLabel("Registrarse");
 		titulo.setToolTipText("");
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -99,7 +100,6 @@ public class CrearCuenta extends JFrame {
 		apellido.setBounds(364, 107, 58, 29);
 		getContentPane().add(apellido);
 
-
 		JLabel lblContrasea = new JLabel("Contrase\u00F1a");
 		lblContrasea.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		lblContrasea.setBounds(10, 300, 86, 29);
@@ -114,15 +114,15 @@ public class CrearCuenta extends JFrame {
 		gmailcom.setFont(new Font("Tahoma", Font.PLAIN, 13));
 		gmailcom.setBounds(33, 216, 63, 29);
 		getContentPane().add(gmailcom);
-		
-		
-		//Esto es un aviso para que el usuario vea que es obligatoria la verificacion por mail
-		JLabel aviso = new JLabel("*Es necesario verificar el correo electronico de la cuenta mediante el codigo aleatorio");
+
+		// Esto es un aviso para que el usuario vea que es obligatoria la verificacion
+		// por mail
+		JLabel aviso = new JLabel(
+				"*Es necesario verificar el correo electronico de la cuenta mediante el codigo aleatorio");
 		aviso.setForeground(Color.GRAY);
 		aviso.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		aviso.setBounds(137, 409, 390, 23);
 		getContentPane().add(aviso);
-		
 
 		JLabel nombreapp = new JLabel("Mis Marcadores Waterpolo");
 		nombreapp.setForeground(Color.BLACK);
@@ -152,9 +152,8 @@ public class CrearCuenta extends JFrame {
 		comprobacion = new JTextField();
 		comprobacion.setBounds(425, 293, 138, 45);
 		getContentPane().add(comprobacion);
-		
 
-		//Jbutton cerrar. Simplemente cierra la aplicacion
+		// Jbutton cerrar. Simplemente cierra la aplicacion
 		JButton cerrar = new JButton("CERRAR");
 		cerrar.setBackground(SystemColor.controlShadow);
 		cerrar.setBounds(509, 430, 89, 23);
@@ -167,13 +166,12 @@ public class CrearCuenta extends JFrame {
 				System.exit(0);
 			}
 		});
-		
+
 		JButton crear = new JButton("Crear Cuenta");
 		crear.setBackground(SystemColor.textHighlight);
 		crear.setBounds(378, 201, 234, 45);
 		getContentPane().add(crear);
 
-		
 		JButton recibircodigo = new JButton("Recibir codigo");
 		recibircodigo.setBackground(SystemColor.textHighlight);
 		recibircodigo.addActionListener(new ActionListener() {
@@ -185,13 +183,13 @@ public class CrearCuenta extends JFrame {
 		});
 		recibircodigo.setBounds(188, 368, 234, 45);
 		getContentPane().add(recibircodigo);
-		
+
 		JButton Volverbtn = new JButton("VOLVER");
 		Volverbtn.setBackground(SystemColor.controlShadow);
 		Volverbtn.setBounds(10, 430, 89, 23);
 		getContentPane().add(Volverbtn);
 		Volverbtn.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -207,8 +205,7 @@ public class CrearCuenta extends JFrame {
 				login.setVisible(true);
 			}
 		});
-		
-		
+
 		recibircodigo.addActionListener(new ActionListener() {
 
 			@Override
@@ -239,7 +236,7 @@ public class CrearCuenta extends JFrame {
 				}
 
 				// COMPROBRACION DE CODIGO DE EMAIL
-				else if (!codigotext.getText().equals(Integer.toString(codigoverificacion)) ) {
+				else if (!codigotext.getText().equals(Integer.toString(codigoverificacion))) {
 					System.out.println("El codigo introducido es erroneo" + codigotext.getText() + codigoverificacion);
 				}
 

@@ -24,7 +24,7 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class clasificacionA extends JFrame{
+public class clasificacionA extends JFrame {
 	private JTable table;
 
 	Connection conn = conexion.getConexion();
@@ -95,16 +95,16 @@ public class clasificacionA extends JFrame{
 		getContentPane().add(scrollPane);
 
 		scrollPane.setViewportView(table);
-		
+
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(67, 85, 113, 22);
 		getContentPane().add(comboBox);
-		
+
 		JLabel lblNewLabel_1 = new JLabel("Mis Marcadores Waterpolo");
 		lblNewLabel_1.setForeground(Color.BLACK);
 		lblNewLabel_1.setBounds(693, 11, 161, 14);
 		getContentPane().add(lblNewLabel_1);
-		
+
 		JLabel lblNewLabel = new JLabel("CLASIFICACION");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		lblNewLabel.setBounds(341, 22, 146, 43);
@@ -113,32 +113,30 @@ public class clasificacionA extends JFrame{
 		comboBox.addItem(new ComboItem("Liga Premaat", "0"));
 		comboBox.addItem(new ComboItem("Primera Nacional", "1"));
 		comboBox.addItem(new ComboItem("Segunda Nacional", "2"));
-		
+
 		JButton crear = new JButton("Mostrar");
 		crear.setBackground(Color.LIGHT_GRAY);
 		crear.setBounds(205, 83, 89, 27);
 		getContentPane().add(crear);
-		
+
 		crear.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (dtm.getRowCount() > 0) {
-				    for (int i = dtm.getRowCount() - 1; i > -1; i--) {
-				        dtm.removeRow(i);
-				    }
+					for (int i = dtm.getRowCount() - 1; i > -1; i--) {
+						dtm.removeRow(i);
+					}
 				}
-				
-				
+
 				Object item = comboBox.getSelectedItem();
-				String value = ((ComboItem)item).getValue();
+				String value = ((ComboItem) item).getValue();
 				System.out.println(value);
-				
+
 				String sqlclasificacion = "SELECT * FROM equipos where idliga = " + value + " ORDER BY puntos DESC;";
 				ResultSet rs = conexion.consultar(sqlclasificacion);
 				int posicion = 0;
-				
 
 				try {
 					while (rs.next()) {
@@ -148,8 +146,9 @@ public class clasificacionA extends JFrame{
 						Date rsdateinit = rs.getDate("inic_temporada");
 						Date rsdatefin = rs.getDate("fin_temporada");
 						int rsidliga = rs.getInt("idliga");
-						posicion = posicion +1;
-						dtm.addRow(new Object[] { posicion, rsid, rsnombre, rspuntos, rsdateinit, rsdatefin, rsidliga });
+						posicion = posicion + 1;
+						dtm.addRow(
+								new Object[] { posicion, rsid, rsnombre, rspuntos, rsdateinit, rsdatefin, rsidliga });
 
 					}
 
@@ -159,7 +158,6 @@ public class clasificacionA extends JFrame{
 
 			}
 		});
-
 
 	}
 }

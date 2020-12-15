@@ -22,13 +22,12 @@ public class MenuAdmin extends JFrame {
 
 	clasificacionA cA = new clasificacionA();
 	Login log = null;
-	
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main() {
-	
+
 		EventQueue.invokeLater(new Runnable() {
 
 			public void run() {

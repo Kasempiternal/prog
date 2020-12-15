@@ -17,6 +17,7 @@ import aainiciador.Login;
 import basedatos.conexion;
 import interfaceUser.CuentaUsuario;
 import interfaceUser.clasificacionU;
+import interfaceUser.goleadores;
 import interfaceUser.resultados;
 
 public class MenuInicio extends JFrame {
@@ -31,7 +32,7 @@ public class MenuInicio extends JFrame {
 		idusuarioglobal = id;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-		
+
 				try {
 					MenuInicio window = new MenuInicio();
 					window.setVisible(true);
@@ -119,6 +120,16 @@ public class MenuInicio extends JFrame {
 		Goleadores.setBackground(new Color(135, 206, 250));
 		Goleadores.setBounds(10, 243, 375, 43);
 		getContentPane().add(Goleadores);
+		Goleadores.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				goleadores goleadores = new goleadores();
+				goleadores.main(idusuarioglobal);
+				setVisible(false);
+			}
+		});
 
 		JButton editarusuario = new JButton("Edita tus datos de usuario");
 		editarusuario.setBackground(new Color(135, 206, 250));
@@ -144,10 +155,6 @@ public class MenuInicio extends JFrame {
 		mismarcadores.setForeground(Color.BLACK);
 		mismarcadores.setBounds(224, 11, 161, 14);
 		getContentPane().add(mismarcadores);
-		
 
-		
-		
-		
 	}
 }
