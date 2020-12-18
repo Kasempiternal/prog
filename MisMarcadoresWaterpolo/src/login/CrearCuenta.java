@@ -24,6 +24,7 @@ import javax.swing.UIManager;
 
 import aainiciador.Login;
 import basedatos.conexion;
+import login.Loading.Hilo;
 import mail.mandarMail;
 
 import javax.swing.JTextField;
@@ -41,7 +42,7 @@ public class CrearCuenta extends JFrame {
 	private JTextField comprobacion;
 	private JTextField codigotext;
 	private int codigoverificacion;
-
+	
 	/**
 	 * Launch the application.
 	 */
@@ -117,8 +118,7 @@ public class CrearCuenta extends JFrame {
 
 		// Esto es un aviso para que el usuario vea que es obligatoria la verificacion
 		// por mail
-		JLabel aviso = new JLabel(
-				"*Es necesario verificar el correo electronico de la cuenta mediante el codigo aleatorio");
+		JLabel aviso = new JLabel("*Es necesario verificar el correo electronico de la cuenta mediante el codigo aleatorio");
 		aviso.setForeground(Color.GRAY);
 		aviso.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		aviso.setBounds(137, 409, 390, 23);
@@ -167,17 +167,11 @@ public class CrearCuenta extends JFrame {
 			}
 		});
 
-		JButton crear = new JButton("Crear Cuenta");
-		crear.setBackground(SystemColor.textHighlight);
-		crear.setBounds(378, 201, 234, 45);
-		getContentPane().add(crear);
-
 		JButton recibircodigo = new JButton("Recibir codigo");
 		recibircodigo.setBackground(SystemColor.textHighlight);
 		recibircodigo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				String recipiente = mailtxt.getText();
-				codigoverificacion = mandarMail.mandarMail(recipiente);
+			
 
 			}
 		});
@@ -235,11 +229,6 @@ public class CrearCuenta extends JFrame {
 
 				}
 
-				// COMPROBRACION DE CODIGO DE EMAIL
-				else if (!codigotext.getText().equals(Integer.toString(codigoverificacion))) {
-					System.out.println("El codigo introducido es erroneo" + codigotext.getText() + codigoverificacion);
-				}
-
 				// COMPROBACION USUARIO EXISTENTE O NO PARA CREARLO FINALMENTE
 				else if (contra.getText().equals(comprobacion.getText())) {
 
@@ -253,28 +242,11 @@ public class CrearCuenta extends JFrame {
 					}
 
 					else {
-						int idusuario = (int) Math.floor(Math.random() * 1000); // hay que poner autoincrement en la
-																				// base de
-
-						int tipo_usuario = 0;
-
-						conexion.crearCuenta(idusuario, nombretxt.getText(), apellidotxt.getText(), mailtxt.getText(),
-								contra.getText(), tipo_usuario);
-
+						
+						new Thread(new Hilo2()).start();
 						setVisible(false);
-						System.out.println("Password OK");
-
-						JOptionPane.showMessageDialog(null, "Cuenta creada correctamente. Inicie sesion.",
-								"CUENTA CREADA", JOptionPane.DEFAULT_OPTION);
-						Login login = null;
-						try {
-
-							login = new Login();
-						} catch (IOException e1) {
-							// TODO Auto-generated catch block
-							e1.printStackTrace();
-						}
-						login.setVisible(true);
+						Loading load = new Loading();
+						load.setVisible(true);
 					}
 
 				}
@@ -283,5 +255,16 @@ public class CrearCuenta extends JFrame {
 
 		});
 
+	}
+	public class Hilo2 implements Runnable{
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			String recipiente = mailtxt.getText();
+			codigoverificacion = mandarMail.mandarMail(recipiente);
+		
+		}
+		
 	}
 }
