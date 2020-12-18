@@ -149,6 +149,9 @@ public class goleadores extends JFrame {
 						int idequipo = rs.getInt("idequipo");
 						System.out.println(idequipo + "este es ideq");
 						String nombre_equipo = "";
+						
+						
+						
 						String nombreequipo = "SELECT nombre_equipo FROM equipos WHERE idequipo = '" + idequipo + "' ;";
 						ResultSet rse = conexion.consultar(nombreequipo);
 						

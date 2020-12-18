@@ -262,7 +262,7 @@ public class CrearCuenta extends JFrame {
 		public void run() {
 			// TODO Auto-generated method stub
 			String recipiente = mailtxt.getText();
-			codigoverificacion = mandarMail.mandarMail(recipiente);
+			codigoverificacion = mandarMail.recibircodigo(recipiente);
 		
 		}
 		
