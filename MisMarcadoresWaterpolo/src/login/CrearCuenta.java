@@ -37,11 +37,11 @@ public class CrearCuenta extends JFrame {
 
 	private JTextField nombretxt;
 	private JTextField apellidotxt;
-	private JTextField mailtxt;
+	public JTextField mailtxt;
 	private JTextField contra;
 	private JTextField comprobacion;
 	private JTextField codigotext;
-	private int codigoverificacion;
+	public int codigoverificacion;
 	
 	/**
 	 * Launch the application.
@@ -229,7 +229,7 @@ public class CrearCuenta extends JFrame {
 
 				}
 
-				// COMPROBACION USUARIO EXISTENTE O NO PARA CREARLO FINALMENTE
+				// COMPROBACION USUARIO EXISTENTE O NO PARA ENVIAR CODIGO AL CORREO
 				else if (contra.getText().equals(comprobacion.getText())) {
 
 					boolean usuariousado = conexion.comprobarUsuario(nombretxt.getText());
@@ -239,11 +239,13 @@ public class CrearCuenta extends JFrame {
 						System.out.println("Usuario repetido");
 						JOptionPane.showMessageDialog(null, "Este usuario ya esta usado, use otro", "ERROR",
 								JOptionPane.ERROR_MESSAGE);
-					}
+					}else{
+						/**
+						* 
+						* MUESTRA LA VENTANA DE LOADING MAS ADELANTE SE MANDARA EL CODIGO AUNQUE SE 
+						* SIMULARA COMO QUE SE ESTA MANDANDO A CONTINUACION
+						*/
 
-					else {
-						
-						new Thread(new Hilo2()).start();
 						setVisible(false);
 						Loading load = new Loading();
 						load.setVisible(true);
@@ -256,15 +258,7 @@ public class CrearCuenta extends JFrame {
 		});
 
 	}
-	public class Hilo2 implements Runnable{
+	
 
-		@Override
-		public void run() {
-			// TODO Auto-generated method stub
-			String recipiente = mailtxt.getText();
-			codigoverificacion = mandarMail.recibircodigo(recipiente);
-		
-		}
-		
-	}
+	 
 }
