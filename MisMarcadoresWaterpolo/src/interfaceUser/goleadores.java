@@ -89,7 +89,7 @@ public class goleadores extends JFrame {
 
 		DefaultTableModel dtm = new DefaultTableModel();
 		table = new JTable();
-		
+
 		dtm.addColumn("Posicion");
 		dtm.addColumn("Nombre");
 		dtm.addColumn("Apellido");
@@ -118,14 +118,14 @@ public class goleadores extends JFrame {
 		ligas.addItem(new ComboItem("Liga Premaat", "0"));
 		ligas.addItem(new ComboItem("Primera Nacional", "1"));
 		ligas.addItem(new ComboItem("Segunda Nacional", "2"));
-		 
-		//VOLVER A MENU INICIO
+
+		// VOLVER A MENU INICIO
 		JButton volver = new JButton("VOLVER");
 		volver.setBackground(SystemColor.controlHighlight);
 		volver.setBounds(10, 519, 89, 23);
 		getContentPane().add(volver);
 		volver.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -137,7 +137,6 @@ public class goleadores extends JFrame {
 		crear.setBackground(SystemColor.controlHighlight);
 		crear.setBounds(205, 83, 89, 27);
 		getContentPane().add(crear);
-
 
 		crear.addActionListener(new ActionListener() {
 

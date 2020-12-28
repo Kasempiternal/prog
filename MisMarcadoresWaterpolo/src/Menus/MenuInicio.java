@@ -17,6 +17,7 @@ import aainiciador.Login;
 import basedatos.conexion;
 import interfaceUser.CuentaUsuario;
 import interfaceUser.clasificacionU;
+import interfaceUser.consulta;
 import interfaceUser.goleadores;
 import interfaceUser.resultados;
 
@@ -150,6 +151,16 @@ public class MenuInicio extends JFrame {
 		Consulta.setBackground(new Color(135, 206, 250));
 		Consulta.setBounds(10, 446, 375, 43);
 		getContentPane().add(Consulta);
+		Consulta.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				consulta consulta = new consulta();
+				consulta.main(idusuarioglobal);
+				setVisible(false);
+			}
+		});
 
 		JLabel mismarcadores = new JLabel("Mis Marcadores Waterpolo");
 		mismarcadores.setForeground(Color.BLACK);

@@ -48,7 +48,7 @@ public class mandarMail {
 
 	}
 
-	public static int mandarmail(String texto, int idusuario) {
+	public static int mandarmail(String texto, String asunto, int idusuario) {
 		Properties propiedades = new Properties();
 
 		propiedades.put("mail.smtp.auth", "true");
@@ -68,7 +68,7 @@ public class mandarMail {
 
 		});
 
-		Message mensaje = prepararMensajeConsulta(sesion, cuentamail, texto, idusuario);
+		Message mensaje = prepararMensajeConsulta(sesion, cuentamail, texto, asunto, idusuario);
 
 		try {
 			Transport.send(mensaje);
@@ -87,9 +87,9 @@ public class mandarMail {
 		try {
 			mensaje.setFrom(new InternetAddress(cuentamail));
 			mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(recipiente));
-			mensaje.setSubject("Se ha recibido una nueva consulta de :");
+			mensaje.setSubject("Codigo de verificacion");
 			codigo = (int) (Math.random() * 8999) + 1000;
-			mensaje.setText("Tu cogido de verificacion es :" + codigo);
+			mensaje.setText("Tu cogido de verificacion es : " + codigo);
 			return mensaje;
 		} catch (AddressException e) {
 			// TODO Auto-generated catch block
@@ -103,13 +103,14 @@ public class mandarMail {
 
 	}
 
-	private static Message prepararMensajeConsulta(Session sesion, String cuentamail, String texto, int idusuario) {
+	private static Message prepararMensajeConsulta(Session sesion, String cuentamail, String texto, String asunto,
+			int idusuario) {
 		String recipiente = "mismarcadoreswaterpolo.deusto@gmail.com";
 		Message mensaje = new MimeMessage(sesion);
 		try {
 			mensaje.setFrom(new InternetAddress(cuentamail));
 			mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(recipiente));
-			mensaje.setSubject("Se ha recibido una nueva consulta de : " + idusuario);
+			mensaje.setSubject("Consulta de ID: " + idusuario + ". Asunto : " + asunto);
 			mensaje.setText(texto);
 			return mensaje;
 		} catch (AddressException e) {

@@ -117,13 +117,12 @@ public class resultados extends JFrame {
 		comboBox.addItem(new ComboItem("Primera Nacional", "Australiana"));
 		comboBox.addItem(new ComboItem("Segunda Nacional", "Mpower"));
 
-		
 		JButton volver = new JButton("VOLVER");
 		volver.setBackground(SystemColor.controlHighlight);
 		volver.setBounds(10, 509, 89, 23);
 		getContentPane().add(volver);
 		volver.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -131,12 +130,12 @@ public class resultados extends JFrame {
 				setVisible(false);
 			}
 		});
-		
+
 		JButton crear = new JButton("Mostrar");
 		crear.setBackground(SystemColor.controlHighlight);
 		crear.setBounds(205, 83, 89, 27);
 		getContentPane().add(crear);
-		
+
 		crear.addActionListener(new ActionListener() {
 
 			@Override
