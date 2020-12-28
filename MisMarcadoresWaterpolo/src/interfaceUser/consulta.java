@@ -5,7 +5,7 @@ import java.util.Scanner;
 import mail.mandarMail;
 
 public class consulta {
-	
+
 	public static int idusuarioglobal = 0;
 
 	public static void main(String[] args) {
@@ -13,14 +13,13 @@ public class consulta {
 
 		Scanner scan = new Scanner(System.in);
 		System.out.println("Indica lo que quieres mandar de consulta");
-		
-		String texto ="";
-		
+
+		String texto = "";
+
 		texto = scan.nextLine();
-		
-		mandarMail.mandarmail(texto,idusuarioglobal);
-		
-		
+
+		mandarMail.mandarmail(texto, idusuarioglobal);
+
 	}
 
 }

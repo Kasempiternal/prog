@@ -36,7 +36,7 @@ public class enseñarMail {
 
 		String cuentamail = "mismarcadoreswaterpolo.deusto@gmail.com";
 		String contraseña = "deustodeusto";
-		
+
 		session = Session.getInstance(propiedades, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
 				return new PasswordAuthentication(cuentamail, contraseña);

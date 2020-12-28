@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
  * @author koldo
  *
  */
-public class Loading extends JFrame{
+public class Loading extends JFrame {
 
 	private JProgressBar bar = new JProgressBar();
 	private JLabel enviado;
@@ -23,7 +23,7 @@ public class Loading extends JFrame{
 	private JLabel enviando;
 	private JButton aceptar;
 	private verificaCodigo cod = new verificaCodigo();
-	
+
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
@@ -53,33 +53,30 @@ public class Loading extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
-		 //INICIALIZAMOS LA BARRA QUE SIMULARA EL ENVIO DEL CODIGO AL CORREO
+		// INICIALIZAMOS LA BARRA QUE SIMULARA EL ENVIO DEL CODIGO AL CORREO
 		bar.setBounds(53, 134, 309, 14);
 		getContentPane().add(bar);
 		bar.setStringPainted(true);
 		new Thread(new Hilo()).start();
-		
-		
-		
-		
-		//HAREMOS MAS VISUAL LA VENTANA MEDIANTE ESTOS JLABEL
+
+		// HAREMOS MAS VISUAL LA VENTANA MEDIANTE ESTOS JLABEL
 		enviando = new JLabel("Enviando codigo...");
 		enviando.setBounds(155, 109, 125, 14);
 		getContentPane().add(enviando);
-		
+
 		enviado = new JLabel("Codigo enviado \u2713");
 		enviado.setBounds(155, 109, 110, 14);
 		getContentPane().add(enviado);
 		enviado.setVisible(false);
-		
+
 		compruebaCorreo = new JLabel("Compruebe en su correo electronico");
 		compruebaCorreo.setHorizontalAlignment(SwingConstants.CENTER);
 		compruebaCorreo.setBounds(53, 159, 309, 14);
 		getContentPane().add(compruebaCorreo);
-		
+
 		/**
-		 * BOTON QUE APARECERA UNA VEZ SE HAYA LLEGADO AL 100% DE LA BARRA
-		 * Este boton muestra la siguiente ventana para poder introducir codigo 
+		 * BOTON QUE APARECERA UNA VEZ SE HAYA LLEGADO AL 100% DE LA BARRA Este boton
+		 * muestra la siguiente ventana para poder introducir codigo
 		 */
 		aceptar = new JButton("Introducir codigo");
 		aceptar.setBackground(SystemColor.textHighlight);
@@ -88,7 +85,7 @@ public class Loading extends JFrame{
 		compruebaCorreo.setVisible(false);
 		aceptar.setVisible(false);
 		aceptar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -96,26 +93,27 @@ public class Loading extends JFrame{
 				cod.setVisible(true);
 			}
 		});
-		
-		
+
 	}
+
 	/**
-	 * Comprueba que el valor de la barra esta en 100 y si es 
-	 * asi muestra y esconde los diferentes jlabels
+	 * Comprueba que el valor de la barra esta en 100 y si es asi muestra y esconde
+	 * los diferentes jlabels
 	 */
 	public void valor100() {
-	//Comprueba el valor de la progressbar para mostrar unos labels u otros
-		if(bar.getValue() == 100) {
+		// Comprueba el valor de la progressbar para mostrar unos labels u otros
+		if (bar.getValue() == 100) {
 			enviado.setVisible(true);
 			compruebaCorreo.setVisible(true);
-			enviando.setVisible(false);	
+			enviando.setVisible(false);
 			aceptar.setVisible(true);
-			
+
 		}
 	}
+
 	/**
-	 * Mediante un hilo incrementamos el valor de la progessbar y
-	 * a su vez implementamos el metodo valor100 explicado anteriormente
+	 * Mediante un hilo incrementamos el valor de la progessbar y a su vez
+	 * implementamos el metodo valor100 explicado anteriormente
 	 */
 	public class Hilo implements Runnable {
 		public void run() {
@@ -124,15 +122,17 @@ public class Loading extends JFrame{
 				bar.repaint();
 				valor100();
 				try {
-					Thread.sleep(30);
+					Thread.sleep(50);
 				} catch (Exception e) {
 					// TODO: handle exception
 				}
-			
+
 			}
-			
+
 		}
-	}{
-		
+	}
+
+	{
+
 	}
 }

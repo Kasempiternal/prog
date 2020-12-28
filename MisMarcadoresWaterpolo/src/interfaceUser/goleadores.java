@@ -136,7 +136,8 @@ public class goleadores extends JFrame {
 				String value = ((ComboItem) item).getValue();
 				System.out.println(value);
 
-				String sqlgoleadores = "SELECT * FROM sys.` jugadores` WHERE idliga = " + value + " ORDER BY goles DESC;";
+				String sqlgoleadores = "SELECT * FROM sys.` jugadores` WHERE idliga = " + value
+						+ " ORDER BY goles DESC;";
 				ResultSet rs = conexion.consultar(sqlgoleadores);
 				int posicion = 0;
 
@@ -149,19 +150,17 @@ public class goleadores extends JFrame {
 						int idequipo = rs.getInt("idequipo");
 						System.out.println(idequipo + "este es ideq");
 						String nombre_equipo = "";
-						
-						
-						
+
 						String nombreequipo = "SELECT nombre_equipo FROM equipos WHERE idequipo = '" + idequipo + "' ;";
 						ResultSet rse = conexion.consultar(nombreequipo);
-						
-						try{
+
+						try {
 							while (rs.next()) {
-							 nombre_equipo = rse.getString("nombre_equipo");
-							 System.out.println(nombre_equipo+ " equipose");
+								nombre_equipo = rse.getString("nombre_equipo");
+								System.out.println(nombre_equipo + " equipose");
 							}
-						}catch(Exception eg){
-							
+						} catch (Exception eg) {
+
 						}
 
 						posicion = posicion + 1;

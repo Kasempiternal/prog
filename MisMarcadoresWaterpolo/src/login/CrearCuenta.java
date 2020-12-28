@@ -25,6 +25,7 @@ import javax.swing.UIManager;
 import aainiciador.Login;
 import basedatos.conexion;
 import login.Loading.Hilo;
+import login.verificaCodigo.Hilo2;
 import mail.mandarMail;
 
 import javax.swing.JTextField;
@@ -41,8 +42,8 @@ public class CrearCuenta extends JFrame {
 	private JTextField contra;
 	private JTextField comprobacion;
 	private JTextField codigotext;
-	public int codigoverificacion;
-	
+	public static int codigoverificacion;
+
 	/**
 	 * Launch the application.
 	 */
@@ -118,7 +119,8 @@ public class CrearCuenta extends JFrame {
 
 		// Esto es un aviso para que el usuario vea que es obligatoria la verificacion
 		// por mail
-		JLabel aviso = new JLabel("*Es necesario verificar el correo electronico de la cuenta mediante el codigo aleatorio");
+		JLabel aviso = new JLabel(
+				"*Es necesario verificar el correo electronico de la cuenta mediante el codigo aleatorio");
 		aviso.setForeground(Color.GRAY);
 		aviso.setFont(new Font("Tahoma", Font.PLAIN, 9));
 		aviso.setBounds(137, 409, 390, 23);
@@ -171,7 +173,6 @@ public class CrearCuenta extends JFrame {
 		recibircodigo.setBackground(SystemColor.textHighlight);
 		recibircodigo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-			
 
 			}
 		});
@@ -239,13 +240,14 @@ public class CrearCuenta extends JFrame {
 						System.out.println("Usuario repetido");
 						JOptionPane.showMessageDialog(null, "Este usuario ya esta usado, use otro", "ERROR",
 								JOptionPane.ERROR_MESSAGE);
-					}else{
+					} else {
 						/**
-						* 
-						* MUESTRA LA VENTANA DE LOADING MAS ADELANTE SE MANDARA EL CODIGO AUNQUE SE 
-						* SIMULARA COMO QUE SE ESTA MANDANDO A CONTINUACION
-						*/
+						 * 
+						 * MUESTRA LA VENTANA DE LOADING MAS ADELANTE SE MANDARA EL CODIGO AUNQUE SE
+						 * SIMULARA COMO QUE SE ESTA MANDANDO A CONTINUACION
+						 */
 
+						new Thread(new Hilo2()).start();
 						setVisible(false);
 						Loading load = new Loading();
 						load.setVisible(true);
@@ -258,7 +260,22 @@ public class CrearCuenta extends JFrame {
 		});
 
 	}
-	
 
-	 
+	public class Hilo2 implements Runnable {
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			String recipiente = mailtxt.getText();
+			codigoverificacion = mandarMail.recibircodigo(recipiente);
+
+		}
+
+	}
+
+	public static int returcodigo() {
+
+		return codigoverificacion;
+	}
+
 }
