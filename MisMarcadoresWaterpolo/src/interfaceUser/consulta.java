@@ -4,6 +4,8 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 import Menus.MenuInicio;
@@ -20,9 +22,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JScrollPane;
 
 public class consulta extends JFrame {
 	private JTextField asuntotxt;
+	private JTextArea mensaje;
 	private MenuInicio mi = new MenuInicio();
 	public static int idusuarioglobal = 0;
 
@@ -124,14 +128,19 @@ public class consulta extends JFrame {
 		JLabel mensajelbl = new JLabel("Mensaje:");
 		mensajelbl.setBounds(27, 169, 82, 14);
 		getContentPane().add(mensajelbl);
-
+		
+		/**
+		 * Al utilizar un JTEXTAREA necesitamos tambien un jscrollpane 
+		 */
+		JScrollPane mensajescroll = new JScrollPane();
+		mensajescroll.setBounds(27, 194, 410, 245);
+		getContentPane().add(mensajescroll);
+		mensaje = new JTextArea();
+		mensajescroll.setViewportView(mensaje);
 		/**
 		 * UTILIZAMOS TEXTAREA PARA QUE EL MENSAJE PUEDA SER TODO LO LARGO QUE LE
 		 * USUARIO DESEE
 		 */
-		TextArea mensaje = new TextArea();
-		mensaje.setBounds(27, 189, 413, 256);
-		getContentPane().add(mensaje);
 
 		// BOTON VOLVER A MENUINICIO
 		JButton volver = new JButton("VOLVER");
@@ -147,17 +156,59 @@ public class consulta extends JFrame {
 				setVisible(false);
 			}
 		});
-
+		/**
+		 * ENVIA LA CONSULTA POR CORREO AL CORREO DE LOS ADMINISTRADORES
+		 * Se enviara tanto el asunto como el mensaje tal y como lo escribira el usuario
+		 */
 		JButton enviar = new JButton("ENVIAR");
 		enviar.setBackground(SystemColor.textHighlight);
 		enviar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-
-				mandarMail.mandarmail(mensaje.getText(), asuntotxt.getText(), idusuarioglobal);
-
+				/**
+				 * Runearemos esta parte con un hilo tal y como hemos hecho en las demas ocasiones
+				 * cuando tenemos que mandar un mail. 
+				 * De esta manera no se quedara en blanco ni dara la sensacion de error al usuario
+				 */
+				new Thread(new Hilo()).start();
+				setVisible(false);
+				consulta cons = new consulta();
+				cons.setVisible(true);
 			}
 		});
 		enviar.setBounds(173, 459, 109, 35);
 		getContentPane().add(enviar);
+	
+	}
+	//HILO DE ENVIAR CONSULTA
+	public class Hilo implements Runnable {
+
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			//SI EL MENSAJE ESTA VACIO NO DEJA MANDARLO
+			if(mensaje.getText().length() == 0 ) {
+				JOptionPane.showMessageDialog(null, "El mensaje no puede ser vacio", "MENSAJE NO ENVIADO", JOptionPane.ERROR_MESSAGE);
+				/**
+				 * SI EL ASUNTO ESTA VACIO Y EL MENSAJE NO:
+				 * Pregunta al usuario si quiere enviarlo o cancelarlo
+				 * 
+				 */
+			}else if (asuntotxt.getText().length() == 0 && mensaje.getText().length()!= 0){
+				int confirm = JOptionPane.showConfirmDialog(null, "¿Estas seguro de que quieres enviar un mensaje sin asunto?");
+				if(confirm == JOptionPane.YES_OPTION) {
+					mandarMail.mandarmail(mensaje.getText(), asuntotxt.getText(), idusuarioglobal);
+					JOptionPane.showMessageDialog(null,"Su consulta ha sido enviada correctamente", "CONSULTA ENVIADA", JOptionPane.DEFAULT_OPTION);
+				}else if(confirm == JOptionPane.NO_OPTION) {
+					JOptionPane.showMessageDialog(null, "El mensaje fue cancelado" ,"MENSAJE NO ENVIADO", JOptionPane.ERROR_MESSAGE);
+				}
+				//Si el asunto y el mensaje no estan vacios no necesita preguntar nada
+			}else {
+				mandarMail.mandarmail(mensaje.getText(), asuntotxt.getText(), idusuarioglobal);
+				JOptionPane.showMessageDialog(null,"Su consulta ha sido enviada correctamente", "CONSULTA ENVIADA", JOptionPane.DEFAULT_OPTION);
+			}
+			
+			//SIEMPRE SE MOSTRAR UN JOPTION MENSAJE DESPUES DE ENVIAR EL CORREO PARA QUE EL USUARIO QUEDE SATISFECHO
+		}
+
 	}
 }

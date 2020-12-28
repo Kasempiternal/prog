@@ -25,7 +25,6 @@ import javax.swing.UIManager;
 import aainiciador.Login;
 import basedatos.conexion;
 import login.Loading.Hilo;
-import login.verificaCodigo.Hilo2;
 import mail.mandarMail;
 
 import javax.swing.JTextField;
@@ -247,7 +246,7 @@ public class CrearCuenta extends JFrame {
 						 * SIMULARA COMO QUE SE ESTA MANDANDO A CONTINUACION
 						 */
 
-						new Thread(new Hilo2()).start();
+						new Thread(new Hilo()).start();
 						setVisible(false);
 						Loading load = new Loading();
 						load.setVisible(true);
@@ -261,7 +260,7 @@ public class CrearCuenta extends JFrame {
 
 	}
 
-	public class Hilo2 implements Runnable {
+	public class Hilo implements Runnable {
 
 		@Override
 		public void run() {

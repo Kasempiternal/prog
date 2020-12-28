@@ -103,7 +103,7 @@ public class verificaCodigo extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				new Thread(new Hilo2()).start();
+				new Thread(new Hilo()).start();
 			}
 		});
 
@@ -156,7 +156,7 @@ public class verificaCodigo extends JFrame {
 		});
 	}
 
-	public class Hilo2 implements Runnable {
+	public class Hilo implements Runnable {
 
 		@Override
 		public void run() {
