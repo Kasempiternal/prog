@@ -15,13 +15,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import Menus.MenuInicio;
 import basedatos.conexion;
 import objetos.ComboItem;
+import java.awt.SystemColor;
 
 public class resultados extends JFrame {
 	private JTable table;
 	public static int idusuarioglobal = 0;
 	Connection conn = conexion.getConexion();
+	private MenuInicio mi = new MenuInicio();
 
 	/**
 	 * Launch the application.
@@ -51,7 +54,7 @@ public class resultados extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(100, 100, 880, 529);
+		setBounds(100, 100, 880, 582);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
@@ -97,15 +100,15 @@ public class resultados extends JFrame {
 
 		scrollPane.setViewportView(table);
 
-		JLabel lblNewLabel_1 = new JLabel("Mis Marcadores Waterpolo");
-		lblNewLabel_1.setForeground(Color.BLACK);
-		lblNewLabel_1.setBounds(618, 11, 161, 14);
-		getContentPane().add(lblNewLabel_1);
+		JLabel app = new JLabel("Mis Marcadores Waterpolo");
+		app.setForeground(Color.BLACK);
+		app.setBounds(618, 11, 161, 14);
+		getContentPane().add(app);
 
-		JLabel lblNewLabel = new JLabel("CLASIFICACION");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(341, 22, 146, 43);
-		getContentPane().add(lblNewLabel);
+		JLabel titulo = new JLabel("RESULTADOS");
+		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		titulo.setBounds(341, 22, 146, 43);
+		getContentPane().add(titulo);
 
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(67, 85, 113, 22);
@@ -114,11 +117,26 @@ public class resultados extends JFrame {
 		comboBox.addItem(new ComboItem("Primera Nacional", "Australiana"));
 		comboBox.addItem(new ComboItem("Segunda Nacional", "Mpower"));
 
+		
+		JButton volver = new JButton("VOLVER");
+		volver.setBackground(SystemColor.controlHighlight);
+		volver.setBounds(10, 509, 89, 23);
+		getContentPane().add(volver);
+		volver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				mi.setVisible(true);
+				setVisible(false);
+			}
+		});
+		
 		JButton crear = new JButton("Mostrar");
-		crear.setBackground(Color.LIGHT_GRAY);
+		crear.setBackground(SystemColor.controlHighlight);
 		crear.setBounds(205, 83, 89, 27);
 		getContentPane().add(crear);
-
+		
 		crear.addActionListener(new ActionListener() {
 
 			@Override
