@@ -63,6 +63,7 @@ public class verificaCodigo extends JFrame {
 		getContentPane().add(textcodigo);
 		textcodigo.setColumns(10);
 
+		
 		// JLABEL QUE INDICA AL USUARIO QUE HAY QUE INTRODUCIR CODIGO
 		JLabel titulo = new JLabel("INTRODUCE EL CODIGO PARA VERIFICAR TU CUENTA");
 		titulo.setForeground(SystemColor.textHighlight);

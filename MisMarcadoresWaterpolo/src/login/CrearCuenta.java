@@ -200,6 +200,7 @@ public class CrearCuenta extends JFrame {
 			}
 		});
 
+		
 		recibircodigo.addActionListener(new ActionListener() {
 
 			@Override

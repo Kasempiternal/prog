@@ -103,6 +103,7 @@ public class conexion {
 	public static void crearCuenta( String nombre, String apellido, String email, String contraseña,
 			int tipo_usuario) {
 
+		
 		PreparedStatement ps;
 		ResultSet rs;
 		String registerUserQuery = "INSERT INTO usuario (nombre, apellido, email,contraseña, tipo_usuario) VALUES (?,?,?,?,?)";
