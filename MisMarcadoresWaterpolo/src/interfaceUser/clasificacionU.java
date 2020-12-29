@@ -17,6 +17,9 @@ import objetos.ComboItem;
 import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+
+import Menus.MenuInicio;
+
 import javax.swing.JScrollPane;
 import java.awt.Color;
 import java.awt.Font;
@@ -25,12 +28,13 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import java.awt.SystemColor;
+import javax.swing.SwingConstants;
 
 public class clasificacionU extends JFrame {
 	private JTable table;
 	public static int idusuarioglobal = 0;
 	Connection conn = conexion.getConexion();
-
 	/**
 	 * Launch the application.
 	 */
@@ -59,7 +63,7 @@ public class clasificacionU extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(100, 100, 880, 529);
+		setBounds(100, 100, 880, 578);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
@@ -89,9 +93,7 @@ public class clasificacionU extends JFrame {
 		scrollPane.setBounds(10, 153, 844, 326);
 		getContentPane().add(scrollPane);
 
-		int idliga = 0; // DE ALGUNA MANERA CAMBIARLO CUANDO EL USUARIO META LA LIGA DESEADA
-
-		// HAY Q ORDENAR POR PUNTOS
+		int idliga = 0; 
 		// TABLA PARA NO ADMIN
 
 		DefaultTableModel dtm = new DefaultTableModel();
@@ -110,27 +112,46 @@ public class clasificacionU extends JFrame {
 
 		scrollPane.setViewportView(table);
 
-		JLabel lblNewLabel_1 = new JLabel("Mis Marcadores Waterpolo");
-		lblNewLabel_1.setForeground(Color.BLACK);
-		lblNewLabel_1.setBounds(618, 11, 161, 14);
-		getContentPane().add(lblNewLabel_1);
+		JLabel app = new JLabel("Mis Marcadores Waterpolo");
+		app.setHorizontalAlignment(SwingConstants.RIGHT);
+		app.setForeground(Color.BLACK);
+		app.setBounds(664, 11, 190, 14);
+		getContentPane().add(app);
 
-		JLabel lblNewLabel = new JLabel("CLASIFICACION");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setBounds(341, 22, 146, 43);
-		getContentPane().add(lblNewLabel);
+		JLabel titulo = new JLabel("CLASIFICACION");
+		titulo.setForeground(SystemColor.textHighlight);
+		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		titulo.setBounds(341, 22, 146, 43);
+		getContentPane().add(titulo);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(67, 85, 113, 22);
-		getContentPane().add(comboBox);
-		comboBox.addItem(new ComboItem("Liga Premaat", "0"));
-		comboBox.addItem(new ComboItem("Primera Nacional", "1"));
-		comboBox.addItem(new ComboItem("Segunda Nacional", "2"));
-
+		JComboBox ligas = new JComboBox();
+		ligas.setBounds(67, 85, 113, 22);
+		getContentPane().add(ligas);
+		ligas.addItem(new ComboItem("Liga Premaat", "0"));
+		ligas.addItem(new ComboItem("Primera Nacional", "1"));
+		ligas.addItem(new ComboItem("Segunda Nacional", "2"));
+		
+		JButton volver = new JButton("VOLVER");
+		volver.setBackground(new Color(135, 206, 250));
+		volver.setBounds(10, 501, 89, 27);
+		getContentPane().add(volver);
+		volver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				MenuInicio mi = new MenuInicio();
+				mi.setVisible(true);
+				setVisible(false);
+			}
+		});
+		
 		JButton crear = new JButton("Mostrar");
-		crear.setBackground(Color.LIGHT_GRAY);
+		crear.setBackground(new Color(135, 206, 250));
 		crear.setBounds(205, 83, 89, 27);
 		getContentPane().add(crear);
+		
+
 
 		crear.addActionListener(new ActionListener() {
 
@@ -143,7 +164,7 @@ public class clasificacionU extends JFrame {
 					}
 				}
 
-				Object item = comboBox.getSelectedItem();
+				Object item = ligas.getSelectedItem();
 				String value = ((ComboItem) item).getValue();
 				System.out.println(value);
 
@@ -167,7 +188,7 @@ public class clasificacionU extends JFrame {
 				} catch (Exception eg) {
 					// TODO: handle exception
 				}
-
+				conexion.cerrar();
 			}
 		});
 

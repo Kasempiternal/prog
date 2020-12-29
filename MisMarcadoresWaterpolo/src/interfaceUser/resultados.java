@@ -106,6 +106,7 @@ public class resultados extends JFrame {
 		getContentPane().add(app);
 
 		JLabel titulo = new JLabel("RESULTADOS");
+		titulo.setForeground(SystemColor.textHighlight);
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		titulo.setBounds(341, 22, 146, 43);
 		getContentPane().add(titulo);
@@ -118,7 +119,7 @@ public class resultados extends JFrame {
 		comboBox.addItem(new ComboItem("Segunda Nacional", "Mpower"));
 
 		JButton volver = new JButton("VOLVER");
-		volver.setBackground(SystemColor.controlHighlight);
+		volver.setBackground(new Color(135, 206, 250));
 		volver.setBounds(10, 509, 89, 23);
 		getContentPane().add(volver);
 		volver.addActionListener(new ActionListener() {
@@ -132,7 +133,8 @@ public class resultados extends JFrame {
 		});
 
 		JButton crear = new JButton("Mostrar");
-		crear.setBackground(SystemColor.controlHighlight);
+		crear.setForeground(new Color(0, 0, 0));
+		crear.setBackground(new Color(135, 206, 250));
 		crear.setBounds(205, 83, 89, 27);
 		getContentPane().add(crear);
 

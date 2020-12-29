@@ -23,7 +23,7 @@ import interfaceUser.resultados;
 
 public class MenuInicio extends JFrame {
 
-	clasificacionU cU = new clasificacionU();
+
 	public static int idusuarioglobal = 0;
 
 	/**
@@ -94,6 +94,7 @@ public class MenuInicio extends JFrame {
 		btnNewButton_4.setBackground(new Color(135, 206, 250));
 		btnNewButton_4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				clasificacionU cU = new clasificacionU();
 				cU.main(idusuarioglobal);
 				setVisible(false);
 			}

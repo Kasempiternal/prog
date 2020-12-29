@@ -144,7 +144,7 @@ public class consulta extends JFrame {
 
 		// BOTON VOLVER A MENUINICIO
 		JButton volver = new JButton("VOLVER");
-		volver.setBackground(SystemColor.controlHighlight);
+		volver.setBackground(new Color(135, 206, 250));
 		volver.setBounds(10, 517, 89, 23);
 		getContentPane().add(volver);
 		volver.addActionListener(new ActionListener() {
@@ -161,7 +161,7 @@ public class consulta extends JFrame {
 		 * Se enviara tanto el asunto como el mensaje tal y como lo escribira el usuario
 		 */
 		JButton enviar = new JButton("ENVIAR");
-		enviar.setBackground(SystemColor.textHighlight);
+		enviar.setBackground(new Color(135, 206, 250));
 		enviar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				/**
@@ -194,10 +194,13 @@ public class consulta extends JFrame {
 				 * 
 				 */
 			}else if (asuntotxt.getText().length() == 0 && mensaje.getText().length()!= 0){
+				//PREGUNTA
 				int confirm = JOptionPane.showConfirmDialog(null, "¿Estas seguro de que quieres enviar un mensaje sin asunto?");
+				//SI ES QUE SI LO ENVIA
 				if(confirm == JOptionPane.YES_OPTION) {
 					mandarMail.mandarmail(mensaje.getText(), asuntotxt.getText(), idusuarioglobal);
 					JOptionPane.showMessageDialog(null,"Su consulta ha sido enviada correctamente", "CONSULTA ENVIADA", JOptionPane.DEFAULT_OPTION);
+				//SI ES QUE NO PUES NO
 				}else if(confirm == JOptionPane.NO_OPTION) {
 					JOptionPane.showMessageDialog(null, "El mensaje fue cancelado" ,"MENSAJE NO ENVIADO", JOptionPane.ERROR_MESSAGE);
 				}

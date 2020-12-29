@@ -108,6 +108,7 @@ public class goleadores extends JFrame {
 		getContentPane().add(app);
 
 		JLabel titulo = new JLabel("GOLEADORES");
+		titulo.setForeground(SystemColor.textHighlight);
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		titulo.setBounds(341, 22, 146, 43);
 		getContentPane().add(titulo);
@@ -121,8 +122,8 @@ public class goleadores extends JFrame {
 
 		// VOLVER A MENU INICIO
 		JButton volver = new JButton("VOLVER");
-		volver.setBackground(SystemColor.controlHighlight);
-		volver.setBounds(10, 519, 89, 23);
+		volver.setBackground(new Color(135, 206, 250));
+		volver.setBounds(10, 515, 89, 27);
 		getContentPane().add(volver);
 		volver.addActionListener(new ActionListener() {
 
@@ -134,7 +135,7 @@ public class goleadores extends JFrame {
 			}
 		});
 		JButton crear = new JButton("Mostrar");
-		crear.setBackground(SystemColor.controlHighlight);
+		crear.setBackground(new Color(135, 206, 250));
 		crear.setBounds(205, 83, 89, 27);
 		getContentPane().add(crear);
 
