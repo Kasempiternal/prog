@@ -123,7 +123,7 @@ public class CuentaUsuario extends JFrame {
 
 		usuariotxt.setText(basedatos.getusuariodb(idusuarioglobal));
 		apellidotxt.setText(basedatos.getapellidodb(idusuarioglobal));
-		mailtxt.setText(basedatos.getapellidodb(idusuarioglobal));
+		mailtxt.setText(basedatos.getemaildb(idusuarioglobal));
 		contraseñatxt.setText(basedatos.getcontraseña(idusuarioglobal));
 
 		// Botones
