@@ -6,6 +6,9 @@ import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.sql.*;
 
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
@@ -301,6 +304,49 @@ public class conexion {
 			// TODO: handle exception
 		}
 	}
+	
+	
+	public void meterimagen(String direccion) {
+		 try
+         {
+              //Load the driver
+              Class.forName("oracle.jdbc.driver.OracleDriver");
+              //Cretae the connection object
+              Connection con = DriverManager.getConnection(DB, USUARIO, CONTRA);
+              //Inserting the record in Image table
+              String sql = "insert into Image values(?, ?, ?)";
+              PreparedStatement ps = con.prepareStatement(sql);
+              ps.setInt(1, 101);
+              ps.setString(2, "Samsung");
+              //read the image file
+              FileInputStream fin=new FileInputStream(direccion);  
+              ps.setBinaryStream(2,fin,fin.available());  
+              int i=ps.executeUpdate();  
+              System.out.println(i+" records affected");  
+              //close
+              fin.close();
+              ps.close();
+              con.close();  
+
+         }
+         catch(ClassNotFoundException ex)
+         {
+              ex.printStackTrace();
+         }
+         catch(SQLException ex)
+         {
+              ex.printStackTrace();
+         }
+         catch(FileNotFoundException ex)
+         {
+              ex.printStackTrace();
+         }
+         catch(IOException ex)
+         {
+              ex.printStackTrace();
+         }
+	}
+	
 
 	public static void main(String[] args) {
 		conexion baseDatos = new conexion().conectar();
