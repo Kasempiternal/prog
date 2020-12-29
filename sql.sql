@@ -33,8 +33,9 @@ CREATE TABLE ` jugadores` (
   `goles` int DEFAULT NULL,
   `partidos jugados` int DEFAULT NULL,
   `inic_temporada` date DEFAULT NULL,
-  `fin_temporada` date DEFAULT NULL,
+  ` fin_temporada` date DEFAULT NULL,
   `idequipo` int DEFAULT NULL,
+  `idliga` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`idjugador`),
   KEY `equipo_idx` (`idequipo`),
   CONSTRAINT `equipo` FOREIGN KEY (`idequipo`) REFERENCES `equipos` (`idequipo`)
@@ -47,6 +48,7 @@ CREATE TABLE ` jugadores` (
 
 LOCK TABLES ` jugadores` WRITE;
 /*!40000 ALTER TABLE ` jugadores` DISABLE KEYS */;
+INSERT INTO ` jugadores` VALUES (0,'Anotnio','Tony',21,'España',2,1,12,2,'2020-01-01','2022-01-01',1,'0'),(1,'Koldo','Moya',15,'Mexico',5,8,1,9,'2020-01-01','2020-01-10',2,'0');
 /*!40000 ALTER TABLE ` jugadores` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -58,7 +60,7 @@ DROP TABLE IF EXISTS `entrenador`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `entrenador` (
-  `idjugador` int NOT NULL,
+  `identrenador` int NOT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `apellido` varchar(45) DEFAULT NULL,
   `edad` varchar(45) DEFAULT NULL,
@@ -68,11 +70,9 @@ CREATE TABLE `entrenador` (
   `inic_temporada` date DEFAULT NULL,
   `fin_temporada` date DEFAULT NULL,
   `idequipo` int DEFAULT NULL,
-  PRIMARY KEY (`idjugador`),
-  KEY `id jugador_idx` (`idjugador`),
+  KEY `id jugador_idx` (`identrenador`),
   KEY `equipo_idx` (`idequipo`),
-  CONSTRAINT `id equipo` FOREIGN KEY (`idequipo`) REFERENCES ` jugadores` (`idequipo`),
-  CONSTRAINT `id jugador` FOREIGN KEY (`idjugador`) REFERENCES ` jugadores` (`idjugador`)
+  CONSTRAINT `id equipo` FOREIGN KEY (`idequipo`) REFERENCES ` jugadores` (`idequipo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -111,6 +111,7 @@ CREATE TABLE `equipos` (
 
 LOCK TABLES `equipos` WRITE;
 /*!40000 ALTER TABLE `equipos` DISABLE KEYS */;
+INSERT INTO `equipos` VALUES (0,'Los toros de repelega',40,'2020-01-01','2021-01-01',0),(1,'Los bufalos de sestao',20,'2020-01-01','2021-01-01',0),(2,'Los mastodontes de portugalete',30,'2020-01-01','2021-01-01',0),(3,'Mexico city',30,'1999-01-01','2000-01-01',1),(4,'Mexico new mexico',5,'1999-01-01','2000-01-01',1),(5,'Tiajunistas',55,'1999-01-01','2000-01-01',1),(6,'Odissey Warriors',70,'2020-01-01','2021-01-01',2),(7,'New Zealand Originals',20,'2020-01-01','2021-01-01',2),(8,'Nosemashulio',50,'2020-01-01','2021-01-01',2);
 /*!40000 ALTER TABLE `equipos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -440,7 +441,8 @@ CREATE TABLE `ligas` (
   `region` varchar(45) DEFAULT NULL,
   `inic_temporada` date DEFAULT NULL,
   `fin_temporada` date DEFAULT NULL,
-  PRIMARY KEY (`idliga`)
+  PRIMARY KEY (`idliga`),
+  KEY `nombre_liga_idx` (`nombre_liga`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -450,6 +452,7 @@ CREATE TABLE `ligas` (
 
 LOCK TABLES `ligas` WRITE;
 /*!40000 ALTER TABLE `ligas` DISABLE KEYS */;
+INSERT INTO `ligas` VALUES (0,'Española','España','Bizkaia','2020-01-01','2021-01-01'),(1,'Australiana','Australia','Nueva Zelanda','2021-01-01','2022-01-01'),(2,'Mpower','Mexico','Mexico','1999-01-01','2000-01-01');
 /*!40000 ALTER TABLE `ligas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -601,6 +604,36 @@ SET @saved_cs_client     = @@character_set_client;
  1 AS `variable_name`,
  1 AS `variable_value`*/;
 SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `resultados`
+--
+
+DROP TABLE IF EXISTS `resultados`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `resultados` (
+  `idPartido` int NOT NULL AUTO_INCREMENT,
+  `local` varchar(45) DEFAULT NULL,
+  `visitante` varchar(45) DEFAULT NULL,
+  `resultado` varchar(45) DEFAULT NULL,
+  `resultadonum` varchar(45) DEFAULT NULL,
+  `liga` varchar(45) NOT NULL,
+  PRIMARY KEY (`idPartido`),
+  KEY `lgia_idx` (`liga`),
+  CONSTRAINT `nombreliuga` FOREIGN KEY (`liga`) REFERENCES `ligas` (`nombre_liga`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `resultados`
+--
+
+LOCK TABLES `resultados` WRITE;
+/*!40000 ALTER TABLE `resultados` DISABLE KEYS */;
+INSERT INTO `resultados` VALUES (1,'Los bufalos de sestao','Los toros de repelega','P','15-25','Española'),(2,'Los mastodontes de portugalete','Los bufalos de sestao','G','15-14','Española'),(3,'Mexico city','Tiajunistas','P','12-32','Mpower'),(4,'New Zealand Originals','Nosemashulio','G','22-10','Australiana'),(5,'Los toros de repelega','Los bufalos de sestao','G','22-4','Española');
+/*!40000 ALTER TABLE `resultados` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Temporary view structure for view `schema_auto_increment_columns`
@@ -1156,10 +1189,10 @@ DROP TABLE IF EXISTS `usuario`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `usuario` (
   `idusuario` int NOT NULL,
-  `dni` varchar(10) DEFAULT NULL,
   `nombre` varchar(45) DEFAULT NULL,
   `apellido` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
+  `contraseña` varchar(45) DEFAULT NULL,
   `tipo_usuario` tinyint DEFAULT NULL,
   PRIMARY KEY (`idusuario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -1171,6 +1204,7 @@ CREATE TABLE `usuario` (
 
 LOCK TABLES `usuario` WRITE;
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
+INSERT INTO `usuario` VALUES (132,'churruca','joinychrurruchu','churrucu','jon',0),(159,'fffff','test','test','test',0),(241,'asda','aaa','12asd','1234',0),(616,'koldo','moya','izotzkasego','123123',0),(720,'aaa','vvv','12dx12','12345',0),(743,'test','test','test','test',0),(863,'jon','churruco','jon1','jon1',0);
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -1187,9 +1221,7 @@ CREATE TABLE `verificado` (
   `idjugador` int NOT NULL,
   PRIMARY KEY (`idverificado`),
   KEY `idJugador_idx` (`idjugador`),
-  KEY `id usuario_idx` (`idusuario`),
-  CONSTRAINT `idJugador` FOREIGN KEY (`idjugador`) REFERENCES ` jugadores` (`idjugador`),
-  CONSTRAINT `idusuario` FOREIGN KEY (`idusuario`) REFERENCES `usuario` (`idusuario`)
+  CONSTRAINT `idJugador` FOREIGN KEY (`idjugador`) REFERENCES ` jugadores` (`idjugador`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -4123,4 +4155,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-11-04  0:59:19
+-- Dump completed on 2020-12-29 12:54:43
