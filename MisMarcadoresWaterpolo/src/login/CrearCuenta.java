@@ -35,12 +35,12 @@ import javax.swing.JPasswordField;
 
 public class CrearCuenta extends JFrame {
 
-	private JTextField nombretxt;
-	private JTextField apellidotxt;
-	public JTextField mailtxt;
-	private JTextField contra;
-	private JTextField comprobacion;
-	private JTextField codigotext;
+	public static JTextField nombretxt;
+	public static JTextField apellidotxt;
+	public static JTextField mailtxt;
+	public static JTextField contra;
+	public static JTextField comprobacion;
+	public static JTextField codigotext;
 	public static int codigoverificacion;
 
 	/**
@@ -275,6 +275,22 @@ public class CrearCuenta extends JFrame {
 	public static int returcodigo() {
 
 		return codigoverificacion;
+	}
+	public static String returnnombre() {
+		String nombre = nombretxt.getText();
+		return nombre;
+	}
+	public static String returnmail() {
+		String mail = mailtxt.getText();
+		return mail;
+	}
+	public static String returncontra() {
+		String contraseña = contra.getText();
+		return contraseña;
+	}
+	public static String returnapellido() {
+		String apellido = apellidotxt.getText();
+		return apellido;
 	}
 
 }

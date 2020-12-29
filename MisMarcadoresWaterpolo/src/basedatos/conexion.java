@@ -100,22 +100,21 @@ public class conexion {
 		return true;
 	}
 
-	public static void crearCuenta(int idusuario, String nombre, String apellido, String email, String contraseña,
+	public static void crearCuenta( String nombre, String apellido, String email, String contraseña,
 			int tipo_usuario) {
 
 		PreparedStatement ps;
 		ResultSet rs;
-		String registerUserQuery = "INSERT INTO usuario (idusuario, nombre, apellido, email,contraseña, tipo_usuario) VALUES (?,?,?,?,?,?)";
+		String registerUserQuery = "INSERT INTO usuario (nombre, apellido, email,contraseña, tipo_usuario) VALUES (?,?,?,?,?)";
 
 		try {
 
 			ps = getConexion().prepareStatement(registerUserQuery);
-			ps.setInt(1, idusuario);
-			ps.setString(2, nombre);
-			ps.setString(3, apellido);
-			ps.setString(4, email);
-			ps.setString(5, contraseña);
-			ps.setInt(6, tipo_usuario);
+			ps.setString(1, nombre);
+			ps.setString(2, apellido);
+			ps.setString(3, email);
+			ps.setString(4, contraseña);
+			ps.setInt(5, tipo_usuario);
 
 			if (ps.executeUpdate() != 0) {
 				System.out.println("Cuenta creada");
