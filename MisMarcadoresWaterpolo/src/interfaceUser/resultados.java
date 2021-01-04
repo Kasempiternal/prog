@@ -47,6 +47,7 @@ public class resultados extends JFrame {
 	 * Create the application.
 	 */
 	public resultados() {
+		getContentPane().setBackground(new Color(255, 255, 255));
 		initialize();
 	}
 

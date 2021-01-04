@@ -48,6 +48,7 @@ public class goleadores extends JFrame {
 	 * Create the application.
 	 */
 	public goleadores() {
+		getContentPane().setBackground(new Color(255, 255, 255));
 		initialize();
 	}
 

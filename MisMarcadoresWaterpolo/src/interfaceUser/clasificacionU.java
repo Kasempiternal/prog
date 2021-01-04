@@ -56,6 +56,7 @@ public class clasificacionU extends JFrame {
 	 * Create the application.
 	 */
 	public clasificacionU() {
+		getContentPane().setBackground(new Color(255, 255, 255));
 		initialize();
 	}
 
