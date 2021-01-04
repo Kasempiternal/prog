@@ -6,8 +6,10 @@ import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.*;
 
@@ -100,10 +102,8 @@ public class conexion {
 		return true;
 	}
 
-	public static void crearCuenta( String nombre, String apellido, String email, String contraseña,
-			int tipo_usuario) {
+	public static void crearCuenta(String nombre, String apellido, String email, String contraseña, int tipo_usuario) {
 
-		
 		PreparedStatement ps;
 		ResultSet rs;
 		String registerUserQuery = "INSERT INTO usuario (nombre, apellido, email,contraseña, tipo_usuario) VALUES (?,?,?,?,?)";
@@ -304,52 +304,64 @@ public class conexion {
 			// TODO: handle exception
 		}
 	}
-	
-	
-	public void meterimagen(String direccion) {
-		 try
-         {
-              //Load the driver
-              Class.forName("oracle.jdbc.driver.OracleDriver");
-              //Cretae the connection object
-              Connection con = DriverManager.getConnection(DB, USUARIO, CONTRA);
-              //Inserting the record in Image table
-              String sql = "insert into Image values(?, ?, ?)";
-              PreparedStatement ps = con.prepareStatement(sql);
-              ps.setInt(1, 101);
-              ps.setString(2, "Samsung");
-              //read the image file
-              FileInputStream fin=new FileInputStream(direccion);  
-              ps.setBinaryStream(2,fin,fin.available());  
-              int i=ps.executeUpdate();  
-              System.out.println(i+" records affected");  
-              //close
-              fin.close();
-              ps.close();
-              con.close();  
 
-         }
-         catch(ClassNotFoundException ex)
-         {
-              ex.printStackTrace();
-         }
-         catch(SQLException ex)
-         {
-              ex.printStackTrace();
-         }
-         catch(FileNotFoundException ex)
-         {
-              ex.printStackTrace();
-         }
-         catch(IOException ex)
-         {
-              ex.printStackTrace();
-         }
+	public static void meterimagen(String direccion,int idusuario,int idjugador) {
+		try {
+			// Load the driver
+			Class.forName("oracle.jdbc.driver.OracleDriver");
+			// Cretae the connection object
+			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sys", USUARIO, CONTRA);
+			// Inserting the record in Image table
+			String sql = "insert into verificado (idusuario,idjugador,photo) values(?, ?, ?)";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ps.setInt(1, idusuario);
+			ps.setInt(2, idjugador);
+			// read the image file
+			File file = new File(direccion);
+			FileInputStream fin = new FileInputStream(file);
+			ps.setBinaryStream(3, fin, fin.available());
+			int i = ps.executeUpdate();
+			System.out.println(i + " records affected");
+
+
+		} catch (ClassNotFoundException ex) {
+			ex.printStackTrace();
+		} catch (SQLException ex) {
+			ex.printStackTrace();
+		} catch (FileNotFoundException ex) {
+			ex.printStackTrace();
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
 	}
-	
+
+
+
+	public static void sacarfoto(String idusuario) {
+		try {
+
+			File file = new File("C:\\Users\\izotz\\Desktop\\"+idusuario+".png");
+			FileOutputStream fos = new FileOutputStream(file);
+			byte b[];
+			Blob blob;
+
+			String consulta = "select photo from verificado where idusuario = '"+idusuario+"'";
+			ResultSet rs = consultar(consulta);
+
+			while (rs.next()) {
+				blob = rs.getBlob("image");
+				b = blob.getBytes(1, (int) blob.length());
+				fos.write(b);
+			}
+
+			cerrar();
+			fos.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 	public static void main(String[] args) {
-		conexion baseDatos = new conexion().conectar();
 
 	}
 

@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="mail/javax.mail.jar"/>
 	<classpathentry kind="lib" path="mail/activation.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5"/>
+	<classpathentry kind="lib" path="C:/Users/izotz/Desktop/jdbc-oracle.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
