@@ -54,7 +54,7 @@ public class resultados extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(100, 100, 880, 582);
+		setBounds(100, 100, 880, 569);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
@@ -120,7 +120,7 @@ public class resultados extends JFrame {
 
 		JButton volver = new JButton("VOLVER");
 		volver.setBackground(new Color(135, 206, 250));
-		volver.setBounds(10, 509, 89, 23);
+		volver.setBounds(10, 490, 89, 27);
 		getContentPane().add(volver);
 		volver.addActionListener(new ActionListener() {
 
@@ -137,6 +137,11 @@ public class resultados extends JFrame {
 		crear.setBackground(new Color(135, 206, 250));
 		crear.setBounds(205, 83, 89, 27);
 		getContentPane().add(crear);
+		
+		JButton guardar = new JButton("GUARDAR");
+		guardar.setBackground(new Color(135, 206, 250));
+		guardar.setBounds(765, 490, 89, 27);
+		getContentPane().add(guardar);
 
 		crear.addActionListener(new ActionListener() {
 
