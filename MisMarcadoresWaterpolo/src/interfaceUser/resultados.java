@@ -138,7 +138,7 @@ public class resultados extends JFrame {
 		crear.setBackground(new Color(135, 206, 250));
 		crear.setBounds(205, 83, 89, 27);
 		getContentPane().add(crear);
-		
+
 		JButton guardar = new JButton("GUARDAR");
 		guardar.setBackground(new Color(135, 206, 250));
 		guardar.setBounds(765, 490, 89, 27);

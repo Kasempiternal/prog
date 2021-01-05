@@ -305,7 +305,7 @@ public class conexion {
 		}
 	}
 
-	public static void meterimagen(String direccion,int idusuario,int idjugador) {
+	public static void meterimagen(String direccion, int idusuario, int idjugador) {
 		try {
 			// Load the driver
 			Class.forName("oracle.jdbc.driver.OracleDriver");
@@ -323,7 +323,6 @@ public class conexion {
 			int i = ps.executeUpdate();
 			System.out.println(i + " records affected");
 
-
 		} catch (ClassNotFoundException ex) {
 			ex.printStackTrace();
 		} catch (SQLException ex) {
@@ -335,17 +334,15 @@ public class conexion {
 		}
 	}
 
-
-
 	public static void sacarfoto(String idusuario) {
 		try {
 
-			File file = new File("C:\\Users\\izotz\\Desktop\\"+idusuario+".png");
+			File file = new File("C:\\Users\\izotz\\Desktop\\" + idusuario + ".png");
 			FileOutputStream fos = new FileOutputStream(file);
 			byte b[];
 			Blob blob;
 
-			String consulta = "select photo from verificado where idusuario = '"+idusuario+"'";
+			String consulta = "select photo from verificado where idusuario = '" + idusuario + "'";
 			ResultSet rs = consultar(consulta);
 
 			while (rs.next()) {

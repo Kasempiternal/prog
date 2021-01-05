@@ -35,6 +35,7 @@ public class clasificacionU extends JFrame {
 	private JTable table;
 	public static int idusuarioglobal = 0;
 	Connection conn = conexion.getConexion();
+
 	/**
 	 * Launch the application.
 	 */
@@ -94,7 +95,7 @@ public class clasificacionU extends JFrame {
 		scrollPane.setBounds(10, 153, 844, 326);
 		getContentPane().add(scrollPane);
 
-		int idliga = 0; 
+		int idliga = 0;
 		// TABLA PARA NO ADMIN
 
 		DefaultTableModel dtm = new DefaultTableModel();
@@ -131,13 +132,13 @@ public class clasificacionU extends JFrame {
 		ligas.addItem(new ComboItem("Liga Premaat", "0"));
 		ligas.addItem(new ComboItem("Primera Nacional", "1"));
 		ligas.addItem(new ComboItem("Segunda Nacional", "2"));
-		
+
 		JButton volver = new JButton("VOLVER");
 		volver.setBackground(new Color(135, 206, 250));
 		volver.setBounds(10, 490, 89, 27);
 		getContentPane().add(volver);
 		volver.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
@@ -146,18 +147,16 @@ public class clasificacionU extends JFrame {
 				setVisible(false);
 			}
 		});
-		
+
 		JButton crear = new JButton("Mostrar");
 		crear.setBackground(new Color(135, 206, 250));
 		crear.setBounds(205, 83, 89, 27);
 		getContentPane().add(crear);
-		
+
 		JButton guardar = new JButton("GUARDAR");
 		guardar.setBackground(new Color(135, 206, 250));
 		guardar.setBounds(765, 490, 89, 27);
 		getContentPane().add(guardar);
-		
-
 
 		crear.addActionListener(new ActionListener() {
 

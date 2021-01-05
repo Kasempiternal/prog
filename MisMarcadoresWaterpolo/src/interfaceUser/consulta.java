@@ -128,9 +128,9 @@ public class consulta extends JFrame {
 		JLabel mensajelbl = new JLabel("Mensaje:");
 		mensajelbl.setBounds(27, 169, 82, 14);
 		getContentPane().add(mensajelbl);
-		
+
 		/**
-		 * Al utilizar un JTEXTAREA necesitamos tambien un jscrollpane 
+		 * Al utilizar un JTEXTAREA necesitamos tambien un jscrollpane
 		 */
 		JScrollPane mensajescroll = new JScrollPane();
 		mensajescroll.setBounds(27, 194, 410, 245);
@@ -157,17 +157,17 @@ public class consulta extends JFrame {
 			}
 		});
 		/**
-		 * ENVIA LA CONSULTA POR CORREO AL CORREO DE LOS ADMINISTRADORES
-		 * Se enviara tanto el asunto como el mensaje tal y como lo escribira el usuario
+		 * ENVIA LA CONSULTA POR CORREO AL CORREO DE LOS ADMINISTRADORES Se enviara
+		 * tanto el asunto como el mensaje tal y como lo escribira el usuario
 		 */
 		JButton enviar = new JButton("ENVIAR");
 		enviar.setBackground(new Color(135, 206, 250));
 		enviar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				/**
-				 * Runearemos esta parte con un hilo tal y como hemos hecho en las demas ocasiones
-				 * cuando tenemos que mandar un mail. 
-				 * De esta manera no se quedara en blanco ni dara la sensacion de error al usuario
+				 * Runearemos esta parte con un hilo tal y como hemos hecho en las demas
+				 * ocasiones cuando tenemos que mandar un mail. De esta manera no se quedara en
+				 * blanco ni dara la sensacion de error al usuario
 				 */
 				new Thread(new Hilo()).start();
 				setVisible(false);
@@ -177,40 +177,47 @@ public class consulta extends JFrame {
 		});
 		enviar.setBounds(173, 459, 109, 35);
 		getContentPane().add(enviar);
-	
+
 	}
-	//HILO DE ENVIAR CONSULTA
+
+	// HILO DE ENVIAR CONSULTA
 	public class Hilo implements Runnable {
 
 		@Override
 		public void run() {
 			// TODO Auto-generated method stub
-			//SI EL MENSAJE ESTA VACIO NO DEJA MANDARLO
-			if(mensaje.getText().length() == 0 ) {
-				JOptionPane.showMessageDialog(null, "El mensaje no puede ser vacio", "MENSAJE NO ENVIADO", JOptionPane.ERROR_MESSAGE);
+			// SI EL MENSAJE ESTA VACIO NO DEJA MANDARLO
+			if (mensaje.getText().length() == 0) {
+				JOptionPane.showMessageDialog(null, "El mensaje no puede ser vacio", "MENSAJE NO ENVIADO",
+						JOptionPane.ERROR_MESSAGE);
 				/**
-				 * SI EL ASUNTO ESTA VACIO Y EL MENSAJE NO:
-				 * Pregunta al usuario si quiere enviarlo o cancelarlo
+				 * SI EL ASUNTO ESTA VACIO Y EL MENSAJE NO: Pregunta al usuario si quiere
+				 * enviarlo o cancelarlo
 				 * 
 				 */
-			}else if (asuntotxt.getText().length() == 0 && mensaje.getText().length()!= 0){
-				//PREGUNTA
-				int confirm = JOptionPane.showConfirmDialog(null, "¿Estas seguro de que quieres enviar un mensaje sin asunto?");
-				//SI ES QUE SI LO ENVIA
-				if(confirm == JOptionPane.YES_OPTION) {
+			} else if (asuntotxt.getText().length() == 0 && mensaje.getText().length() != 0) {
+				// PREGUNTA
+				int confirm = JOptionPane.showConfirmDialog(null,
+						"¿Estas seguro de que quieres enviar un mensaje sin asunto?");
+				// SI ES QUE SI LO ENVIA
+				if (confirm == JOptionPane.YES_OPTION) {
 					mandarMail.mandarmail(mensaje.getText(), asuntotxt.getText(), idusuarioglobal);
-					JOptionPane.showMessageDialog(null,"Su consulta ha sido enviada correctamente", "CONSULTA ENVIADA", JOptionPane.DEFAULT_OPTION);
-				//SI ES QUE NO PUES NO
-				}else if(confirm == JOptionPane.NO_OPTION) {
-					JOptionPane.showMessageDialog(null, "El mensaje fue cancelado" ,"MENSAJE NO ENVIADO", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Su consulta ha sido enviada correctamente", "CONSULTA ENVIADA",
+							JOptionPane.DEFAULT_OPTION);
+					// SI ES QUE NO PUES NO
+				} else if (confirm == JOptionPane.NO_OPTION) {
+					JOptionPane.showMessageDialog(null, "El mensaje fue cancelado", "MENSAJE NO ENVIADO",
+							JOptionPane.ERROR_MESSAGE);
 				}
-				//Si el asunto y el mensaje no estan vacios no necesita preguntar nada
-			}else {
+				// Si el asunto y el mensaje no estan vacios no necesita preguntar nada
+			} else {
 				mandarMail.mandarmail(mensaje.getText(), asuntotxt.getText(), idusuarioglobal);
-				JOptionPane.showMessageDialog(null,"Su consulta ha sido enviada correctamente", "CONSULTA ENVIADA", JOptionPane.DEFAULT_OPTION);
+				JOptionPane.showMessageDialog(null, "Su consulta ha sido enviada correctamente", "CONSULTA ENVIADA",
+						JOptionPane.DEFAULT_OPTION);
 			}
-			
-			//SIEMPRE SE MOSTRAR UN JOPTION MENSAJE DESPUES DE ENVIAR EL CORREO PARA QUE EL USUARIO QUEDE SATISFECHO
+
+			// SIEMPRE SE MOSTRAR UN JOPTION MENSAJE DESPUES DE ENVIAR EL CORREO PARA QUE EL
+			// USUARIO QUEDE SATISFECHO
 		}
 
 	}

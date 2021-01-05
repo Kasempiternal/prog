@@ -23,7 +23,6 @@ import interfaceUser.resultados;
 
 public class MenuInicio extends JFrame {
 
-
 	public static int idusuarioglobal = 0;
 
 	/**

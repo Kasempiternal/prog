@@ -200,7 +200,6 @@ public class CrearCuenta extends JFrame {
 			}
 		});
 
-		
 		recibircodigo.addActionListener(new ActionListener() {
 
 			@Override
@@ -277,18 +276,22 @@ public class CrearCuenta extends JFrame {
 
 		return codigoverificacion;
 	}
+
 	public static String returnnombre() {
 		String nombre = nombretxt.getText();
 		return nombre;
 	}
+
 	public static String returnmail() {
 		String mail = mailtxt.getText();
 		return mail;
 	}
+
 	public static String returncontra() {
 		String contraseña = contra.getText();
 		return contraseña;
 	}
+
 	public static String returnapellido() {
 		String apellido = apellidotxt.getText();
 		return apellido;

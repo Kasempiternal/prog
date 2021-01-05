@@ -63,7 +63,6 @@ public class verificaCodigo extends JFrame {
 		getContentPane().add(textcodigo);
 		textcodigo.setColumns(10);
 
-		
 		// JLABEL QUE INDICA AL USUARIO QUE HAY QUE INTRODUCIR CODIGO
 		JLabel titulo = new JLabel("INTRODUCE EL CODIGO PARA VERIFICAR TU CUENTA");
 		titulo.setForeground(SystemColor.textHighlight);
@@ -77,8 +76,6 @@ public class verificaCodigo extends JFrame {
 		codigo.setHorizontalAlignment(SwingConstants.RIGHT);
 		codigo.setBounds(49, 94, 104, 14);
 		getContentPane().add(codigo);
-
-		
 
 		// BOTON IMPORTANTE DE LA VENTANA QUE COMPRUEBA EL CODIGO Y CREA LA CUENTA
 		JButton crearcuenta = new JButton("Crear cuenta");
@@ -108,15 +105,14 @@ public class verificaCodigo extends JFrame {
 					String nombre = CrearCuenta.returnnombre();
 					String mail = CrearCuenta.returnmail();
 					String apellido = CrearCuenta.returnapellido();
-					
 
 					int tipo_usuario = 0;
 
 					setVisible(false);
 					System.out.println("Password OK");
 
-					conexion.crearCuenta( nombre, apellido ,mail, contraseña, tipo_usuario);
-					
+					conexion.crearCuenta(nombre, apellido, mail, contraseña, tipo_usuario);
+
 					JOptionPane.showMessageDialog(null, "Cuenta creada correctamente. Inicie sesion.", "CUENTA CREADA",
 							JOptionPane.DEFAULT_OPTION);
 					Login login = null;
