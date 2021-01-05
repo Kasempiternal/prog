@@ -16,6 +16,7 @@ import javax.swing.UIManager;
 import aainiciador.Login;
 import basedatos.conexion;
 import interfaceUser.CuentaUsuario;
+import interfaceUser.VerificarUsuario;
 import interfaceUser.clasificacionU;
 import interfaceUser.consulta;
 import interfaceUser.goleadores;
@@ -84,22 +85,33 @@ public class MenuInicio extends JFrame {
 		user.setBounds(55, 24, 72, 14);
 		getContentPane().add(user);
 
-		JButton btnNewButton_3 = new JButton("Identificate como Jugador");
-		btnNewButton_3.setBackground(new Color(135, 206, 250));
-		btnNewButton_3.setBounds(10, 313, 375, 43);
-		getContentPane().add(btnNewButton_3);
+		JButton identificate = new JButton("Identificate como Jugador");
+		identificate.setBackground(new Color(135, 206, 250));
+		identificate.setBounds(10, 313, 375, 43);
+		getContentPane().add(identificate);
+		identificate.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				VerificarUsuario vu = new VerificarUsuario();
+				vu.setVisible(true);
+				setVisible(false);
+			}
+		});
+		
 
-		JButton btnNewButton_4 = new JButton("Clasificacion");
-		btnNewButton_4.setBackground(new Color(135, 206, 250));
-		btnNewButton_4.addActionListener(new ActionListener() {
+		JButton clasificacion = new JButton("Clasificacion");
+		clasificacion.setBackground(new Color(135, 206, 250));
+		clasificacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				clasificacionU cU = new clasificacionU();
 				cU.main(idusuarioglobal);
 				setVisible(false);
 			}
 		});
-		btnNewButton_4.setBounds(10, 103, 375, 43);
-		getContentPane().add(btnNewButton_4);
+		clasificacion.setBounds(10, 103, 375, 43);
+		getContentPane().add(clasificacion);
 
 		JButton Resultados = new JButton("Resultados");
 		Resultados.setBackground(new Color(135, 206, 250));
