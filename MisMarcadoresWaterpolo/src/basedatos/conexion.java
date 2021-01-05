@@ -311,16 +311,16 @@ public class conexion {
 
 	public static void meterimagen(String direccion, int idusuario, int idjugador) {
 		try {
-			// Load the driver
+			// Carga del driver
 			Class.forName("oracle.jdbc.driver.OracleDriver");
-			// Cretae the connection object
+			// Crear la conexion
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sys", USUARIO, CONTRA);
-			// Inserting the record in Image table
+			
+			
 			String sql = "insert into verificado (idusuario,idjugador,photo) values(?, ?, ?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, idusuario);
 			ps.setInt(2, idjugador);
-			// read the image file
 			File file = new File(direccion);
 			FileInputStream fin = new FileInputStream(file);
 			ps.setBinaryStream(3, fin, fin.available());
@@ -338,10 +338,10 @@ public class conexion {
 		}
 	}
 
-	public static void sacarfoto(String idusuario) {
+	public static void sacarfoto(String direccion,int idusuario) {
 		try {
 
-			File file = new File("C:\\Users\\izotz\\Desktop\\" + idusuario + ".png");
+			File file = new File(direccion + ".png");
 			FileOutputStream fos = new FileOutputStream(file);
 			byte b[];
 			Blob blob;
@@ -350,7 +350,7 @@ public class conexion {
 			ResultSet rs = consultar(consulta);
 
 			while (rs.next()) {
-				blob = rs.getBlob("image");
+				blob = rs.getBlob("photo");
 				b = blob.getBytes(1, (int) blob.length());
 				fos.write(b);
 			}
