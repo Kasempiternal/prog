@@ -134,18 +134,32 @@ public class goleadores extends JFrame {
 				mi.setVisible(true);
 				setVisible(false);
 			}
-		});
-		JButton crear = new JButton("Mostrar");
-		crear.setBackground(new Color(135, 206, 250));
-		crear.setBounds(205, 83, 89, 27);
-		getContentPane().add(crear);
-
+		});	
+		
 		JButton guardar = new JButton("GUARDAR");
 		guardar.setBackground(new Color(135, 206, 250));
-		guardar.setBounds(765, 490, 89, 27);
+		guardar.setBounds(741, 490, 113, 27);
 		getContentPane().add(guardar);
+		guardar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				ExportarExcel ee = new ExportarExcel();
+				try {
+					ee.export(table);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		JButton mostrar = new JButton("Mostrar");
+		mostrar.setBackground(new Color(135, 206, 250));
+		mostrar.setBounds(205, 83, 89, 27);
+		getContentPane().add(mostrar);
 
-		crear.addActionListener(new ActionListener() {
+		mostrar.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {

@@ -1,81 +1,72 @@
 package interfaceUser;
 
+import java.awt.Desktop;
 import java.io.*;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
-import jxl.Workbook;
-import jxl.write.Label;
-import jxl.write.WritableSheet;
-import jxl.write.WritableWorkbook;
-import jxl.write.WriteException;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+
+
 
 public class ExportarExcel {
 
-	private File file;
-	private String archivo;
-	private JTable table;
 
-	public ExportarExcel(JTable table, File file, String archivo) {
-		// TODO Auto-generated constructor stub
-		this.file = file;
-		this.table = table;
-		this.archivo = archivo;
+
+	public void export(JTable table) throws Exception {
+		
+		 JFileChooser chooser = new JFileChooser();
+	     FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos de excel", "xls");
+	     chooser.setFileFilter(filter);
+	        chooser.setDialogTitle("Guardar archivo");
+	        chooser.setAcceptAllFileFilterUsed(false);
+	        if (chooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+	            String ruta = chooser.getSelectedFile().toString().concat(".xls");
+	            try {
+	                File archivoXLS = new File(ruta);
+	                if (archivoXLS.exists()) {
+	                    archivoXLS.delete();
+	                }
+	                archivoXLS.createNewFile();
+	                Workbook libro = new HSSFWorkbook();
+	                FileOutputStream archivo = new FileOutputStream(archivoXLS);
+	                Sheet hoja = libro.createSheet("Mi hoja de trabajo 1");
+	                hoja.setDisplayGridlines(false);
+	                for (int f = 0; f < table.getRowCount(); f++) {
+	                    Row fila = hoja.createRow(f);
+	                    for (int c = 0; c < table.getColumnCount(); c++) {
+	                        Cell celda = fila.createCell(c);
+	                        if (f == 0) {
+	                            celda.setCellValue(table.getColumnName(c));
+	                        }
+	                    }
+	                }
+	                int filaInicio = 1;
+	                for (int f = 0; f < table.getRowCount(); f++) {
+	                    Row fila = hoja.createRow(filaInicio);
+	                    filaInicio++;
+	                    for (int c = 0; c < table.getColumnCount(); c++) {
+	                        Cell celda = fila.createCell(c);
+	                        if (table.getValueAt(f, c) instanceof Double) {
+	                            celda.setCellValue(Double.parseDouble(table.getValueAt(f, c).toString()));
+	                        } else if (table.getValueAt(f, c) instanceof Float) {
+	                            celda.setCellValue(Float.parseFloat((String) table.getValueAt(f, c)));
+	                        } else {
+	                            celda.setCellValue(String.valueOf(table.getValueAt(f, c)));
+	                        }
+	                    }
+	                }
+	                libro.write(archivo);
+	                archivo.close();
+	                Desktop.getDesktop().open(archivoXLS);
+	            } catch (IOException | NumberFormatException e) {
+	                throw e;
+	            }
+	        }
 	}
 
-	public boolean export() {
-
-		try {
-
-			System.out.print("Exportando...");
-
-			// Creamos el archivo deseado
-			DataOutputStream out = new DataOutputStream(new FileOutputStream(file));
-
-			/**
-			 * El writable workbook sera la representacion del excel El OutputStream es para
-			 * saber donde va colocar los datos
-			 */
-			WritableWorkbook ww = Workbook.createWorkbook(out);
-
-			// Coloca el nombre del archivo en el archivo y tambien en la hoja de excel)
-			WritableSheet ws = ww.createSheet(archivo, 0);
-
-			/**
-			 * Hacemos dos 'for' para en uno recorrer la tabla y en otro escribir en el
-			 * excel y sus celdas
-			 */
-			System.out.println("Leyendo...");
-			System.out.print("Escribiendo...");
-
-			// Recorre
-			for (int i = 0; i < table.getRowCount(); i++) {
-				// Escribe
-				for (int j = 0; j < table.getColumnCount(); j++) {
-					Object objeto = table.getValueAt(i, j);
-					ws.addCell(new Label(j, i, String.valueOf(objeto)));
-				}
-			}
-
-			// Con el write escribrimos en el archivo
-			ww.write();
-			System.out.print("Cerramos el WritableWorkbook y DataOutputStream");
-			// Con los close crreamos los archivos
-			ww.close();
-			out.close();
-			return true;
-		} catch (IOException ex) {
-			ex.printStackTrace();
-		} catch (WriteException ex1) {
-			ex1.printStackTrace();
-		}
-		System.out.print("Error al exportar el archivo");
-		return false;
-	}
-
-	public void impresion() {
-		String Ruta = System.getProperty("user.dir") + "\\";
-		file = new File(Ruta);
-		ExportarExcel excel = new ExportarExcel(table, file, "tablaimporte");
-		excel.export();
-	}
 }
