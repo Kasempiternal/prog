@@ -2,8 +2,13 @@ package interfaceUser;
 
 import java.io.*;
 import javax.swing.*;
-import jxl.write.*;
-import jxl.*;
+
+import jxl.Workbook;
+import jxl.write.Label;
+import jxl.write.WritableSheet;
+import jxl.write.WritableWorkbook;
+import jxl.write.WriteException;
+
 
 public class ExportarExcel {
 	
