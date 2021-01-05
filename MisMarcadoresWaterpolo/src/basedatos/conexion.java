@@ -69,11 +69,15 @@ public class conexion {
 	}
 
 	public static void cerrar() {
-		try {
-			conexion.close();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+//		try {
+//			if(conexion!=null) {
+//			conexion.close();}
+//			else {
+//				
+//			}
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		}
 	}
 
 	public static ResultSet consultar(String sql) {
@@ -351,7 +355,7 @@ public class conexion {
 				fos.write(b);
 			}
 
-			cerrar();
+		
 			fos.close();
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -359,7 +363,7 @@ public class conexion {
 	}
 
 	public static void main(String[] args) {
-
+		conexion baseDatos = new conexion().conectar();
 	}
 
 }
