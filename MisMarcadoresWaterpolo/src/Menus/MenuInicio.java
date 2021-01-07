@@ -90,16 +90,15 @@ public class MenuInicio extends JFrame {
 		identificate.setBounds(10, 313, 375, 43);
 		getContentPane().add(identificate);
 		identificate.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				VerificarUsuario vu = new VerificarUsuario();
-				vu.setVisible(true);
+				vu.main(idusuarioglobal);
 				setVisible(false);
 			}
 		});
-		
 
 		JButton clasificacion = new JButton("Clasificacion");
 		clasificacion.setBackground(new Color(135, 206, 250));

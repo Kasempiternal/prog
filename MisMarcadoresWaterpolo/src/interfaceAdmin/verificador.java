@@ -6,14 +6,8 @@ import basedatos.conexion;
 
 public class verificador {
 	public static void main(String[] args) {
-		
-		
-		
-		
-		
-		
-		
-		//BOTON PARA SACAR LA FOTO SELECCIONADA
+
+		// BOTON PARA SACAR LA FOTO SELECCIONADA
 		JFileChooser chooser = new JFileChooser();
 		chooser.setDialogTitle("Seleccionar donde guardar");
 

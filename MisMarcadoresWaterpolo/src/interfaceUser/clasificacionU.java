@@ -152,7 +152,7 @@ public class clasificacionU extends JFrame {
 		guardar.setBounds(741, 490, 113, 27);
 		getContentPane().add(guardar);
 		guardar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub

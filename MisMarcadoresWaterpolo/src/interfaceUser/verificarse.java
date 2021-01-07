@@ -11,14 +11,13 @@ public class verificarse {
 	public static String direccion;
 
 	public static void main(int idusuario) {
-		
-		//AQUI SE METE EL VALOR ELEGIDO EL LA TABLA
-		
+
+		// AQUI SE METE EL VALOR ELEGIDO EL LA TABLA
+
 		idjugador = 50;
-		
-		
-		//ESTO VA DENTRO DEL BOTON DE SELEKSION DE FOTO 
-		
+
+		// ESTO VA DENTRO DEL BOTON DE SELEKSION DE FOTO
+
 		JFileChooser fc = new JFileChooser();
 		int returnVal = fc.showOpenDialog(fc);
 

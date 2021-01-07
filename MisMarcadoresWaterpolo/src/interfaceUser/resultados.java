@@ -132,13 +132,13 @@ public class resultados extends JFrame {
 				setVisible(false);
 			}
 		});
-		
+
 		JButton guardar = new JButton("GUARDAR");
 		guardar.setBackground(new Color(135, 206, 250));
 		guardar.setBounds(741, 490, 113, 27);
 		getContentPane().add(guardar);
 		guardar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub

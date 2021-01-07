@@ -93,6 +93,23 @@ public class conexion {
 		return resultado;
 	}
 
+	public static String consultaEquipo(String nombreequipo) {
+		String selectuser = "  SELECT nombre FROM jugadores WHERE idequipo IN       (SELECT idequipo FROM equipos where nombre_equipos = '"
+				+ nombreequipo + "')        ";
+
+		ResultSet rs = consultar(selectuser);
+		String usuario = null;
+		try {
+			if (rs.next()) {
+				usuario = rs.getString("nombre");
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return usuario;
+	}
+
 	public boolean ejecutar(String sql) {
 		try {
 			Statement sentencia = getConexion().createStatement(ResultSet.TYPE_FORWARD_ONLY,
@@ -315,8 +332,7 @@ public class conexion {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			// Crear la conexion
 			Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/sys", USUARIO, CONTRA);
-			
-			
+
 			String sql = "insert into verificado (idusuario,idjugador,photo) values(?, ?, ?)";
 			PreparedStatement ps = con.prepareStatement(sql);
 			ps.setInt(1, idusuario);
@@ -338,7 +354,7 @@ public class conexion {
 		}
 	}
 
-	public static void sacarfoto(String direccion,int idusuario) {
+	public static void sacarfoto(String direccion, int idusuario) {
 		try {
 
 			File file = new File(direccion + ".png");
@@ -355,7 +371,6 @@ public class conexion {
 				fos.write(b);
 			}
 
-		
 			fos.close();
 		} catch (Exception e) {
 			e.printStackTrace();
