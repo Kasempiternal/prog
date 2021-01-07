@@ -152,6 +152,7 @@ public class VerificarUsuario extends JFrame {
 				// TODO Auto-generated method stub
 				MenuInicio mi = new MenuInicio();
 				mi.main(idusuariogloblal);
+				setVisible(false);
 			}
 		});
 
