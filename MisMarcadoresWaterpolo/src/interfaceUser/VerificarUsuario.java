@@ -78,6 +78,7 @@ public class VerificarUsuario extends JFrame {
 		setBounds(100, 100, 653, 417);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
+		setLocationRelativeTo(null);
 
 		JLabel titulo = new JLabel("VERIFICIAR JUGADOR");
 		titulo.setBounds(0, 37, 637, 34);

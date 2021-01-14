@@ -49,6 +49,7 @@ public class MenuInicio extends JFrame {
 	 * Create the application.
 	 */
 	public MenuInicio() {
+		getContentPane().setBackground(Color.WHITE);
 		initialize();
 
 	}
