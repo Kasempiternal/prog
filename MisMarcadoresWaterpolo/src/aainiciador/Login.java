@@ -218,10 +218,10 @@ public class Login extends JFrame {
 		cerrar.setBounds(206, 389, 137, 36);
 		getContentPane().add(cerrar);
 
-		JLabel lblNewLabel_1 = new JLabel("Mis Marcadores Waterpolo");
-		lblNewLabel_1.setForeground(Color.BLACK);
-		lblNewLabel_1.setBounds(204, 11, 181, 14);
-		getContentPane().add(lblNewLabel_1);
+		JLabel app = new JLabel("Mis Marcadores Waterpolo");
+		app.setForeground(Color.BLACK);
+		app.setBounds(204, 11, 181, 14);
+		getContentPane().add(app);
 
 		cerrar.addActionListener(new ActionListener() {
 

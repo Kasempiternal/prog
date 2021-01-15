@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import java.awt.SystemColor;
 import javax.swing.UIManager;
@@ -58,7 +59,7 @@ public class MenuInicio extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setSize(411, 550);
+		setSize(411, 588);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
@@ -178,6 +179,36 @@ public class MenuInicio extends JFrame {
 		mismarcadores.setForeground(Color.BLACK);
 		mismarcadores.setBounds(224, 11, 161, 14);
 		getContentPane().add(mismarcadores);
+		
+		JButton volver = new JButton("VOLVER");
+		volver.setBackground(new Color(135, 206, 250));
+		volver.setBounds(10, 508, 92, 30);
+		getContentPane().add(volver);
+		volver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				try {
+					Login log = new Login();
+					log.setVisible(true);
+					setVisible(false);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		
+		JButton cerrar = new JButton("CERRAR");
+		cerrar.setBackground(new Color(135, 206, 250));
+		cerrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				System.exit(0);
+			}
+		});
+		cerrar.setBounds(293, 508, 92, 30);
+		getContentPane().add(cerrar);
 
 	}
 }

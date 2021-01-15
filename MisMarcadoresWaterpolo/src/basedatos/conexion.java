@@ -3,6 +3,8 @@ package basedatos;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -110,7 +112,7 @@ public class conexion {
 		return usuario;
 	}
 
-	public boolean ejecutar(String sql) {
+	public static boolean ejecutar(String sql) {
 		try {
 			Statement sentencia = getConexion().createStatement(ResultSet.TYPE_FORWARD_ONLY,
 					ResultSet.CONCUR_READ_ONLY);
@@ -377,8 +379,35 @@ public class conexion {
 		}
 	}
 
+	public static void mostrarVerificados(DefaultListModel modelo) {
+		String select = "SELECT idusuario FROM verificado";
+		int idusuario = 0;
+		int i = 0;
+		try {
+			ResultSet rs = consultar(select);
+			while(rs.next()) {
+				idusuario = rs.getInt("idusuario");
+				modelo.addElement(idusuario);
+				i++;
+			}
+		
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	public static void verificar(JList usuarios) {
+	
+		String update = "UPDATE usuario SET "
+				+ "tipo_usuario = " + 1 + " where idusuario =" + usuarios.getSelectedValue();
+		
+		boolean rs = ejecutar(update);
+
+	}
+	
 	public static void main(String[] args) {
 		conexion baseDatos = new conexion().conectar();
 	}
+
 
 }

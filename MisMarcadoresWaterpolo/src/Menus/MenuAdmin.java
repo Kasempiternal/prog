@@ -15,6 +15,7 @@ import javax.swing.UIManager;
 
 import aainiciador.Login;
 import interfaceAdmin.clasificacionA;
+import interfaceAdmin.verificar;
 
 import java.awt.Color;
 
@@ -58,18 +59,18 @@ public class MenuAdmin extends JFrame {
 		getContentPane().setLayout(null);
 
 		// LOS LABEL
-		JLabel lblNewLabel = new JLabel("MENU ADMINISTRADOR");
-		lblNewLabel.setForeground(SystemColor.textHighlight);
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lblNewLabel.setBounds(83, 33, 220, 30);
-		getContentPane().add(lblNewLabel);
+		JLabel titulo = new JLabel("MENU ADMINISTRADOR");
+		titulo.setForeground(SystemColor.textHighlight);
+		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		titulo.setHorizontalAlignment(SwingConstants.CENTER);
+		titulo.setBounds(83, 33, 220, 30);
+		getContentPane().add(titulo);
 
 		// TODOS LOS BOTONES
 
-		JButton clasificacion = new JButton("Ir a Menu Inicio como usuario");
-		clasificacion.setBackground(new Color(135, 206, 250));
-		clasificacion.addActionListener(new ActionListener() {
+		JButton login = new JButton("Ir a Menu Inicio como usuario");
+		login.setBackground(new Color(135, 206, 250));
+		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
 					log = new Login();
@@ -81,18 +82,28 @@ public class MenuAdmin extends JFrame {
 				setVisible(false);
 			}
 		});
-		clasificacion.setBounds(10, 103, 375, 43);
-		getContentPane().add(clasificacion);
+		login.setBounds(10, 103, 375, 43);
+		getContentPane().add(login);
 
-		JButton goleadores = new JButton("Verificar jugadores");
-		goleadores.setBackground(new Color(135, 206, 250));
-		goleadores.setBounds(10, 170, 375, 43);
-		getContentPane().add(goleadores);
+		JButton verificar = new JButton("Verificar Jugadores");
+		verificar.setBackground(new Color(135, 206, 250));
+		verificar.setBounds(10, 170, 375, 43);
+		getContentPane().add(verificar);
+		verificar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				verificar veri = new verificar();
+				veri.setVisible(true);
+				setVisible(false);
+			}
+		});
 
-		JButton identificarse = new JButton("Buscador");
-		identificarse.setBackground(new Color(135, 206, 250));
-		identificarse.setBounds(10, 240, 375, 43);
-		getContentPane().add(identificarse);
+		JButton buscador = new JButton("Buscador");
+		buscador.setBackground(new Color(135, 206, 250));
+		buscador.setBounds(10, 240, 375, 43);
+		getContentPane().add(buscador);
 
 		JButton verconsultas = new JButton("Ver consultas de usuario");
 		verconsultas.addActionListener(new ActionListener() {
@@ -103,10 +114,10 @@ public class MenuAdmin extends JFrame {
 		verconsultas.setBounds(10, 370, 375, 43);
 		getContentPane().add(verconsultas);
 
-		JLabel mismarcadores = new JLabel("Mis Marcadores Waterpolo");
-		mismarcadores.setForeground(UIManager.getColor("ToolTip.foreground"));
-		mismarcadores.setBounds(234, 11, 161, 14);
-		getContentPane().add(mismarcadores);
+		JLabel app = new JLabel("Mis Marcadores Waterpolo");
+		app.setForeground(UIManager.getColor("ToolTip.foreground"));
+		app.setBounds(234, 11, 161, 14);
+		getContentPane().add(app);
 
 		JLabel administrador = new JLabel("ADMINISTRADOR");
 		administrador.setBounds(10, 11, 121, 14);

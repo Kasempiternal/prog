@@ -1,4 +1,4 @@
-0package interfaceUser;
+package interfaceUser;
 
 import java.awt.EventQueue;
 
