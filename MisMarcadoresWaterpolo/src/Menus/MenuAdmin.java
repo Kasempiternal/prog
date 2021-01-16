@@ -60,7 +60,7 @@ public class MenuAdmin extends JFrame {
 
 		// LOS LABEL
 		JLabel titulo = new JLabel("MENU ADMINISTRADOR");
-		titulo.setForeground(new Color(220, 20, 60));
+		titulo.setForeground(new Color(165, 42, 42));
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		titulo.setBounds(83, 33, 220, 30);
@@ -99,6 +99,11 @@ public class MenuAdmin extends JFrame {
 				setVisible(false);
 			}
 		});
+		
+		/**
+		 * ESTA BUSQUEDA VA A SER MAS ESTETICA QUE OTRA COSA
+		 * Servira para que el admin busque las tablas y editarlas
+		 */
 
 		JButton buscador = new JButton("Buscador");
 		buscador.setBackground(new Color(205, 92, 92));

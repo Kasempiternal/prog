@@ -8,6 +8,7 @@ import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
+import java.awt.Dimension;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -401,8 +402,31 @@ public class conexion {
 		String update = "UPDATE usuario SET "
 				+ "tipo_usuario = " + 1 + " where idusuario =" + usuarios.getSelectedValue();
 		
-		boolean rs = ejecutar(update);
+		boolean booleano = ejecutar(update);
 
+	}
+	public static void actualizarClasif(JTable table) {
+		String nombre = "";
+		int puntos = 0;
+		String inicTemporada = "";
+		String finTemporada = "";
+	
+		
+		String update = "UPDATE equipos SET"
+				 + "nombre_equipo = " +  nombre 
+				 	+ " puntos = " + puntos 
+				 		+ " inic_temporada = " + inicTemporada
+				 			+ " fin_temporada = " + finTemporada;
+		for (int i = 0; i < table.getHeight(); i++) {
+		
+		boolean booleano = ejecutar(update);
+		}
+	}
+	public static void actualizarGol(JTable table) {
+		String update = "UPDATE";
+	}
+	public static void actualizarResult(JTable table) {
+		String update = "UPDATE";
 	}
 	
 	public static void main(String[] args) {
