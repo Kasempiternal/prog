@@ -2,6 +2,8 @@ package mail;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 import javax.mail.Address;
 import javax.mail.BodyPart;
@@ -22,12 +24,19 @@ public class ensenyarMail {
 	private Session session = null;
 	private Store store = null;
 	private Folder inbox = null;
+	private mail mail;
+	private static List<mail> listamails = new ArrayList();
 
-	public ensenyarMail() {
 
+	
+	public List<mail> getemails() {
+		System.out.println("Get emails + "+ listamails.size());
+		return this.listamails;
 	}
 
 	public void readMails() {
+		
+		System.out.println("Leyendo mails");
 		propiedades = new Properties();
 
 		propiedades.setProperty("mail.host", "imap.gmail.com");
@@ -35,11 +44,11 @@ public class ensenyarMail {
 		propiedades.setProperty("mail.transport.protocol", "imaps");
 
 		String cuentamail = "mismarcadoreswaterpolo.deusto@gmail.com";
-		String contrasenya = "deustodeusto";
+		String contraseña = "deustodeusto";
 
 		session = Session.getInstance(propiedades, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(cuentamail, contrasenya);
+				return new PasswordAuthentication(cuentamail, contraseña);
 			}
 		});
 		try {
@@ -51,16 +60,18 @@ public class ensenyarMail {
 			;
 			System.out.println("Number of mails = " + messages.length);
 			for (int i = 0; i < messages.length; i++) {
+				mail = new mail();
 				Message message = messages[i];
 				Address[] from = message.getFrom();
-				System.out.println("-------------------------------");
-				System.out.println("Date : " + message.getSentDate());
-				System.out.println("From : " + from[0]);
-				System.out.println("Subject: " + message.getSubject());
-				System.out.println("Content :");
+
+				mail.setDate(message.getSentDate());
+				mail.setFrom(from[0]);
+				mail.setSubject(message.getSubject());
 				processMessageBody(message);
-				System.out.println("--------------------------------");
+				listamails.add(mail);
+
 			}
+			System.out.println("Number of mails = " + listamails.size());
 			inbox.close(true);
 			store.close();
 		} catch (NoSuchProviderException e) {
@@ -68,6 +79,7 @@ public class ensenyarMail {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	public void processMessageBody(Message message) {
@@ -76,7 +88,8 @@ public class ensenyarMail {
 // check for string
 // then check for multipart
 			if (content instanceof String) {
-				System.out.println(content);
+				mail.setMessage(content.toString());
+
 			} else if (content instanceof Multipart) {
 
 				Multipart multiPart = (Multipart) content;
@@ -88,7 +101,7 @@ public class ensenyarMail {
 				InputStream inStream = (InputStream) content;
 				int ch;
 				while ((ch = inStream.read()) != -1) {
-					System.out.write(ch);
+					// System.out.println("this is ch"+ ch +" end of ch");
 				}
 			}
 		} catch (IOException e) {
@@ -106,7 +119,7 @@ public class ensenyarMail {
 				Object o;
 				o = bodyPart.getContent();
 				if (o instanceof String) {
-					System.out.println(o);
+					// System.out.println("this is o "+ o );
 				} else if (o instanceof Multipart) {
 					procesMultiPart((Multipart) o);
 				}
@@ -118,8 +131,9 @@ public class ensenyarMail {
 		}
 	}
 
-	public static void main(String[] args) {
+	public static List<mail> main() {
 		ensenyarMail sample = new ensenyarMail();
 		sample.readMails();
+		return listamails;
 	}
 }

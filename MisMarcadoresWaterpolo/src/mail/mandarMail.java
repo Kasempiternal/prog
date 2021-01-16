@@ -24,13 +24,13 @@ public class mandarMail {
 		propiedades.put("mail.smtp.port", "587");
 
 		String cuentamail = "mismarcadoreswaterpolo.deusto@gmail.com";
-		String contrasenya = "deustodeusto";
+		String contraseña = "deustodeusto";
 
 		Session sesion = Session.getInstance(propiedades, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 
-				return new PasswordAuthentication(cuentamail, contrasenya);
+				return new PasswordAuthentication(cuentamail, contraseña);
 			}
 
 		});
@@ -40,6 +40,39 @@ public class mandarMail {
 		try {
 			Transport.send(mensaje);
 			System.out.println("Mensaje enviado");
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return codigo;
+
+	}
+	
+	public static int mandarRespuesta(String recipiente,String mensajecuerpo) {
+		Properties propiedades = new Properties();
+
+		propiedades.put("mail.smtp.auth", "true");
+		propiedades.put("mail.smtp.starttls.enable", "true");
+		propiedades.put("mail.smtp.host", "smtp.gmail.com");
+		propiedades.put("mail.smtp.port", "587");
+
+		String cuentamail = "mismarcadoreswaterpolo.deusto@gmail.com";
+		String contraseña = "deustodeusto";
+
+		Session sesion = Session.getInstance(propiedades, new Authenticator() {
+			@Override
+			protected PasswordAuthentication getPasswordAuthentication() {
+
+				return new PasswordAuthentication(cuentamail, contraseña);
+			}
+
+		});
+
+		Message mensaje = prepararMensajeRespuesta(sesion, cuentamail, recipiente,mensajecuerpo);
+
+		try {
+			Transport.send(mensaje);
+			System.out.println("Mensaje de respuesta enviado");
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -57,13 +90,13 @@ public class mandarMail {
 		propiedades.put("mail.smtp.port", "587");
 
 		String cuentamail = "mismarcadoreswaterpolo.deusto@gmail.com";
-		String contrasenya = "deustodeusto";
+		String contraseña = "deustodeusto";
 
 		Session sesion = Session.getInstance(propiedades, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 
-				return new PasswordAuthentication(cuentamail, contrasenya);
+				return new PasswordAuthentication(cuentamail, contraseña);
 			}
 
 		});
@@ -90,6 +123,27 @@ public class mandarMail {
 			mensaje.setSubject("Codigo de verificacion");
 			codigo = (int) (Math.random() * 8999) + 1000;
 			mensaje.setText("Tu cogido de verificacion es : " + codigo);
+			return mensaje;
+		} catch (AddressException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (MessagingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+		return null;
+
+	}
+	
+	private static Message prepararMensajeRespuesta(Session sesion, String cuentamail, String recipiente,String mensajecuerpo) {
+
+		Message mensaje = new MimeMessage(sesion);
+		try {
+			mensaje.setFrom(new InternetAddress(cuentamail));
+			mensaje.setRecipient(Message.RecipientType.TO, new InternetAddress(recipiente));
+			mensaje.setSubject("MisMarcadoresWaterpolo ha respondido tu consulta");
+			mensaje.setText(mensajecuerpo);
 			return mensaje;
 		} catch (AddressException e) {
 			// TODO Auto-generated catch block

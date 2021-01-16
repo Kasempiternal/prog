@@ -176,15 +176,15 @@ public class conexion {
 
 	public static boolean comprobarLogin(String user, String contra) {
 
-		String pass = "SELECT contrase�a from USUARIO WHERE nombre='" + user + "';";
+		String pass = "SELECT contraseña from USUARIO WHERE nombre='" + user + "';";
 		ResultSet rspas = consultar(pass);
 		Boolean ok = false;
 		try {
 			if (rspas.next()) {
-				if (contra.equals(rspas.getString("contrase�a"))) {
+				if (contra.equals(rspas.getString("contraseña"))) {
 					ok = true;
 				} else {
-					System.out.println("contrase�a no coincide");
+					System.out.println("contraseña no coincide");
 					ok = false;
 				}
 
@@ -244,7 +244,7 @@ public class conexion {
 	}
 
 	public static String getcontrasenya(int id) {
-		String selectuser = "SELECT contrase�a FROM usuario where idusuario = '" + id + "';";
+		String selectuser = "SELECT contraseña FROM usuario where idusuario = '" + id + "';";
 		ResultSet rs = consultar(selectuser);
 		String contrasenya = null;
 		try {
