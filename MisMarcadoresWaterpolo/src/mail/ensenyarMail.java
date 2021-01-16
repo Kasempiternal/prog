@@ -17,13 +17,13 @@ import javax.mail.Store;
 import javax.mail.Flags.Flag;
 import javax.mail.search.FlagTerm;
 
-public class enseñarMail {
+public class ensenyarMail {
 	Properties propiedades = null;
 	private Session session = null;
 	private Store store = null;
 	private Folder inbox = null;
 
-	public enseñarMail() {
+	public ensenyarMail() {
 
 	}
 
@@ -35,11 +35,11 @@ public class enseñarMail {
 		propiedades.setProperty("mail.transport.protocol", "imaps");
 
 		String cuentamail = "mismarcadoreswaterpolo.deusto@gmail.com";
-		String contraseña = "deustodeusto";
+		String contrasenya = "deustodeusto";
 
 		session = Session.getInstance(propiedades, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(cuentamail, contraseña);
+				return new PasswordAuthentication(cuentamail, contrasenya);
 			}
 		});
 		try {
@@ -119,7 +119,7 @@ public class enseñarMail {
 	}
 
 	public static void main(String[] args) {
-		enseñarMail sample = new enseñarMail();
+		ensenyarMail sample = new ensenyarMail();
 		sample.readMails();
 	}
 }

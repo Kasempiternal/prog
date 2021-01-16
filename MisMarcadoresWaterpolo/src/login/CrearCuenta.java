@@ -220,7 +220,7 @@ public class CrearCuenta extends JFrame {
 					gmailcom.setForeground(Color.RED);
 
 				}
-				// ERROR DE CONTRASEÑA NO HA METIDO LAS DOS IGUALES
+				// ERROR DE CONTRASEï¿½A NO HA METIDO LAS DOS IGUALES
 				else if (!comprobacion.getText().equals(contra.getText())) {
 					JOptionPane.showMessageDialog(null, "Las contrase\u00F1as no coinciden", "ERROR",
 							JOptionPane.ERROR_MESSAGE);
@@ -288,8 +288,8 @@ public class CrearCuenta extends JFrame {
 	}
 
 	public static String returncontra() {
-		String contraseña = contra.getText();
-		return contraseña;
+		String contrasenya = contra.getText();
+		return contrasenya;
 	}
 
 	public static String returnapellido() {

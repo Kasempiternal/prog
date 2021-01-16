@@ -24,7 +24,7 @@ public class CuentaUsuario extends JFrame {
 	private JTextField usuariotxt;
 	private JTextField apellidotxt;
 	private JTextField mailtxt;
-	private JTextField contraseñatxt;
+	private JTextField contrasenyatxt;
 	private conexion basedatos = new conexion();
 	MenuInicio mi = new MenuInicio();
 	public static int idusuarioglobal = 0;
@@ -110,11 +110,11 @@ public class CuentaUsuario extends JFrame {
 		lblEmail.setBounds(383, 251, 144, 29);
 		getContentPane().add(lblEmail);
 
-		// Contraseña
-		contraseñatxt = new JTextField();
-		contraseñatxt.setColumns(10);
-		contraseñatxt.setBounds(116, 324, 257, 45);
-		getContentPane().add(contraseñatxt);
+		// Contraseï¿½a
+		contrasenyatxt = new JTextField();
+		contrasenyatxt.setColumns(10);
+		contrasenyatxt.setBounds(116, 324, 257, 45);
+		getContentPane().add(contrasenyatxt);
 
 		JLabel contra = new JLabel("Contrase\u00F1a:");
 		contra.setFont(new Font("Tahoma", Font.PLAIN, 13));
@@ -124,7 +124,7 @@ public class CuentaUsuario extends JFrame {
 		usuariotxt.setText(basedatos.getusuariodb(idusuarioglobal));
 		apellidotxt.setText(basedatos.getapellidodb(idusuarioglobal));
 		mailtxt.setText(basedatos.getemaildb(idusuarioglobal));
-		contraseñatxt.setText(basedatos.getcontraseña(idusuarioglobal));
+		contrasenyatxt.setText(basedatos.getcontrasenya(idusuarioglobal));
 
 		// Botones
 		JButton guardar = new JButton("Guardar");
@@ -139,10 +139,10 @@ public class CuentaUsuario extends JFrame {
 				String usuario = usuariotxt.getText();
 				String apellido = apellidotxt.getText();
 				String mail = mailtxt.getText();
-				String contraseña = contraseñatxt.getText();
+				String contrasenya = contrasenyatxt.getText();
 
 				String update = "UPDATE usuario SET nombre='" + usuario + "' , apellido='" + apellido + "' , email='"
-						+ mail + "' , contraseña='" + contraseña + "' WHERE idusuario='" + idusuarioglobal + "';";
+						+ mail + "' , contraseï¿½a='" + contrasenya + "' WHERE idusuario='" + idusuarioglobal + "';";
 				basedatos.ejecutar(update);
 
 			}

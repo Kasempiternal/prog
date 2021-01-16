@@ -126,11 +126,11 @@ public class conexion {
 		return true;
 	}
 
-	public static void crearCuenta(String nombre, String apellido, String email, String contraseña, int tipo_usuario) {
+	public static void crearCuenta(String nombre, String apellido, String email, String contrasenya, int tipo_usuario) {
 
 		PreparedStatement ps;
 		ResultSet rs;
-		String registerUserQuery = "INSERT INTO usuario (nombre, apellido, email,contraseña, tipo_usuario) VALUES (?,?,?,?,?)";
+		String registerUserQuery = "INSERT INTO usuario (nombre, apellido, email,contraseÃ±a, tipo_usuario) VALUES (?,?,?,?,?)";
 
 		try {
 
@@ -138,7 +138,7 @@ public class conexion {
 			ps.setString(1, nombre);
 			ps.setString(2, apellido);
 			ps.setString(3, email);
-			ps.setString(4, contraseña);
+			ps.setString(4, contrasenya);
 			ps.setInt(5, tipo_usuario);
 
 			if (ps.executeUpdate() != 0) {
@@ -176,15 +176,15 @@ public class conexion {
 
 	public static boolean comprobarLogin(String user, String contra) {
 
-		String pass = "SELECT contraseña from USUARIO WHERE nombre='" + user + "';";
+		String pass = "SELECT contraseï¿½a from USUARIO WHERE nombre='" + user + "';";
 		ResultSet rspas = consultar(pass);
 		Boolean ok = false;
 		try {
 			if (rspas.next()) {
-				if (contra.equals(rspas.getString("contraseña"))) {
+				if (contra.equals(rspas.getString("contraseï¿½a"))) {
 					ok = true;
 				} else {
-					System.out.println("contraseña no coincide");
+					System.out.println("contraseï¿½a no coincide");
 					ok = false;
 				}
 
@@ -243,19 +243,19 @@ public class conexion {
 		return email;
 	}
 
-	public static String getcontraseña(int id) {
-		String selectuser = "SELECT contraseña FROM usuario where idusuario = '" + id + "';";
+	public static String getcontrasenya(int id) {
+		String selectuser = "SELECT contraseï¿½a FROM usuario where idusuario = '" + id + "';";
 		ResultSet rs = consultar(selectuser);
-		String contraseña = null;
+		String contrasenya = null;
 		try {
 			if (rs.next()) {
-				contraseña = rs.getString("contraseña");
+				contrasenya = rs.getString("contraseï¿½a");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return contraseña;
+		return contrasenya;
 	}
 
 	public static int getid(String user) {
@@ -283,7 +283,7 @@ public class conexion {
 				user.setId(rs.getInt("idusuario"));
 				user.setNombre(rs.getString("nombre"));
 				user.setApellido(rs.getString("apellido"));
-				user.setContraseña(rs.getString("contraseña"));
+				user.setContrasenya(rs.getString("contraseÃ±a"));
 				user.setEmail(rs.getString("email"));
 
 				System.out.println(user.getNombre());

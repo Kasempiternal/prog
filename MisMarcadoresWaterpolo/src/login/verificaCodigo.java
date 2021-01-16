@@ -101,7 +101,7 @@ public class verificaCodigo extends JFrame {
 
 					System.out.println("El codigo introducido es erroneo" + textcodigo.getText() + codigoverificacion);
 				} else {
-					String contraseña = CrearCuenta.returncontra();
+					String contrasenya = CrearCuenta.returncontra();
 					String nombre = CrearCuenta.returnnombre();
 					String mail = CrearCuenta.returnmail();
 					String apellido = CrearCuenta.returnapellido();
@@ -111,7 +111,7 @@ public class verificaCodigo extends JFrame {
 					setVisible(false);
 					System.out.println("Password OK");
 
-					conexion.crearCuenta(nombre, apellido, mail, contraseña, tipo_usuario);
+					conexion.crearCuenta(nombre, apellido, mail, contrasenya, tipo_usuario);
 
 					JOptionPane.showMessageDialog(null, "Cuenta creada correctamente. Inicie sesion.", "CUENTA CREADA",
 							JOptionPane.DEFAULT_OPTION);

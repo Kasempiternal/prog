@@ -24,13 +24,13 @@ public class mandarMail {
 		propiedades.put("mail.smtp.port", "587");
 
 		String cuentamail = "mismarcadoreswaterpolo.deusto@gmail.com";
-		String contraseña = "deustodeusto";
+		String contrasenya = "deustodeusto";
 
 		Session sesion = Session.getInstance(propiedades, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 
-				return new PasswordAuthentication(cuentamail, contraseña);
+				return new PasswordAuthentication(cuentamail, contrasenya);
 			}
 
 		});
@@ -57,13 +57,13 @@ public class mandarMail {
 		propiedades.put("mail.smtp.port", "587");
 
 		String cuentamail = "mismarcadoreswaterpolo.deusto@gmail.com";
-		String contraseña = "deustodeusto";
+		String contrasenya = "deustodeusto";
 
 		Session sesion = Session.getInstance(propiedades, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 
-				return new PasswordAuthentication(cuentamail, contraseña);
+				return new PasswordAuthentication(cuentamail, contrasenya);
 			}
 
 		});

@@ -6,19 +6,19 @@ public class usuario {
 	String nombre;
 	String apellido;
 	String email;
-	String contraseña;
+	String contrasenya;
 
 	public usuario() {
 
 	}
 
-	public usuario(int id, String nombre, String apellido, String email, String contraseña) {
+	public usuario(int id, String nombre, String apellido, String email, String contrasenya) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.email = email;
-		this.contraseña = contraseña;
+		this.contrasenya = contrasenya;
 	}
 
 	public int getId() {
@@ -53,12 +53,12 @@ public class usuario {
 		this.email = email;
 	}
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasenya() {
+		return contrasenya;
 	}
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasenya(String contrasenya) {
+		this.contrasenya = contrasenya;
 	}
 
 }
