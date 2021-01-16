@@ -14,6 +14,8 @@ import java.sql.Statement;
 import java.awt.Font;
 import javax.swing.SwingConstants;
 
+import Menus.MenuAdmin;
+import Menus.MenuInicio;
 import basedatos.conexion;
 
 import javax.swing.DefaultListCellRenderer;
@@ -71,13 +73,14 @@ public class verificar extends JFrame{
 		admin.setBounds(10, 11, 118, 14);
 		getContentPane().add(admin);
 		
-		JButton volver = new JButton("VOLVER");
-		volver.setBackground(new Color(135, 206, 250));
-		volver.setBounds(10, 426, 89, 29);
-		getContentPane().add(volver);
-		
-		
-		
+		JLabel id = new JLabel("ID USUARIO");
+		id.setFont(new Font("Tahoma", Font.BOLD, 11));
+		id.setHorizontalAlignment(SwingConstants.CENTER);
+		id.setBounds(28, 97, 89, 14);
+		getContentPane().add(id);
+		setBounds(100, 100, 694, 505);
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		usuarios = new JList();
 	
 		JScrollPane scrollPane = new JScrollPane(usuarios);
@@ -97,6 +100,22 @@ public class verificar extends JFrame{
 		imagen.setBounds(231, 97, 325, 264);
 		getContentPane().add(imagen);
 		//imagen.setIcon();
+		
+		
+		JButton volver = new JButton("VOLVER");
+		volver.setBackground(new Color(135, 206, 250));
+		volver.setBounds(10, 426, 89, 29);
+		getContentPane().add(volver);
+		volver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				// TODO Auto-generated method stub
+				MenuAdmin ma = new MenuAdmin();
+				ma.setVisible(true);
+				setVisible(false);
+			}
+		});
 		
 		JButton cerrar = new JButton("CERRAR");
 		cerrar.setBackground(new Color(135, 206, 250));
@@ -121,13 +140,7 @@ public class verificar extends JFrame{
 		aceptar.setBounds(260, 372, 105, 29);
 		getContentPane().add(aceptar);
 		
-		JLabel id = new JLabel("ID USUARIO");
-		id.setFont(new Font("Tahoma", Font.BOLD, 11));
-		id.setHorizontalAlignment(SwingConstants.CENTER);
-		id.setBounds(28, 97, 89, 14);
-		getContentPane().add(id);
-		setBounds(100, 100, 694, 505);
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		aceptar.addActionListener(new ActionListener() {
 			
 			@Override

@@ -60,7 +60,7 @@ public class MenuAdmin extends JFrame {
 
 		// LOS LABEL
 		JLabel titulo = new JLabel("MENU ADMINISTRADOR");
-		titulo.setForeground(SystemColor.textHighlight);
+		titulo.setForeground(new Color(220, 20, 60));
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		titulo.setBounds(83, 33, 220, 30);
@@ -69,7 +69,7 @@ public class MenuAdmin extends JFrame {
 		// TODOS LOS BOTONES
 
 		JButton login = new JButton("Ir a Menu Inicio como usuario");
-		login.setBackground(new Color(135, 206, 250));
+		login.setBackground(new Color(205, 92, 92));
 		login.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				try {
@@ -86,7 +86,7 @@ public class MenuAdmin extends JFrame {
 		getContentPane().add(login);
 
 		JButton verificar = new JButton("Verificar Jugadores");
-		verificar.setBackground(new Color(135, 206, 250));
+		verificar.setBackground(new Color(205, 92, 92));
 		verificar.setBounds(10, 170, 375, 43);
 		getContentPane().add(verificar);
 		verificar.addActionListener(new ActionListener() {
@@ -101,7 +101,7 @@ public class MenuAdmin extends JFrame {
 		});
 
 		JButton buscador = new JButton("Buscador");
-		buscador.setBackground(new Color(135, 206, 250));
+		buscador.setBackground(new Color(205, 92, 92));
 		buscador.setBounds(10, 240, 375, 43);
 		getContentPane().add(buscador);
 
@@ -110,7 +110,7 @@ public class MenuAdmin extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		verconsultas.setBackground(new Color(135, 206, 250));
+		verconsultas.setBackground(new Color(205, 92, 92));
 		verconsultas.setBounds(10, 370, 375, 43);
 		getContentPane().add(verconsultas);
 
@@ -124,7 +124,7 @@ public class MenuAdmin extends JFrame {
 		getContentPane().add(administrador);
 
 		JButton editarusuarios = new JButton("Editar Usuarios");
-		editarusuarios.setBackground(new Color(135, 206, 250));
+		editarusuarios.setBackground(new Color(205, 92, 92));
 		editarusuarios.setBounds(10, 301, 375, 43);
 		getContentPane().add(editarusuarios);
 
@@ -134,7 +134,7 @@ public class MenuAdmin extends JFrame {
 				System.exit(0);
 			}
 		});
-		Cerrar.setBackground(new Color(135, 206, 250));
+		Cerrar.setBackground(new Color(205, 92, 92));
 		Cerrar.setBounds(132, 435, 130, 36);
 		getContentPane().add(Cerrar);
 	}
