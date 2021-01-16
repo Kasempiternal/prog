@@ -8,29 +8,46 @@ import javax.swing.JLabel;
 import java.awt.SystemColor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.Font;
+import java.awt.Graphics2D;
+import java.awt.Image;
+
 import javax.swing.SwingConstants;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 
 import Menus.MenuAdmin;
 import Menus.MenuInicio;
 import basedatos.conexion;
+import mail.mail;
+import objetos.usuario;
 
+import javax.imageio.ImageIO;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 
 public class verificar extends JFrame{
 
 	private JList usuarios;
 	private static DefaultListModel modelo;
 	private DefaultListCellRenderer render;
-
+	private int selected;
+	private conexion con = new conexion();
+	
+	private List<usuario> listausuario = new ArrayList();
 	/**
 	 * Launch the application.
 	 */
@@ -141,6 +158,7 @@ public class verificar extends JFrame{
 		getContentPane().add(aceptar);
 		
 
+		
 		aceptar.addActionListener(new ActionListener() {
 			
 			@Override
@@ -150,6 +168,48 @@ public class verificar extends JFrame{
 			}
 		});
 		
-		conexion.mostrarVerificados(modelo);
+		usuarios.addListSelectionListener(new ListSelectionListener() {
+
+			@Override
+			public void valueChanged(ListSelectionEvent arg0) {
+				// TODO Auto-generated method stub
+
+				imagen.setIcon(null);
+				selected = usuarios.getSelectedIndex();
+				
+				int idusuario = listausuario.get(selected).getId();
+				
+				  try {
+			            
+			            ResultSet rs = con.consultar("select photo from verificado where idusuario='"+idusuario+"'");
+			            rs.next();
+			           
+			            
+			            BufferedImage im = ImageIO.read(rs.getBinaryStream("photo"));
+			            BufferedImage outimage = new BufferedImage(imagen.getWidth(), imagen.getHeight(), BufferedImage.TYPE_INT_RGB);
+			            Graphics2D g = outimage.createGraphics();
+			            float xScale = (float)imagen.getWidth() / outimage.getWidth();
+		                float yScale = (float)imagen.getHeight() / outimage.getHeight();
+		                AffineTransform at = AffineTransform.getScaleInstance(xScale,yScale);
+		                g.drawRenderedImage(im,at);
+		                g.dispose();
+		                Image scaledImage = outimage.getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_SMOOTH);
+		                ImageIcon icon = new ImageIcon(scaledImage);
+		                imagen.setIcon(icon);
+		                imagen.revalidate();
+			            
+			            
+		              
+			            
+			            
+			        } catch (Exception err) {
+			            System.out.println(err.getMessage());
+			        }
+
+			}
+		});
+		
+		listausuario = conexion.mostrarVerificados(modelo);
+		
 	}
 }

@@ -1,5 +1,7 @@
 package basedatos;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -27,6 +29,8 @@ public class conexion {
 	private static final String DB = "sys";
 	private static final String USUARIO = "root";
 	private static final String CONTRA = "123456789";
+	
+	private static usuario u ;
 
 	private static Connection conexion;
 
@@ -380,14 +384,21 @@ public class conexion {
 		}
 	}
 
-	public static void mostrarVerificados(DefaultListModel modelo) {
+	public static List<usuario> mostrarVerificados(DefaultListModel modelo) {
 		String select = "SELECT idusuario FROM verificado";
+		List<usuario> usuarios = new ArrayList();
 		int idusuario = 0;
 		int i = 0;
 		try {
 			ResultSet rs = consultar(select);
 			while(rs.next()) {
 				idusuario = rs.getInt("idusuario");
+				 u = new usuario();
+				
+				 u.setId(idusuario);
+				 
+				 usuarios.add(u);
+				 
 				modelo.addElement(idusuario);
 				i++;
 			}
@@ -396,6 +407,7 @@ public class conexion {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return usuarios;
 	}
 	public static void verificar(JList usuarios) {
 	
