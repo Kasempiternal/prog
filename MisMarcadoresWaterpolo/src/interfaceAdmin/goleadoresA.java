@@ -82,7 +82,7 @@ public class goleadoresA extends JFrame {
 		dtm.addColumn("Apellido");
 		dtm.addColumn("Goles");
 		dtm.addColumn("Equipo");
-		
+		dtm.addColumn("IdJugador");
 		table.setModel(dtm);
 		JScrollPane scrollPane1 = new JScrollPane();
 		scrollPane.setBounds(10, 153, 844, 326);
@@ -133,6 +133,7 @@ public class goleadoresA extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+				conexion.actualizarGol(table);
 				
 			}
 		});
@@ -163,12 +164,12 @@ public class goleadoresA extends JFrame {
 
 				try {
 					while (rs.next()) {
-
+						
+						int idjugador = rs.getInt("idjugador");
 						String nombre = rs.getString("nombre");
 						String apellido = rs.getString("apellido");
 						String goles = rs.getString("goles");
 						int idequipo = rs.getInt("idequipo");
-						System.out.println(idequipo + "este es ideq");
 						String nombre_equipo = "";
 
 						String nombreequipo = "SELECT nombre_equipo FROM equipos WHERE idequipo = '" + idequipo + "' ;";
@@ -184,7 +185,7 @@ public class goleadoresA extends JFrame {
 						}
 
 						posicion = posicion + 1;
-						dtm.addRow(new Object[] { posicion, nombre, apellido, goles, nombre_equipo });
+						dtm.addRow(new Object[] { posicion, nombre, apellido, goles, nombre_equipo, idjugador});
 
 					}
 
@@ -194,6 +195,7 @@ public class goleadoresA extends JFrame {
 
 			}
 		});
+		
 
 	}
 }

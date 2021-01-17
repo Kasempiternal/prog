@@ -142,7 +142,7 @@ public class CuentaUsuario extends JFrame {
 				String contrasenya = contrasenyatxt.getText();
 
 				String update = "UPDATE usuario SET nombre='" + usuario + "' , apellido='" + apellido + "' , email='"
-						+ mail + "' , contraseï¿½a='" + contrasenya + "' WHERE idusuario='" + idusuarioglobal + "';";
+						+ mail + "' , contraseña='" + contrasenya + "' WHERE idusuario='" + idusuarioglobal + "';";
 				basedatos.ejecutar(update);
 
 			}

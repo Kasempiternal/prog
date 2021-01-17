@@ -94,8 +94,8 @@ public class clasificacionA extends JFrame {
 		dtm.addColumn("Puntos");
 		dtm.addColumn("Inic_Temporada");
 		dtm.addColumn("Fin_Temporada");
+		dtm.addColumn("IdEquipo");
 		table.setModel(dtm);
-
 		
 		JScrollPane scrollPane1 = new JScrollPane();
 		scrollPane.setBounds(10, 153, 844, 326);
@@ -145,7 +145,7 @@ public class clasificacionA extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				conexion.actualizarClasif(table);
 			}
 		});
 
@@ -175,14 +175,15 @@ public class clasificacionA extends JFrame {
 
 				try {
 					while (rs.next()) {
-
+						
+						int idequipo = rs.getInt("idequipo");
 						String rsnombre = rs.getString("nombre_equipo");
 						int rspuntos = rs.getInt("puntos");
 						Date rsdateinit = rs.getDate("inic_temporada");
 						Date rsdatefin = rs.getDate("fin_temporada");
 
 						posicion = posicion + 1;
-						dtm.addRow(new Object[] { posicion, rsnombre, rspuntos, rsdateinit, rsdatefin });
+						dtm.addRow(new Object[] { posicion, rsnombre, rspuntos, rsdateinit, rsdatefin, idequipo });
 
 					}
 

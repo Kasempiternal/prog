@@ -16,12 +16,13 @@ import javax.swing.UIManager;
 import aainiciador.Login;
 import interfaceAdmin.clasificacionA;
 import interfaceAdmin.verificar;
+import interfaceAdmin.VerConsultas;
+import interfaceAdmin.buscador;
 
 import java.awt.Color;
 
 public class MenuAdmin extends JFrame {
-
-	clasificacionA cA = new clasificacionA();
+	
 	Login log = null;
 
 	/**
@@ -109,10 +110,23 @@ public class MenuAdmin extends JFrame {
 		buscador.setBackground(new Color(205, 92, 92));
 		buscador.setBounds(10, 240, 375, 43);
 		getContentPane().add(buscador);
+		buscador.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				buscador busc = new buscador();
+				busc.setVisible(true);
+				setVisible(false);
+			}
+		});
 
 		JButton verconsultas = new JButton("Ver consultas de usuario");
 		verconsultas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
+				VerConsultas vercons = new VerConsultas();
+				vercons.setVisible(true);
+				setVisible(false);
 			}
 		});
 		verconsultas.setBackground(new Color(205, 92, 92));

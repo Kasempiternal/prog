@@ -77,10 +77,12 @@ public class resultadosA extends JFrame {
 		
 		table = new JTable();
 
+		
 		dtm.addColumn("Local");
 		dtm.addColumn("Visitante");
 		dtm.addColumn("Resultado");
 		dtm.addColumn("Goles");
+		dtm.addColumn("IdPartido");
 		table.setModel(dtm);
 		
 		
@@ -132,7 +134,7 @@ public class resultadosA extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				
+				conexion.actualizarResult(table);
 			}
 		});
 
@@ -164,14 +166,15 @@ public class resultadosA extends JFrame {
 
 				try {
 					while (rs.next()) {
-
+						
+						int idpartido = rs.getInt("idPartido");
 						String local = rs.getString("local");
 						String visitante = rs.getString("visitante");
 						String resultado = rs.getString("resultado");
 						String resultadonum = rs.getString("resultadonum");
 
 						posicion = posicion + 1;
-						dtm.addRow(new Object[] { local, visitante, resultado, resultadonum });
+						dtm.addRow(new Object[] { local, visitante, resultado, resultadonum, idpartido });
 
 					}
 
@@ -181,6 +184,7 @@ public class resultadosA extends JFrame {
 
 			}
 		});
+
 
 	}
 }

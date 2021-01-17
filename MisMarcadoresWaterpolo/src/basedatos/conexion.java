@@ -180,12 +180,12 @@ public class conexion {
 
 	public static boolean comprobarLogin(String user, String contra) {
 
-		String pass = "SELECT contraseña from USUARIO WHERE nombre='" + user + "';";
+		String pass = "SELECT contrase�a from USUARIO WHERE nombre='" + user + "';";
 		ResultSet rspas = consultar(pass);
 		Boolean ok = false;
 		try {
 			if (rspas.next()) {
-				if (contra.equals(rspas.getString("contraseña"))) {
+				if (contra.equals(rspas.getString("contrase�a"))) {
 					ok = true;
 				} else {
 					System.out.println("contraseña no coincide");
@@ -287,7 +287,7 @@ public class conexion {
 				user.setId(rs.getInt("idusuario"));
 				user.setNombre(rs.getString("nombre"));
 				user.setApellido(rs.getString("apellido"));
-				user.setContrasenya(rs.getString("contraseña"));
+				user.setContrasenya(rs.getString("contrase�a"));
 				user.setEmail(rs.getString("email"));
 
 				System.out.println(user.getNombre());
@@ -422,23 +422,72 @@ public class conexion {
 		int puntos = 0;
 		String inicTemporada = "";
 		String finTemporada = "";
+		int idequipo = 0;
 	
-		
-		String update = "UPDATE equipos SET"
-				 + "nombre_equipo = " +  nombre 
-				 	+ " puntos = " + puntos 
-				 		+ " inic_temporada = " + inicTemporada
-				 			+ " fin_temporada = " + finTemporada;
 		for (int i = 0; i < table.getHeight(); i++) {
+		nombre = table.getValueAt(i,1).toString();
+		puntos = (int) table.getValueAt(i, 2);
+		inicTemporada = table.getValueAt(i, 3).toString();
+		finTemporada = table.getValueAt(i, 4).toString();
+		idequipo = (int)table.getValueAt(i, 5);
+		
+		System.out.println(puntos);
+		String update = "UPDATE equipos SET "
+				 + "nombre_equipo=" +  nombre 
+				 	+ " puntos=" + puntos 
+				 		+ " inic_temporada=" + inicTemporada
+				 			+ " fin_temporada=" + finTemporada
+				 			+ " where idequipo = " + idequipo;
 		
 		boolean booleano = ejecutar(update);
 		}
 	}
 	public static void actualizarGol(JTable table) {
-		String update = "UPDATE";
+		String nombre = "";
+		String apellido = "";
+		String goles = "";
+		String idequipo = "";
+		String idjugador = "";
+		
+		for (int i = 0; i <= table.getHeight(); i++) {
+			nombre =  table.getValueAt(i, 1).toString();
+			apellido = table.getValueAt(i, 2).toString();
+			goles =   table.getValueAt(i, 3).toString();
+			idjugador = table.getValueAt(i, 5).toString();
+			//idequipo =  Integer.valueOf((String) table.getValueAt(i, 4));
+			
+			String update = "UPDATE sys.` jugadores` SET nombre ='" + nombre
+					+ "' , apellido = '" + apellido 
+					+ "' , goles = '" + goles
+					+ "' WHERE idjugador = '" + idjugador + "';";
+					//+ " idequipo = " + idequipo;
+			boolean booleano = ejecutar(update);
+		}
 	}
 	public static void actualizarResult(JTable table) {
-		String update = "UPDATE";
+		String local = "";
+		String visitante = "";
+		String resultado = "";
+		String goles = "";
+		int idpartido = 0;
+		
+		for (int i = 0; i <table.getHeight(); i++) {
+			local = table.getValueAt(i,0).toString();
+			visitante = table.getValueAt(i, 1).toString();
+			resultado = table.getValueAt(i, 2).toString();
+			goles = table.getValueAt(i, 3).toString();
+			idpartido = (int) table.getValueAt(i, 4);
+			
+			String update = "UPDATE resultados SET"
+					+ "local = " + local
+					+ " visitante = " + visitante
+					+ " resultado = " + resultado
+					+ " resultadonum = " + goles
+					+ " where idPartido = " + idpartido;
+			
+			boolean booleano = ejecutar(update);
+		}
+		
 	}
 	
 	public static void main(String[] args) {

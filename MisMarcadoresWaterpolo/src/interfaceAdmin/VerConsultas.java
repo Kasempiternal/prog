@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import Menus.MenuAdmin;
 import basedatos.conexion;
 import mail.ensenyarMail;
 import mail.mail;
@@ -33,7 +34,6 @@ public class VerConsultas extends JFrame {
 
 	private ensenyarMail em;
 	private List<mail> listamails = new ArrayList();
-	private JTextField textField;
 	private int selected;
 	private conexion con = new conexion();
 
@@ -71,7 +71,7 @@ public class VerConsultas extends JFrame {
 
 		JLabel titulo = new JLabel("VER CONSULTAS");
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		titulo.setForeground(SystemColor.textHighlight);
+		titulo.setForeground(new Color(165, 42, 42));
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		titulo.setBounds(-10, 17, 757, 56);
 		getContentPane().add(titulo);
@@ -90,13 +90,25 @@ public class VerConsultas extends JFrame {
 		scrollPane.setViewportView(list);
 
 		JButton volver = new JButton("VOLVER");
-		volver.setBackground(new Color(135, 206, 250));
+		volver.setForeground(new Color(0, 0, 0));
+		volver.setBackground(new Color(205, 92, 92));
 		volver.setBounds(10, 425, 89, 30);
 		getContentPane().add(volver);
+		volver.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				MenuAdmin ma = new MenuAdmin();
+				ma.setVisible(true);
+				setVisible(false);
+			}
+		});
 
 		JButton mostrarConsulta = new JButton("MOSTRAR");
-		mostrarConsulta.setBackground(new Color(135, 206, 250));
-		mostrarConsulta.setBounds(94, 341, 89, 35);
+		mostrarConsulta.setForeground(new Color(0, 0, 0));
+		mostrarConsulta.setBackground(new Color(205, 92, 92));
+		mostrarConsulta.setBounds(87, 341, 109, 35);
 		getContentPane().add(mostrarConsulta);
 
 		mostrarConsulta.addActionListener(null);
@@ -119,43 +131,43 @@ public class VerConsultas extends JFrame {
 		scrollPane_1.setBounds(359, 85, 388, 137);
 		getContentPane().add(scrollPane_1);
 
-		JTextArea textArea = new JTextArea();
-		scrollPane_1.setViewportView(textArea);
+		JTextArea textoConsulta = new JTextArea();
+		scrollPane_1.setViewportView(textoConsulta);
 
-		JButton agradecer = new JButton("RESPONDER");
-		agradecer.setBounds(480, 343, 144, 30);
-		getContentPane().add(agradecer);
-
-		JTextField textField = new JTextField();
-		textField.setBounds(359, 245, 388, 87);
-		getContentPane().add(textField);
-		textField.setColumns(10);
 		
-		JLabel lblNewLabel = new JLabel("Respuesta");
-		lblNewLabel.setBounds(359, 230, 102, 16);
-		getContentPane().add(lblNewLabel);
+		JTextField respuestatxt = new JTextField();
+		respuestatxt.setBounds(359, 245, 388, 87);
+		getContentPane().add(respuestatxt);
+		respuestatxt.setColumns(10);
+		
+		JLabel respuesta = new JLabel("Respuesta");
+		respuesta.setBounds(359, 230, 102, 16);
+		getContentPane().add(respuesta);
 
 		list.addListSelectionListener(new ListSelectionListener() {
 
 			@Override
 			public void valueChanged(ListSelectionEvent arg0) {
 				// TODO Auto-generated method stub
-
 				selected = list.getSelectedIndex();
 				String mensaje = listamails.get(selected).getMessage();
 
-				textArea.setText(mensaje);
-
+				textoConsulta.setText(mensaje);
 			}
 		});
-
-		agradecer.addActionListener(new ActionListener() {
+		
+		JButton responder = new JButton("RESPONDER");
+		responder.setBackground(new Color(205, 92, 92));
+		responder.setForeground(new Color(0, 0, 0));
+		responder.setBounds(480, 343, 144, 30);
+		getContentPane().add(responder);
+		responder.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 
-				String mensaje = textField.getText();
+				String mensaje = respuestatxt.getText();
 
 				mandarMail mm = null;
 

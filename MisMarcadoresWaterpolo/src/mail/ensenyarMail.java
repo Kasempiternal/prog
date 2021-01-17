@@ -35,7 +35,6 @@ public class ensenyarMail {
 	}
 
 	public void readMails() {
-		
 		System.out.println("Leyendo mails");
 		propiedades = new Properties();
 
@@ -44,11 +43,11 @@ public class ensenyarMail {
 		propiedades.setProperty("mail.transport.protocol", "imaps");
 
 		String cuentamail = "mismarcadoreswaterpolo.deusto@gmail.com";
-		String contraseÃ±a = "deustodeusto";
+		String contraseña = "deustodeusto";
 
 		session = Session.getInstance(propiedades, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(cuentamail, contraseÃ±a);
+				return new PasswordAuthentication(cuentamail, contraseña);
 			}
 		});
 		try {
