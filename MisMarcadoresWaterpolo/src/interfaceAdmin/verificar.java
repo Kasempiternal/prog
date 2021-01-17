@@ -10,6 +10,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -194,28 +197,25 @@ public class verificar extends JFrame{
 
 				imagen.setIcon(null);
 				selected = usuarios.getSelectedIndex();
-				
+				FileOutputStream ouput = null;
 				int idusuario = listausuario.get(selected).getId();
 				
 				  try {
-			            
+			            File f = new File("foto.png");
 			            ResultSet rs = con.consultar("select photo from verificado where idusuario='"+idusuario+"'");
-			            rs.next();
-			           
+			            ouput = new FileOutputStream(f);
 			            
+			            
+			            
+			            if(rs.next()) {
 			            BufferedImage im = ImageIO.read(rs.getBinaryStream("photo"));
-			            BufferedImage outimage = new BufferedImage(imagen.getWidth(), imagen.getHeight(), BufferedImage.TYPE_INT_RGB);
-			            Graphics2D g = outimage.createGraphics();
-			            float xScale = (float)imagen.getWidth() / outimage.getWidth();
-		                float yScale = (float)imagen.getHeight() / outimage.getHeight();
-		                AffineTransform at = AffineTransform.getScaleInstance(xScale,yScale);
-		                g.drawRenderedImage(im,at);
-		                g.dispose();
-		                Image scaledImage = outimage.getScaledInstance(imagen.getWidth(), imagen.getHeight(), Image.SCALE_SMOOTH);
-		                ImageIcon icon = new ImageIcon(scaledImage);
-		                imagen.setIcon(icon);
-		                imagen.revalidate();
 			            
+			            imagen.setIcon(new ImageIcon(im));
+			            }
+			           
+			
+		                
+	
 			            
 		              
 			            

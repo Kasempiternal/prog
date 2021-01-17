@@ -121,8 +121,9 @@ public class VerificarUsuario extends JFrame {
 				boolean encontrado = false;
 				int i = 0;
 				do {
-
+					
 					String nombres = (jd.get(i).getNombre());
+					System.out.println(jd.get(i).getNombre() + "ffff" + jd.size() + " ff "+ jd.get(i).getId() + " frito " + i + " vv _." + valorseleccionado + " es "+ nombres);
 					if (nombres.equals(valorseleccionado)) {
 
 						idjugador = jd.get(i).getId();
@@ -214,32 +215,34 @@ public class VerificarUsuario extends JFrame {
 					// TODO: handle exception
 				}
 
-				// list.setListData(data);
-
-				list.setSelectedIndex(0);
-
-				list.addMouseListener(new MouseAdapter() {
-					public void mouseClicked(MouseEvent me) {
-						if (me.getClickCount() == 1) {
-							JList target = (JList) me.getSource();
-							int index = target.locationToIndex(me.getPoint());
-							if (index >= 0) {
-								Object item = target.getModel().getElementAt(index);
-
-								JOptionPane.showMessageDialog(null, item.toString(), "JUGADOR SELECCIONADO",
-										JOptionPane.INFORMATION_MESSAGE);
-								valorseleccionado = item.toString();
-								
-								
-								System.out.println("Valorseleccionado :" +valorseleccionado
-										+"  item: "+ item.toString()+ " index: "+ index + "lista"+ jd.size());
-							}
-						}
-					}
-				});
+			
 
 			}
 		});
 
+		
+		// list.setListData(data);
+
+		list.setSelectedIndex(0);
+
+		list.addMouseListener(new MouseAdapter() {
+			public void mouseClicked(MouseEvent me) {
+				if (me.getClickCount() == 1) {
+					JList target = (JList) me.getSource();
+					int index = target.locationToIndex(me.getPoint());
+					if (index >= 0) {
+						Object item = target.getModel().getElementAt(index);
+
+						JOptionPane.showMessageDialog(null, item.toString(), "JUGADOR SELECCIONADO",
+								JOptionPane.INFORMATION_MESSAGE);
+						valorseleccionado = item.toString();
+						
+						
+						System.out.println("Valorseleccionado :" +valorseleccionado
+								+"  item: "+ item.toString()+ " index: "+ index + "lista"+ jd.size());
+					}
+				}
+			}
+		});
 	}
 }
