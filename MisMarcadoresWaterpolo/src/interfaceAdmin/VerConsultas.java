@@ -73,7 +73,7 @@ public class VerConsultas extends JFrame {
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		titulo.setForeground(SystemColor.textHighlight);
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		titulo.setBounds(0, 42, 757, 56);
+		titulo.setBounds(-10, 17, 757, 56);
 		getContentPane().add(titulo);
 
 		JLabel admin = new JLabel("ADMINISTRADOR");
@@ -116,20 +116,24 @@ public class VerConsultas extends JFrame {
 		});
 
 		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(359, 85, 388, 266);
+		scrollPane_1.setBounds(359, 85, 388, 137);
 		getContentPane().add(scrollPane_1);
 
 		JTextArea textArea = new JTextArea();
 		scrollPane_1.setViewportView(textArea);
 
 		JButton agradecer = new JButton("RESPONDER");
-		agradecer.setBounds(515, 362, 97, 30);
+		agradecer.setBounds(480, 343, 144, 30);
 		getContentPane().add(agradecer);
 
 		JTextField textField = new JTextField();
-		textField.setBounds(240, 363, 130, 26);
+		textField.setBounds(359, 245, 388, 87);
 		getContentPane().add(textField);
 		textField.setColumns(10);
+		
+		JLabel lblNewLabel = new JLabel("Respuesta");
+		lblNewLabel.setBounds(359, 230, 102, 16);
+		getContentPane().add(lblNewLabel);
 
 		list.addListSelectionListener(new ListSelectionListener() {
 

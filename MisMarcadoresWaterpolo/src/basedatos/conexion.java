@@ -445,5 +445,14 @@ public class conexion {
 		conexion baseDatos = new conexion().conectar();
 	}
 
+	public static void rechazarVerificacion(int idusuario) {
+		
+		// TODO Auto-generated method stub
+		String update = "DELETE from verificado where idusuario =" +idusuario+"";
+		
+		 ejecutar(update);
+		 System.out.println("out");
+	}
+
 
 }

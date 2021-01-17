@@ -152,6 +152,21 @@ public class verificar extends JFrame{
 		rechazar.setBounds(425, 372, 105, 29);
 		getContentPane().add(rechazar);
 		
+		rechazar.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+					selected = usuarios.getSelectedIndex();
+					usuarios.remove(selected);
+					modelo.remove(selected);
+					int idusuario = listausuario.get(selected).getId();
+					conexion.rechazarVerificacion(idusuario);
+					System.out.println("deleted");
+			}
+		});
+		
+		
 		JButton aceptar = new JButton("ACEPTAR");
 		aceptar.setBackground(new Color(135, 206, 250));
 		aceptar.setBounds(260, 372, 105, 29);
