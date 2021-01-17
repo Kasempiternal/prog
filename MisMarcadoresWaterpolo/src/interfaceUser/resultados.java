@@ -126,7 +126,7 @@ public class resultados extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(67, 85, 113, 22);
 		getContentPane().add(comboBox);
-		comboBox.addItem(new ComboItem("Liga Premaat", "Espa�ola"));
+		comboBox.addItem(new ComboItem("Liga Premaat", "Española"));
 		comboBox.addItem(new ComboItem("Primera Nacional", "Australiana"));
 		comboBox.addItem(new ComboItem("Segunda Nacional", "Mpower"));
 

@@ -196,16 +196,14 @@ public class goleadores extends JFrame {
 						String apellido = rs.getString("apellido");
 						String goles = rs.getString("goles");
 						int idequipo = rs.getInt("idequipo");
-						System.out.println(idequipo + "este es ideq");
 						String nombre_equipo = "";
 
-						String nombreequipo = "SELECT nombre_equipo FROM equipos WHERE idequipo = '" + idequipo + "' ;";
+						String nombreequipo = "SELECT nombre_equipo FROM sys.equipos where idequipo="+idequipo+"";
 						ResultSet rse = conexion.consultar(nombreequipo);
 
 						try {
-							while (rs.next()) {
+							while (rse.next()) {
 								nombre_equipo = rse.getString("nombre_equipo");
-								System.out.println(nombre_equipo + " equipose");
 							}
 						} catch (Exception eg) {
 

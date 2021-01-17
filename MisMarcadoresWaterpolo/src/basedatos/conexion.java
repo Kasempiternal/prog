@@ -180,12 +180,12 @@ public class conexion {
 
 	public static boolean comprobarLogin(String user, String contra) {
 
-		String pass = "SELECT contrase�a from USUARIO WHERE nombre='" + user + "';";
+		String pass = "SELECT contraseña from USUARIO WHERE nombre='" + user + "';";
 		ResultSet rspas = consultar(pass);
 		Boolean ok = false;
 		try {
 			if (rspas.next()) {
-				if (contra.equals(rspas.getString("contrase�a"))) {
+				if (contra.equals(rspas.getString("contraseña"))) {
 					ok = true;
 				} else {
 					System.out.println("contraseña no coincide");
@@ -253,7 +253,7 @@ public class conexion {
 		String contrasenya = null;
 		try {
 			if (rs.next()) {
-				contrasenya = rs.getString("contrase�a");
+				contrasenya = rs.getString("contraseña");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -287,7 +287,7 @@ public class conexion {
 				user.setId(rs.getInt("idusuario"));
 				user.setNombre(rs.getString("nombre"));
 				user.setApellido(rs.getString("apellido"));
-				user.setContrasenya(rs.getString("contrase�a"));
+				user.setContrasenya(rs.getString("contraseña"));
 				user.setEmail(rs.getString("email"));
 
 				System.out.println(user.getNombre());
@@ -419,27 +419,32 @@ public class conexion {
 	}
 	public static void actualizarClasif(JTable table) {
 		String nombre = "";
-		int puntos = 0;
-		String inicTemporada = "";
-		String finTemporada = "";
-		int idequipo = 0;
+		String puntos = "";
+		String inicTemporada ;
+		String finTemporada ;
+		String idequipo = "";
 	
-		for (int i = 0; i < table.getHeight(); i++) {
+		
+		for (int i = 0; i < table.getRowCount(); i++) {
 		nombre = table.getValueAt(i,1).toString();
-		puntos = (int) table.getValueAt(i, 2);
-		inicTemporada = table.getValueAt(i, 3).toString();
-		finTemporada = table.getValueAt(i, 4).toString();
-		idequipo = (int)table.getValueAt(i, 5);
+		puntos =  table.getValueAt(i, 2).toString();
+		inicTemporada =  table.getValueAt(i, 3).toString();
+		finTemporada =  table.getValueAt(i, 4).toString();
+		idequipo = table.getValueAt(i, 5).toString();
 		
-		System.out.println(puntos);
-		String update = "UPDATE equipos SET "
+		String updates = "UPDATE equipos SET "
 				 + "nombre_equipo=" +  nombre 
-				 	+ " puntos=" + puntos 
-				 		+ " inic_temporada=" + inicTemporada
-				 			+ " fin_temporada=" + finTemporada
-				 			+ " where idequipo = " + idequipo;
+				 	+ ", puntos=" + puntos 
+				 		+ ", inic_temporada='" + inicTemporada
+				 			+ "' ,fin_temporada='" + finTemporada
+				 			+ "' where idequipo = " + idequipo;
 		
-		boolean booleano = ejecutar(update);
+		
+		String update =" UPDATE `sys`.`equipos` SET `nombre_equipo` = '"+nombre+"', "
+				+ "`puntos` = '"+puntos+"', `inic_temporada` = '"+inicTemporada+"', `fin_temporada` = '"+finTemporada+"' WHERE (`idequipo` = '"+idequipo+"');";
+
+		
+		 ejecutar(update);
 		}
 	}
 	public static void actualizarGol(JTable table) {
@@ -449,7 +454,7 @@ public class conexion {
 		String idequipo = "";
 		String idjugador = "";
 		
-		for (int i = 0; i <= table.getHeight(); i++) {
+		for (int i = 0; i < table.getRowCount(); i++) {
 			nombre =  table.getValueAt(i, 1).toString();
 			apellido = table.getValueAt(i, 2).toString();
 			goles =   table.getValueAt(i, 3).toString();
@@ -471,7 +476,7 @@ public class conexion {
 		String goles = "";
 		int idpartido = 0;
 		
-		for (int i = 0; i <table.getHeight(); i++) {
+		for (int i = 0; i <table.getRowCount(); i++) {
 			local = table.getValueAt(i,0).toString();
 			visitante = table.getValueAt(i, 1).toString();
 			resultado = table.getValueAt(i, 2).toString();

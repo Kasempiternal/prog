@@ -198,7 +198,7 @@ public class consulta extends JFrame {
 			} else if (asuntotxt.getText().length() == 0 && mensaje.getText().length() != 0) {
 				// PREGUNTA
 				int confirm = JOptionPane.showConfirmDialog(null,
-						"�Estas seguro de que quieres enviar un mensaje sin asunto?");
+						"Estas seguro de que quieres enviar un mensaje sin asunto?");
 				// SI ES QUE SI LO ENVIA
 				if (confirm == JOptionPane.YES_OPTION) {
 					mandarMail.mandarmail(mensaje.getText(), asuntotxt.getText(), idusuarioglobal);
@@ -211,6 +211,7 @@ public class consulta extends JFrame {
 				}
 				// Si el asunto y el mensaje no estan vacios no necesita preguntar nada
 			} else {
+				
 				mandarMail.mandarmail(mensaje.getText(), asuntotxt.getText(), idusuarioglobal);
 				JOptionPane.showMessageDialog(null, "Su consulta ha sido enviada correctamente", "CONSULTA ENVIADA",
 						JOptionPane.DEFAULT_OPTION);

@@ -19,23 +19,20 @@ public class Tests {
 		
 		//Parte de las conexiones de la BD y los usuarios
 		
-		Connection conn;
 		
-		String nombre = "Jon";
-		String apellido = "Churruca";
-		String email = "jon.churruca@opendeusto.es";
-		String contraseña = "Jonch3423";
+		String nombre = "1";
+		String apellido = "1";
+		String email = "koldo.moya@opendeusto.es";
+		String contrasenya = "1";
 		int tipo_usuario = 2;
 	
-		conexion c = new conexion().conectar();
-		conn = c.getConexion();
-		assertEquals(c.conectar(), conn);
+		conexion c = new conexion();
 		
-		c.crearCuenta(nombre, apellido, email, contraseña, tipo_usuario);
+		c.crearCuenta(nombre, apellido, email, contrasenya, tipo_usuario);
 		assertEquals(true, c.comprobarUsuario(nombre));
-		assertEquals(true, c.comprobarLogin(nombre, contraseña));
+		assertEquals(true, c.comprobarLogin(nombre, contrasenya));
 		
-		usuario u = new usuario(c.getid(nombre), nombre, apellido, contraseña, email);
+		usuario u = new usuario(c.getid(nombre), nombre, apellido, email, contrasenya);
 		
 		assertEquals(u.getNombre(), c.getusuariodb(u.getId()));
 		assertEquals(u.getApellido(), c.getapellidodb(u.getId()));
@@ -46,14 +43,14 @@ public class Tests {
 		
 		String texto = "Desearia una consulta";
 		String asunto = "Consulta";
-		/**
+		
 		mandarMail.recibircodigo(u.getEmail());
 		assertEquals("Mensaje enviado", mandarMail.mVerificado);
 		
 		mandarMail.mandarmail(texto, asunto, u.getId());
 		assertEquals("Mensaje enviado", mandarMail.mVerificado);
 		
-		*/
+		
 		
 		
 	}

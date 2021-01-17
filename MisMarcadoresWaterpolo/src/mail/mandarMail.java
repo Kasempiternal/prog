@@ -14,6 +14,7 @@ import javax.mail.internet.MimeMessage;
 public class mandarMail {
 
 	public static int codigo;
+	public static String mVerificado;
 
 	public static int recibircodigo(String recipiente) {
 		Properties propiedades = new Properties();
@@ -24,13 +25,13 @@ public class mandarMail {
 		propiedades.put("mail.smtp.port", "587");
 
 		String cuentamail = "mismarcadoreswaterpolo.deusto@gmail.com";
-		String contraseña = "deustodeusto";
+		String contrasenya = "deustodeusto";
 
 		Session sesion = Session.getInstance(propiedades, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 
-				return new PasswordAuthentication(cuentamail, contraseña);
+				return new PasswordAuthentication(cuentamail, contrasenya);
 			}
 
 		});
@@ -39,10 +40,13 @@ public class mandarMail {
 
 		try {
 			Transport.send(mensaje);
-			System.out.println("Mensaje enviado");
+			mVerificado = "Mensaje enviado";
+			System.out.println(mVerificado);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			
+			
 		}
 		return codigo;
 
@@ -57,13 +61,13 @@ public class mandarMail {
 		propiedades.put("mail.smtp.port", "587");
 
 		String cuentamail = "mismarcadoreswaterpolo.deusto@gmail.com";
-		String contraseña = "deustodeusto";
+		String contrasenya = "deustodeusto";
 
 		Session sesion = Session.getInstance(propiedades, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 
-				return new PasswordAuthentication(cuentamail, contraseña);
+				return new PasswordAuthentication(cuentamail, contrasenya);
 			}
 
 		});
@@ -72,7 +76,8 @@ public class mandarMail {
 
 		try {
 			Transport.send(mensaje);
-			System.out.println("Mensaje de respuesta enviado");
+			mVerificado = "Mensaje enviado";
+			System.out.println(mVerificado);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -90,13 +95,13 @@ public class mandarMail {
 		propiedades.put("mail.smtp.port", "587");
 
 		String cuentamail = "mismarcadoreswaterpolo.deusto@gmail.com";
-		String contraseña = "deustodeusto";
+		String contrasenya = "deustodeusto";
 
 		Session sesion = Session.getInstance(propiedades, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
 
-				return new PasswordAuthentication(cuentamail, contraseña);
+				return new PasswordAuthentication(cuentamail, contrasenya);
 			}
 
 		});
@@ -105,7 +110,8 @@ public class mandarMail {
 
 		try {
 			Transport.send(mensaje);
-			System.out.println("Mensaje enviado");
+			mVerificado = "Mensaje enviado";
+			System.out.println(mVerificado);
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

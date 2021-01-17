@@ -104,12 +104,6 @@ public class CuentaUsuario extends JFrame {
 		mailtxt.setBounds(116, 244, 257, 45);
 		getContentPane().add(mailtxt);
 
-		JLabel lblEmail = new JLabel("@gmail.com");
-		lblEmail.setForeground(Color.GRAY);
-		lblEmail.setFont(new Font("Tahoma", Font.PLAIN, 13));
-		lblEmail.setBounds(383, 251, 144, 29);
-		getContentPane().add(lblEmail);
-
 		// Contraseï¿½a
 		contrasenyatxt = new JTextField();
 		contrasenyatxt.setColumns(10);
@@ -142,7 +136,7 @@ public class CuentaUsuario extends JFrame {
 				String contrasenya = contrasenyatxt.getText();
 
 				String update = "UPDATE usuario SET nombre='" + usuario + "' , apellido='" + apellido + "' , email='"
-						+ mail + "' , contraseña='" + contrasenya + "' WHERE idusuario='" + idusuarioglobal + "';";
+						+ mail + "' , contraseÃ±a='" + contrasenya + "' WHERE idusuario='" + idusuarioglobal + "';";
 				basedatos.ejecutar(update);
 
 			}

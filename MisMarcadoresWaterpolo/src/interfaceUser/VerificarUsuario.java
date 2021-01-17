@@ -34,7 +34,6 @@ import java.awt.Color;
 
 public class VerificarUsuario extends JFrame {
 	JScrollPane scrollPaneLISTA;
-	private JTextField txtNombreDeEquipo;
 	private JScrollPane jsp;
 	private Vector data;
 	private String valorseleccionado;
@@ -102,7 +101,7 @@ public class VerificarUsuario extends JFrame {
 
 		JButton verificar = new JButton("VERIFICAR");
 		verificar.setBackground(new Color(135, 206, 250));
-		verificar.setBounds(288, 233, 193, 40);
+		verificar.setBounds(215, 318, 193, 40);
 		getContentPane().add(verificar);
 		verificar.addActionListener(new ActionListener() {
 
@@ -160,7 +159,7 @@ public class VerificarUsuario extends JFrame {
 		});
 
 		scrollPaneLISTA = new JScrollPane();
-		scrollPaneLISTA.setBounds(30, 152, 232, 215);
+		scrollPaneLISTA.setBounds(184, 78, 255, 228);
 		getContentPane().add(scrollPaneLISTA);
 
 		DefaultListModel modelo = new DefaultListModel();
@@ -170,16 +169,9 @@ public class VerificarUsuario extends JFrame {
 		list.setModel(modelo);
 		scrollPaneLISTA.setViewportView(list);
 
-		txtNombreDeEquipo = new JTextField();
-		txtNombreDeEquipo.setText("Nombre de equipo");
-		txtNombreDeEquipo.setBounds(30, 121, 133, 20);
-		txtNombreDeEquipo.setToolTipText("Nombre de equipo");
-		getContentPane().add(txtNombreDeEquipo);
-		txtNombreDeEquipo.setColumns(10);
-
 		JButton buscar = new JButton("Buscar");
 		buscar.setBackground(new Color(135, 206, 250));
-		buscar.setBounds(173, 120, 89, 23);
+		buscar.setBounds(448, 175, 89, 23);
 		getContentPane().add(buscar);
 		buscar.addActionListener(new ActionListener() {
 

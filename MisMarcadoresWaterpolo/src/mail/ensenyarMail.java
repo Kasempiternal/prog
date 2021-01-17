@@ -43,11 +43,11 @@ public class ensenyarMail {
 		propiedades.setProperty("mail.transport.protocol", "imaps");
 
 		String cuentamail = "mismarcadoreswaterpolo.deusto@gmail.com";
-		String contraseña = "deustodeusto";
+		String contrasenya = "deustodeusto";
 
 		session = Session.getInstance(propiedades, new javax.mail.Authenticator() {
 			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(cuentamail, contraseña);
+				return new PasswordAuthentication(cuentamail, contrasenya);
 			}
 		});
 		try {
