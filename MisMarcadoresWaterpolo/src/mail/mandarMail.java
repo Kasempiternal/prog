@@ -45,14 +45,13 @@ public class mandarMail {
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-			
-			
+
 		}
 		return codigo;
 
 	}
-	
-	public static int mandarRespuesta(String recipiente,String mensajecuerpo) {
+
+	public static int mandarRespuesta(String recipiente, String mensajecuerpo) {
 		Properties propiedades = new Properties();
 
 		propiedades.put("mail.smtp.auth", "true");
@@ -72,7 +71,7 @@ public class mandarMail {
 
 		});
 
-		Message mensaje = prepararMensajeRespuesta(sesion, cuentamail, recipiente,mensajecuerpo);
+		Message mensaje = prepararMensajeRespuesta(sesion, cuentamail, recipiente, mensajecuerpo);
 
 		try {
 			Transport.send(mensaje);
@@ -141,8 +140,9 @@ public class mandarMail {
 		return null;
 
 	}
-	
-	private static Message prepararMensajeRespuesta(Session sesion, String cuentamail, String recipiente,String mensajecuerpo) {
+
+	private static Message prepararMensajeRespuesta(Session sesion, String cuentamail, String recipiente,
+			String mensajecuerpo) {
 
 		Message mensaje = new MimeMessage(sesion);
 		try {

@@ -42,15 +42,16 @@ import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
-public class verificar extends JFrame{
+public class verificar extends JFrame {
 
 	private JList usuarios;
 	private static DefaultListModel modelo;
 	private DefaultListCellRenderer render;
 	private int selected;
 	private conexion con = new conexion();
-	
+
 	private List<usuario> listausuario = new ArrayList();
+
 	/**
 	 * Launch the application.
 	 */
@@ -60,7 +61,7 @@ public class verificar extends JFrame{
 				try {
 					verificar window = new verificar();
 					window.setVisible(true);
-					
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -81,18 +82,18 @@ public class verificar extends JFrame{
 	private void initialize() {
 		getContentPane().setBackground(Color.WHITE);
 		getContentPane().setLayout(null);
-		
+
 		JLabel titulo = new JLabel("VERIFICAR JUGADOR");
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		titulo.setForeground(SystemColor.textHighlight);
 		titulo.setBounds(0, 28, 678, 58);
 		getContentPane().add(titulo);
-		
+
 		JLabel admin = new JLabel("ADMINISTRADOR");
 		admin.setBounds(10, 11, 118, 14);
 		getContentPane().add(admin);
-		
+
 		JLabel id = new JLabel("ID USUARIO");
 		id.setFont(new Font("Tahoma", Font.BOLD, 11));
 		id.setHorizontalAlignment(SwingConstants.CENTER);
@@ -102,32 +103,30 @@ public class verificar extends JFrame{
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		usuarios = new JList();
-	
+
 		JScrollPane scrollPane = new JScrollPane(usuarios);
 		scrollPane.setBounds(28, 118, 89, 264);
 		getContentPane().add(scrollPane);
-		
-		
+
 		modelo = new DefaultListModel();
 		usuarios.setModel(modelo);
 		usuarios.setSelectionMode(DefaultListSelectionModel.SINGLE_SELECTION);
-		
+
 		render = new DefaultListCellRenderer();
 		usuarios.setCellRenderer(render);
 		render.setHorizontalAlignment(SwingConstants.CENTER);
-		
+
 		JLabel imagen = new JLabel("");
 		imagen.setBounds(231, 97, 325, 264);
 		getContentPane().add(imagen);
-		//imagen.setIcon();
-		
-		
+		// imagen.setIcon();
+
 		JButton volver = new JButton("VOLVER");
 		volver.setBackground(new Color(135, 206, 250));
 		volver.setBounds(10, 426, 89, 29);
 		getContentPane().add(volver);
 		volver.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
@@ -136,59 +135,63 @@ public class verificar extends JFrame{
 				setVisible(false);
 			}
 		});
-		
+
 		JButton cerrar = new JButton("CERRAR");
 		cerrar.setBackground(new Color(135, 206, 250));
 		cerrar.setBounds(579, 423, 89, 29);
 		getContentPane().add(cerrar);
 		cerrar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				System.exit(0);
 			}
 		});
-		
+
 		JButton rechazar = new JButton("RECHAZAR");
 		rechazar.setBackground(new Color(135, 206, 250));
 		rechazar.setBounds(425, 372, 105, 29);
 		getContentPane().add(rechazar);
-		
+		rechazar.setVisible(false);
+
 		rechazar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-					
-					selected = usuarios.getSelectedIndex();
-					usuarios.remove(selected);
-					modelo.remove(selected);
-					int idusuario = listausuario.get(selected).getId();
-					conexion.rechazarVerificacion(idusuario);
-					System.out.println("deleted");
-					usuarios.updateUI();
-					
+
+//				
+//				System.out.println(listausuario.size() + " - "+ usuarios.getSelectedIndex() + " - ");
+//				
+//				selected = usuarios.getSelectedIndex();
+//				listausuario.remove(selected);
+//				modelo.remove(selected);
+//				
+//				
+//				
+//				int idusuario = listausuario.get(selected).getId();
+//				conexion.rechazarVerificacion(idusuario);
+//				System.out.println("deleted");
+//				usuarios.updateUI();
+
 			}
 		});
-		
-		
+
 		JButton aceptar = new JButton("ACEPTAR");
 		aceptar.setBackground(new Color(135, 206, 250));
 		aceptar.setBounds(260, 372, 105, 29);
 		getContentPane().add(aceptar);
-		
 
-		
 		aceptar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-			conexion.verificar(usuarios);
+				conexion.verificar(usuarios);
 			}
 		});
-		
+
 		usuarios.addListSelectionListener(new ListSelectionListener() {
 
 			@Override
@@ -196,38 +199,30 @@ public class verificar extends JFrame{
 				// TODO Auto-generated method stub
 
 				imagen.setIcon(null);
+
 				selected = usuarios.getSelectedIndex();
 				FileOutputStream ouput = null;
 				int idusuario = listausuario.get(selected).getId();
-				
-				  try {
-			            File f = new File("foto.png");
-			            ResultSet rs = con.consultar("select photo from verificado where idusuario='"+idusuario+"'");
-			            ouput = new FileOutputStream(f);
-			            
-			            
-			            
-			            if(rs.next()) {
-			            BufferedImage im = ImageIO.read(rs.getBinaryStream("photo"));
-			            
-			            imagen.setIcon(new ImageIcon(im));
-			            }
-			           
-			
-		                
-	
-			            
-		              
-			            
-			            
-			        } catch (Exception err) {
-			            System.out.println(err.getMessage());
-			        }
+
+				try {
+					File f = new File("foto.png");
+					ResultSet rs = con.consultar("select photo from verificado where idusuario='" + idusuario + "'");
+					ouput = new FileOutputStream(f);
+
+					if (rs.next()) {
+						BufferedImage im = ImageIO.read(rs.getBinaryStream("photo"));
+
+						imagen.setIcon(new ImageIcon(im));
+					}
+
+				} catch (Exception err) {
+					System.out.println(err.getMessage());
+				}
 
 			}
 		});
-		
+
 		listausuario = conexion.mostrarVerificados(modelo);
-		
+
 	}
 }

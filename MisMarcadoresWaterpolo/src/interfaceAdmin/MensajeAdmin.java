@@ -4,7 +4,7 @@ import java.awt.EventQueue;
 
 import javax.swing.JFrame;
 
-public class MensajeAdmin extends JFrame{
+public class MensajeAdmin extends JFrame {
 
 	/**
 	 * Launch the application.

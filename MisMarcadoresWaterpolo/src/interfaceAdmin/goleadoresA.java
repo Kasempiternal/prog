@@ -25,8 +25,6 @@ import java.awt.SystemColor;
 public class goleadoresA extends JFrame {
 	private JTable table;
 	Connection conn = conexion.getConexion();
-	
-	
 
 	/**
 	 * Launch the application.
@@ -59,8 +57,8 @@ public class goleadoresA extends JFrame {
 		setBounds(100, 100, 880, 567);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
-		setLocationRelativeTo(null);		
-		
+		setLocationRelativeTo(null);
+
 		JLabel admin = new JLabel("ADMINISTRADOR");
 		admin.setBounds(10, 11, 118, 14);
 		getContentPane().add(admin);
@@ -134,7 +132,7 @@ public class goleadoresA extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				conexion.actualizarGol(table);
-				
+
 			}
 		});
 		JButton mostrar = new JButton("Mostrar");
@@ -164,7 +162,7 @@ public class goleadoresA extends JFrame {
 
 				try {
 					while (rs.next()) {
-						
+
 						int idjugador = rs.getInt("idjugador");
 						String nombre = rs.getString("nombre");
 						String apellido = rs.getString("apellido");
@@ -185,7 +183,7 @@ public class goleadoresA extends JFrame {
 						}
 
 						posicion = posicion + 1;
-						dtm.addRow(new Object[] { posicion, nombre, apellido, goles, nombre_equipo, idjugador});
+						dtm.addRow(new Object[] { posicion, nombre, apellido, goles, nombre_equipo, idjugador });
 
 					}
 
@@ -195,7 +193,6 @@ public class goleadoresA extends JFrame {
 
 			}
 		});
-		
 
 	}
 }

@@ -7,6 +7,7 @@ public class usuario {
 	String apellido;
 	String email;
 	String contrasenya;
+	int tipo_usuario;
 
 	public usuario() {
 
@@ -19,6 +20,16 @@ public class usuario {
 		this.apellido = apellido;
 		this.email = email;
 		this.contrasenya = contrasenya;
+	}
+
+	public usuario(int id, String nombre, String apellido, String email, String contrasenya, int tipo_usuario) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.email = email;
+		this.contrasenya = contrasenya;
+		this.tipo_usuario = tipo_usuario;
 	}
 
 	public int getId() {
@@ -59,6 +70,14 @@ public class usuario {
 
 	public void setContrasenya(String contrasenya) {
 		this.contrasenya = contrasenya;
+	}
+
+	public int getTipo_usuario() {
+		return tipo_usuario;
+	}
+
+	public void setTipo_usuario(int tipo_usuario) {
+		this.tipo_usuario = tipo_usuario;
 	}
 
 }

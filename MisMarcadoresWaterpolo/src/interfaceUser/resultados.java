@@ -87,14 +87,13 @@ public class resultados extends JFrame {
 
 		int idliga = 0; // DE ALGUNA MANERA CAMBIARLO CUANDO EL USUARIO META LA LIGA DESEADA
 
-
-		//Para que la tabla no se pueda editar
+		// Para que la tabla no se pueda editar
 		DefaultTableModel dtm = new DefaultTableModel() {
 			public boolean isCellEditable(int row, int column) {
 				return false;
 			}
 		};
-		
+
 		table = new JTable();
 
 		dtm.addColumn("Local");
@@ -102,10 +101,10 @@ public class resultados extends JFrame {
 		dtm.addColumn("Resultado");
 		dtm.addColumn("Goles");
 		table.setModel(dtm);
-		
-		//PARA QUE EL USUARIO NO PUEDA MOVER LAS COLUMNAS DE SITIO
+
+		// PARA QUE EL USUARIO NO PUEDA MOVER LAS COLUMNAS DE SITIO
 		table.getTableHeader().setReorderingAllowed(false);
-		
+
 		JScrollPane scrollPane1 = new JScrollPane();
 		scrollPane.setBounds(10, 153, 844, 326);
 		getContentPane().add(scrollPane);

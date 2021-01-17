@@ -211,7 +211,7 @@ public class consulta extends JFrame {
 				}
 				// Si el asunto y el mensaje no estan vacios no necesita preguntar nada
 			} else {
-				
+
 				mandarMail.mandarmail(mensaje.getText(), asuntotxt.getText(), idusuarioglobal);
 				JOptionPane.showMessageDialog(null, "Su consulta ha sido enviada correctamente", "CONSULTA ENVIADA",
 						JOptionPane.DEFAULT_OPTION);

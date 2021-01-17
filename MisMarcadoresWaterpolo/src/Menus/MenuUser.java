@@ -179,13 +179,13 @@ public class MenuUser extends JFrame {
 		mismarcadores.setForeground(Color.BLACK);
 		mismarcadores.setBounds(224, 11, 161, 14);
 		getContentPane().add(mismarcadores);
-		
+
 		JButton volver = new JButton("VOLVER");
 		volver.setBackground(new Color(135, 206, 250));
 		volver.setBounds(10, 508, 92, 30);
 		getContentPane().add(volver);
 		volver.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -199,7 +199,7 @@ public class MenuUser extends JFrame {
 				}
 			}
 		});
-		
+
 		JButton cerrar = new JButton("CERRAR");
 		cerrar.setBackground(new Color(135, 206, 250));
 		cerrar.addActionListener(new ActionListener() {

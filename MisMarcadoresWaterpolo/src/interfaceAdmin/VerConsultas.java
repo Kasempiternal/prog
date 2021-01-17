@@ -95,7 +95,7 @@ public class VerConsultas extends JFrame {
 		volver.setBounds(10, 425, 89, 30);
 		getContentPane().add(volver);
 		volver.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -134,12 +134,11 @@ public class VerConsultas extends JFrame {
 		JTextArea textoConsulta = new JTextArea();
 		scrollPane_1.setViewportView(textoConsulta);
 
-		
 		JTextField respuestatxt = new JTextField();
 		respuestatxt.setBounds(359, 245, 388, 87);
 		getContentPane().add(respuestatxt);
 		respuestatxt.setColumns(10);
-		
+
 		JLabel respuesta = new JLabel("Respuesta");
 		respuesta.setBounds(359, 230, 102, 16);
 		getContentPane().add(respuesta);
@@ -155,7 +154,7 @@ public class VerConsultas extends JFrame {
 				textoConsulta.setText(mensaje);
 			}
 		});
-		
+
 		JButton responder = new JButton("RESPONDER");
 		responder.setBackground(new Color(205, 92, 92));
 		responder.setForeground(new Color(0, 0, 0));
@@ -178,10 +177,8 @@ public class VerConsultas extends JFrame {
 				System.out.println(strid);
 
 				int id = Integer.parseInt(strid);
-				
-				
+
 				String f = con.getemaildb(id);
-			
 
 				mm.mandarRespuesta(f, mensaje);
 

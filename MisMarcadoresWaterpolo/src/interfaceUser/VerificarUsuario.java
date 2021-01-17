@@ -120,9 +120,8 @@ public class VerificarUsuario extends JFrame {
 				boolean encontrado = false;
 				int i = 0;
 				do {
-					
+
 					String nombres = (jd.get(i).getNombre());
-					System.out.println(jd.get(i).getNombre() + "ffff" + jd.size() + " ff "+ jd.get(i).getId() + " frito " + i + " vv _." + valorseleccionado + " es "+ nombres);
 					if (nombres.equals(valorseleccionado)) {
 
 						idjugador = jd.get(i).getId();
@@ -207,12 +206,9 @@ public class VerificarUsuario extends JFrame {
 					// TODO: handle exception
 				}
 
-			
-
 			}
 		});
 
-		
 		// list.setListData(data);
 
 		list.setSelectedIndex(0);
@@ -228,10 +224,9 @@ public class VerificarUsuario extends JFrame {
 						JOptionPane.showMessageDialog(null, item.toString(), "JUGADOR SELECCIONADO",
 								JOptionPane.INFORMATION_MESSAGE);
 						valorseleccionado = item.toString();
-						
-						
-						System.out.println("Valorseleccionado :" +valorseleccionado
-								+"  item: "+ item.toString()+ " index: "+ index + "lista"+ jd.size());
+
+						System.out.println("Valorseleccionado :" + valorseleccionado + "  item: " + item.toString()
+								+ " index: " + index + "lista" + jd.size());
 					}
 				}
 			}

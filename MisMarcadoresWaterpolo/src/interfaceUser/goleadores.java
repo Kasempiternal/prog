@@ -26,8 +26,6 @@ public class goleadores extends JFrame {
 	public static int idusuarioglobal = 0;
 	Connection conn = conexion.getConexion();
 	private MenuUser mi = new MenuUser();
-	
-	
 
 	/**
 	 * Launch the application.
@@ -90,7 +88,7 @@ public class goleadores extends JFrame {
 
 		int idliga = 0; // DE ALGUNA MANERA CAMBIARLO CUANDO EL USUARIO META LA LIGA DESEADA
 
-		//Para que la tabla no se pueda editar
+		// Para que la tabla no se pueda editar
 		DefaultTableModel dtm = new DefaultTableModel() {
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -103,9 +101,9 @@ public class goleadores extends JFrame {
 		dtm.addColumn("Apellido");
 		dtm.addColumn("Goles");
 		dtm.addColumn("Equipo");
-		
+
 		table.setModel(dtm);
-		//PARA QUE EL USUARIO NO PUEDA MOVER LAS COLUMNAS DE SITIO
+		// PARA QUE EL USUARIO NO PUEDA MOVER LAS COLUMNAS DE SITIO
 		table.getTableHeader().setReorderingAllowed(false);
 		JScrollPane scrollPane1 = new JScrollPane();
 		scrollPane.setBounds(10, 153, 844, 326);
@@ -198,7 +196,7 @@ public class goleadores extends JFrame {
 						int idequipo = rs.getInt("idequipo");
 						String nombre_equipo = "";
 
-						String nombreequipo = "SELECT nombre_equipo FROM sys.equipos where idequipo="+idequipo+"";
+						String nombreequipo = "SELECT nombre_equipo FROM sys.equipos where idequipo=" + idequipo + "";
 						ResultSet rse = conexion.consultar(nombreequipo);
 
 						try {

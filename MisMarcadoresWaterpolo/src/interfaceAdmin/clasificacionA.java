@@ -40,7 +40,7 @@ public class clasificacionA extends JFrame {
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-	
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
@@ -70,11 +70,10 @@ public class clasificacionA extends JFrame {
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
 
-		
 		JLabel admin = new JLabel("ADMINISTRADOR");
 		admin.setBounds(10, 11, 118, 14);
 		getContentPane().add(admin);
-		
+
 		JLabel liga = new JLabel("Liga:");
 		liga.setBounds(27, 89, 46, 14);
 		getContentPane().add(liga);
@@ -96,7 +95,7 @@ public class clasificacionA extends JFrame {
 		dtm.addColumn("Fin_Temporada");
 		dtm.addColumn("IdEquipo");
 		table.setModel(dtm);
-		
+
 		JScrollPane scrollPane1 = new JScrollPane();
 		scrollPane.setBounds(10, 153, 844, 326);
 		getContentPane().add(scrollPane);
@@ -175,7 +174,7 @@ public class clasificacionA extends JFrame {
 
 				try {
 					while (rs.next()) {
-						
+
 						int idequipo = rs.getInt("idequipo");
 						String rsnombre = rs.getString("nombre_equipo");
 						int rspuntos = rs.getInt("puntos");

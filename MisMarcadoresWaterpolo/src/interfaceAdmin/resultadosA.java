@@ -25,7 +25,6 @@ public class resultadosA extends JFrame {
 	private JTable table;
 	Connection conn = conexion.getConexion();
 
-
 	/**
 	 * Launch the application.
 	 */
@@ -59,7 +58,7 @@ public class resultadosA extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
-		
+
 		JLabel admin = new JLabel("ADMINISTRADOR");
 		admin.setBounds(10, 11, 118, 14);
 		getContentPane().add(admin);
@@ -74,18 +73,16 @@ public class resultadosA extends JFrame {
 		getContentPane().add(scrollPane);
 
 		DefaultTableModel dtm = new DefaultTableModel();
-		
+
 		table = new JTable();
 
-		
 		dtm.addColumn("Local");
 		dtm.addColumn("Visitante");
 		dtm.addColumn("Resultado");
 		dtm.addColumn("Goles");
 		dtm.addColumn("IdPartido");
 		table.setModel(dtm);
-		
-		
+
 		JScrollPane scrollPane1 = new JScrollPane();
 		scrollPane.setBounds(10, 153, 844, 326);
 		getContentPane().add(scrollPane);
@@ -166,7 +163,7 @@ public class resultadosA extends JFrame {
 
 				try {
 					while (rs.next()) {
-						
+
 						int idpartido = rs.getInt("idPartido");
 						String local = rs.getString("local");
 						String visitante = rs.getString("visitante");
@@ -184,7 +181,6 @@ public class resultadosA extends JFrame {
 
 			}
 		});
-
 
 	}
 }

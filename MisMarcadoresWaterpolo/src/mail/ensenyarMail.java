@@ -27,10 +27,8 @@ public class ensenyarMail {
 	private mail mail;
 	private static List<mail> listamails = new ArrayList();
 
-
-	
 	public List<mail> getemails() {
-		System.out.println("Get emails + "+ listamails.size());
+		System.out.println("Get emails + " + listamails.size());
 		return this.listamails;
 	}
 
@@ -78,7 +76,7 @@ public class ensenyarMail {
 		} catch (MessagingException e) {
 			e.printStackTrace();
 		}
-		
+
 	}
 
 	public void processMessageBody(Message message) {

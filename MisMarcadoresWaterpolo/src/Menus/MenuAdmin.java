@@ -22,7 +22,7 @@ import interfaceAdmin.buscador;
 import java.awt.Color;
 
 public class MenuAdmin extends JFrame {
-	
+
 	Login log = null;
 
 	/**
@@ -91,7 +91,7 @@ public class MenuAdmin extends JFrame {
 		verificar.setBounds(10, 170, 375, 43);
 		getContentPane().add(verificar);
 		verificar.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
@@ -100,10 +100,10 @@ public class MenuAdmin extends JFrame {
 				setVisible(false);
 			}
 		});
-		
+
 		/**
-		 * ESTA BUSQUEDA VA A SER MAS ESTETICA QUE OTRA COSA
-		 * Servira para que el admin busque las tablas y editarlas
+		 * ESTA BUSQUEDA VA A SER MAS ESTETICA QUE OTRA COSA Servira para que el admin
+		 * busque las tablas y editarlas
 		 */
 
 		JButton buscador = new JButton("Buscador");
@@ -111,7 +111,7 @@ public class MenuAdmin extends JFrame {
 		buscador.setBounds(10, 240, 375, 43);
 		getContentPane().add(buscador);
 		buscador.addActionListener(new ActionListener() {
-			
+
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub

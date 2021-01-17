@@ -98,7 +98,7 @@ public class clasificacionU extends JFrame {
 		int idliga = 0;
 		// TABLA PARA NO ADMIN
 
-		//Para que la tabla no se pueda editar
+		// Para que la tabla no se pueda editar
 		DefaultTableModel dtm = new DefaultTableModel() {
 			public boolean isCellEditable(int row, int column) {
 				return false;
@@ -112,10 +112,10 @@ public class clasificacionU extends JFrame {
 		dtm.addColumn("Inic_Temporada");
 		dtm.addColumn("Fin_Temporada");
 		table.setModel(dtm);
-		
-		//PARA QUE EL USUARIO NO PUEDA MOVER LAS COLUMNAS DE SITIO
+
+		// PARA QUE EL USUARIO NO PUEDA MOVER LAS COLUMNAS DE SITIO
 		table.getTableHeader().setReorderingAllowed(false);
-		
+
 		JScrollPane scrollPane1 = new JScrollPane();
 		scrollPane.setBounds(10, 153, 844, 326);
 		getContentPane().add(scrollPane);
