@@ -8,7 +8,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
-import Menus.MenuInicio;
+import Menus.MenuUser;
 import mail.mandarMail;
 
 import java.awt.Font;
@@ -27,7 +27,7 @@ import javax.swing.JScrollPane;
 public class consulta extends JFrame {
 	private JTextField asuntotxt;
 	private JTextArea mensaje;
-	private MenuInicio mi = new MenuInicio();
+	private MenuUser mi = new MenuUser();
 	public static int idusuarioglobal = 0;
 
 	/**
@@ -198,7 +198,7 @@ public class consulta extends JFrame {
 			} else if (asuntotxt.getText().length() == 0 && mensaje.getText().length() != 0) {
 				// PREGUNTA
 				int confirm = JOptionPane.showConfirmDialog(null,
-						"¿Estas seguro de que quieres enviar un mensaje sin asunto?");
+						"ï¿½Estas seguro de que quieres enviar un mensaje sin asunto?");
 				// SI ES QUE SI LO ENVIA
 				if (confirm == JOptionPane.YES_OPTION) {
 					mandarMail.mandarmail(mensaje.getText(), asuntotxt.getText(), idusuarioglobal);

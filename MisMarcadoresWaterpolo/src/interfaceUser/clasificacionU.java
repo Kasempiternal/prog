@@ -18,7 +18,7 @@ import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import Menus.MenuInicio;
+import Menus.MenuUser;
 
 import javax.swing.JScrollPane;
 import java.awt.Color;
@@ -150,7 +150,7 @@ public class clasificacionU extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				MenuInicio mi = new MenuInicio();
+				MenuUser mi = new MenuUser();
 				mi.setVisible(true);
 				setVisible(false);
 			}

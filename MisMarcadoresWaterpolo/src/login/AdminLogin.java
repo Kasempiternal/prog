@@ -17,7 +17,7 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import Menus.MenuAdmin;
-import Menus.MenuInicio;
+import Menus.MenuUser;
 import aainiciador.Login;
 
 import java.awt.Font;
@@ -94,7 +94,7 @@ public class AdminLogin extends JFrame {
 					ma.setVisible(true);
 
 				} else if (!adminpass.getText().equals("admin")) {
-					JOptionPane.showMessageDialog(null, "CONTRASEÑA INCORRECTA", "ERROR", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "CONTRASEï¿½A INCORRECTA", "ERROR", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		});

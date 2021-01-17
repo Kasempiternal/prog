@@ -5,7 +5,7 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import Menus.MenuInicio;
+import Menus.MenuUser;
 import basedatos.conexion;
 import login.AdminLogin;
 import login.CrearCuenta;
@@ -45,7 +45,7 @@ public class Login extends JFrame {
 
 	private JTextField usertxt;
 	CrearCuenta cc = new CrearCuenta();
-	MenuInicio mi = new MenuInicio();
+	MenuUser mi = new MenuUser();
 	AdminLogin adminlog = new AdminLogin();
 	static usuario userr;
 	private JTextField pass;
@@ -117,14 +117,14 @@ public class Login extends JFrame {
 		getContentPane().add(usertxt);
 		usertxt.setColumns(10);
 
-		// Passwordfield para la contraseña
+		// Passwordfield para la contraseï¿½a
 		pass = new JPasswordField();
 		pass.setForeground(Color.BLACK);
 		pass.setBackground(SystemColor.controlHighlight);
 		pass.setBounds(44, 226, 299, 47);
 		getContentPane().add(pass);
 
-		// Checkbox de mostrar contraseña
+		// Checkbox de mostrar contraseï¿½a
 		JCheckBox showpass = new JCheckBox("Mostrar Contrase\u00F1a");
 		showpass.setForeground(SystemColor.textHighlight);
 		showpass.setBackground(UIManager.getColor("Button.highlight"));

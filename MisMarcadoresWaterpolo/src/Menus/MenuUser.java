@@ -23,7 +23,7 @@ import interfaceUser.consulta;
 import interfaceUser.goleadores;
 import interfaceUser.resultados;
 
-public class MenuInicio extends JFrame {
+public class MenuUser extends JFrame {
 
 	public static int idusuarioglobal = 0;
 
@@ -36,7 +36,7 @@ public class MenuInicio extends JFrame {
 			public void run() {
 
 				try {
-					MenuInicio window = new MenuInicio();
+					MenuUser window = new MenuUser();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,7 +49,7 @@ public class MenuInicio extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public MenuInicio() {
+	public MenuUser() {
 		getContentPane().setBackground(Color.WHITE);
 		initialize();
 

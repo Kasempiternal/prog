@@ -16,7 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import Menus.MenuInicio;
+import Menus.MenuUser;
 import basedatos.conexion;
 import interfaceUser.ExportarExcel;
 import objetos.ComboItem;

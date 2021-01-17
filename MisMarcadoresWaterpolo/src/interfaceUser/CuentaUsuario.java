@@ -16,7 +16,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.SwingConstants;
 
-import Menus.MenuInicio;
+import Menus.MenuUser;
 import basedatos.conexion;
 
 public class CuentaUsuario extends JFrame {
@@ -26,7 +26,7 @@ public class CuentaUsuario extends JFrame {
 	private JTextField mailtxt;
 	private JTextField contrasenyatxt;
 	private conexion basedatos = new conexion();
-	MenuInicio mi = new MenuInicio();
+	MenuUser mi = new MenuUser();
 	public static int idusuarioglobal = 0;
 
 	/**

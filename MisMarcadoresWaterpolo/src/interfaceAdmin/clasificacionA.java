@@ -19,7 +19,7 @@ import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import Menus.MenuInicio;
+import Menus.MenuUser;
 
 import javax.swing.JScrollPane;
 import java.awt.Color;

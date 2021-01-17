@@ -16,7 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
-import Menus.MenuInicio;
+import Menus.MenuUser;
 import basedatos.conexion;
 import objetos.ComboItem;
 import java.awt.SystemColor;
@@ -25,7 +25,7 @@ public class goleadores extends JFrame {
 	private JTable table;
 	public static int idusuarioglobal = 0;
 	Connection conn = conexion.getConexion();
-	private MenuInicio mi = new MenuInicio();
+	private MenuUser mi = new MenuUser();
 	
 	
 

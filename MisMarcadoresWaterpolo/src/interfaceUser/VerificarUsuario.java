@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
-import Menus.MenuInicio;
+import Menus.MenuUser;
 import basedatos.conexion;
 import objetos.JugadorVerificador;
 
@@ -137,6 +137,7 @@ public class VerificarUsuario extends JFrame {
 
 				} while (!encontrado);
 
+				System.out.println(idusuariogloblal);
 				conexion.meterimagen(direccion, idusuariogloblal, idjugador);
 
 			}
@@ -151,7 +152,7 @@ public class VerificarUsuario extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				MenuInicio mi = new MenuInicio();
+				MenuUser mi = new MenuUser();
 				mi.main(idusuariogloblal);
 				setVisible(false);
 			}
@@ -185,12 +186,10 @@ public class VerificarUsuario extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 
 				data = new Vector();
-				String nombre = txtNombreDeEquipo.getText();
 				// char first = Character.toUpperCase(nombre.charAt(0));
 				// nombre = first + nombre.substring(1).toLowerCase();
 
-				String selectuser = " SELECT nombre,idjugador FROM  sys.` jugadores` WHERE idequipo IN (SELECT idequipo FROM sys.equipos where nombre_equipo = '"
-						+ nombre + "' )   ";
+				String selectuser = " SELECT nombre,idjugador FROM  sys.` jugadores`  ";
 
 				ResultSet rs = conexion.consultar(selectuser);
 				int i = 0;
@@ -230,6 +229,10 @@ public class VerificarUsuario extends JFrame {
 								JOptionPane.showMessageDialog(null, item.toString(), "JUGADOR SELECCIONADO",
 										JOptionPane.INFORMATION_MESSAGE);
 								valorseleccionado = item.toString();
+								
+								
+								System.out.println("Valorseleccionado :" +valorseleccionado
+										+"  item: "+ item.toString()+ " index: "+ index + "lista"+ jd.size());
 							}
 						}
 					}

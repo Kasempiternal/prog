@@ -24,7 +24,7 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import Menus.MenuAdmin;
-import Menus.MenuInicio;
+import Menus.MenuUser;
 import basedatos.conexion;
 import mail.mail;
 import objetos.usuario;
@@ -157,12 +157,15 @@ public class verificar extends JFrame{
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
+					
 					selected = usuarios.getSelectedIndex();
 					usuarios.remove(selected);
 					modelo.remove(selected);
 					int idusuario = listausuario.get(selected).getId();
 					conexion.rechazarVerificacion(idusuario);
 					System.out.println("deleted");
+					usuarios.updateUI();
+					
 			}
 		});
 		
