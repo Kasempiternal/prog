@@ -1,4 +1,4 @@
-package interfaceAdmin;
+package interfaceUser;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -16,24 +16,25 @@ import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Menus.MenuUser;
-import basedatos.conexion;
-import interfaceUser.ExportarExcel;
+import basedatos.Conexion;
 import objetos.ComboItem;
 import java.awt.SystemColor;
 
-public class resultadosA extends JFrame {
+public class Resultados extends JFrame {
 	private JTable table;
-	Connection conn = conexion.getConexion();
+	public static int idusuarioglobal = 0;
+	Connection conn = Conexion.getConexion();
+	private MenuUser mi = new MenuUser();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(String[] args) {
-
+	public static void main(int id) {
+		idusuarioglobal = id;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					resultadosA window = new resultadosA();
+					Resultados window = new Resultados();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,7 +46,7 @@ public class resultadosA extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public resultadosA() {
+	public Resultados() {
 		getContentPane().setBackground(new Color(255, 255, 255));
 		initialize();
 	}
@@ -58,10 +59,22 @@ public class resultadosA extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
+		JLabel ID = new JLabel("ID:");
+		ID.setBounds(10, 11, 46, 14);
+		getContentPane().add(ID);
 
-		JLabel admin = new JLabel("ADMINISTRADOR");
-		admin.setBounds(10, 11, 118, 14);
-		getContentPane().add(admin);
+		JLabel usuario = new JLabel("Usuario:");
+		usuario.setBounds(10, 24, 54, 14);
+		getContentPane().add(usuario);
+
+		JLabel id = new JLabel(Integer.toString(idusuarioglobal));
+		id.setBounds(27, 11, 72, 14);
+		getContentPane().add(id);
+
+		JLabel user = new JLabel(Conexion.getusuariodb(idusuarioglobal));
+		System.out.println(Conexion.getusuariodb(idusuarioglobal));
+		user.setBounds(62, 24, 72, 14);
+		getContentPane().add(user);
 
 		JLabel liga = new JLabel("Liga:");
 		liga.setBounds(27, 89, 46, 14);
@@ -72,7 +85,14 @@ public class resultadosA extends JFrame {
 		scrollPane.setBounds(10, 153, 844, 326);
 		getContentPane().add(scrollPane);
 
-		DefaultTableModel dtm = new DefaultTableModel();
+		int idliga = 0; // DE ALGUNA MANERA CAMBIARLO CUANDO EL USUARIO META LA LIGA DESEADA
+
+		// Para que la tabla no se pueda editar
+		DefaultTableModel dtm = new DefaultTableModel() {
+			public boolean isCellEditable(int row, int column) {
+				return false;
+			}
+		};
 
 		table = new JTable();
 
@@ -80,8 +100,10 @@ public class resultadosA extends JFrame {
 		dtm.addColumn("Visitante");
 		dtm.addColumn("Resultado");
 		dtm.addColumn("Goles");
-		dtm.addColumn("IdPartido");
 		table.setModel(dtm);
+
+		// PARA QUE EL USUARIO NO PUEDA MOVER LAS COLUMNAS DE SITIO
+		table.getTableHeader().setReorderingAllowed(false);
 
 		JScrollPane scrollPane1 = new JScrollPane();
 		scrollPane.setBounds(10, 153, 844, 326);
@@ -95,7 +117,7 @@ public class resultadosA extends JFrame {
 		getContentPane().add(app);
 
 		JLabel titulo = new JLabel("RESULTADOS");
-		titulo.setForeground(new Color(165, 42, 42));
+		titulo.setForeground(SystemColor.textHighlight);
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		titulo.setBounds(341, 22, 146, 43);
 		getContentPane().add(titulo);
@@ -103,12 +125,12 @@ public class resultadosA extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(67, 85, 113, 22);
 		getContentPane().add(comboBox);
-		comboBox.addItem(new ComboItem("Liga Premaat", "Espa�ola"));
+		comboBox.addItem(new ComboItem("Liga Premaat", "Española"));
 		comboBox.addItem(new ComboItem("Primera Nacional", "Australiana"));
 		comboBox.addItem(new ComboItem("Segunda Nacional", "Mpower"));
 
 		JButton volver = new JButton("VOLVER");
-		volver.setBackground(new Color(205, 92, 92));
+		volver.setBackground(new Color(135, 206, 250));
 		volver.setBounds(10, 490, 89, 27);
 		getContentPane().add(volver);
 		volver.addActionListener(new ActionListener() {
@@ -116,14 +138,13 @@ public class resultadosA extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				buscador busc = new buscador();
-				busc.setVisible(true);
+				mi.setVisible(true);
 				setVisible(false);
 			}
 		});
 
 		JButton guardar = new JButton("GUARDAR");
-		guardar.setBackground(new Color(205, 92, 92));
+		guardar.setBackground(new Color(135, 206, 250));
 		guardar.setBounds(741, 490, 113, 27);
 		getContentPane().add(guardar);
 		guardar.addActionListener(new ActionListener() {
@@ -131,13 +152,19 @@ public class resultadosA extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				conexion.actualizarResult(table);
+				ExportarExcel ee = new ExportarExcel();
+				try {
+					ee.export(table);
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 
 		JButton mostrar = new JButton("Mostrar");
 		mostrar.setForeground(new Color(0, 0, 0));
-		mostrar.setBackground(new Color(205, 92, 92));
+		mostrar.setBackground(new Color(135, 206, 250));
 		mostrar.setBounds(205, 83, 89, 27);
 		getContentPane().add(mostrar);
 
@@ -158,20 +185,19 @@ public class resultadosA extends JFrame {
 
 				String sqlclasificacion = "SELECT * FROM resultados WHERE liga = '" + value
 						+ "' ORDER BY idPartido ASC;";
-				ResultSet rs = conexion.consultar(sqlclasificacion);
+				ResultSet rs = Conexion.consultar(sqlclasificacion);
 				int posicion = 0;
 
 				try {
 					while (rs.next()) {
 
-						int idpartido = rs.getInt("idPartido");
 						String local = rs.getString("local");
 						String visitante = rs.getString("visitante");
 						String resultado = rs.getString("resultado");
 						String resultadonum = rs.getString("resultadonum");
 
 						posicion = posicion + 1;
-						dtm.addRow(new Object[] { local, visitante, resultado, resultadonum, idpartido });
+						dtm.addRow(new Object[] { local, visitante, resultado, resultadonum });
 
 					}
 

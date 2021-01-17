@@ -11,7 +11,7 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-public class mandarMail {
+public class MandarMail {
 
 	public static int codigo;
 	public static String mVerificado;

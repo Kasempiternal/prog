@@ -22,7 +22,7 @@ public class Loading extends JFrame {
 	private JLabel compruebaCorreo;
 	private JLabel enviando;
 	private JButton aceptar;
-	private verificaCodigo cod = new verificaCodigo();
+	private VerificaCodigo cod = new VerificaCodigo();
 
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {

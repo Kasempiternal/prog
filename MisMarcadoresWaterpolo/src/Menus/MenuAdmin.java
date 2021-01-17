@@ -14,10 +14,10 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import aainiciador.Login;
-import interfaceAdmin.clasificacionA;
-import interfaceAdmin.verificar;
+import interfaceAdmin.ClasificacionA;
+import interfaceAdmin.Verificar;
 import interfaceAdmin.VerConsultas;
-import interfaceAdmin.buscador;
+import interfaceAdmin.Buscador;
 
 import java.awt.Color;
 
@@ -95,7 +95,7 @@ public class MenuAdmin extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				verificar veri = new verificar();
+				Verificar veri = new Verificar();
 				veri.setVisible(true);
 				setVisible(false);
 			}
@@ -115,7 +115,7 @@ public class MenuAdmin extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				buscador busc = new buscador();
+				Buscador busc = new Buscador();
 				busc.setVisible(true);
 				setVisible(false);
 			}

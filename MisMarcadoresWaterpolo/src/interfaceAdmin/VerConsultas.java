@@ -17,10 +17,10 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 import Menus.MenuAdmin;
-import basedatos.conexion;
-import mail.ensenyarMail;
-import mail.mail;
-import mail.mandarMail;
+import basedatos.Conexion;
+import mail.EnsenyarMail;
+import mail.Mail;
+import mail.MandarMail;
 
 import javax.swing.JScrollPane;
 import javax.swing.DefaultListModel;
@@ -32,10 +32,10 @@ import javax.swing.JTextField;
 
 public class VerConsultas extends JFrame {
 
-	private ensenyarMail em;
-	private List<mail> listamails = new ArrayList();
+	private EnsenyarMail em;
+	private List<Mail> listamails = new ArrayList();
 	private int selected;
-	private conexion con = new conexion();
+	private Conexion con = new Conexion();
 
 	/**
 	 * Launch the application.
@@ -117,7 +117,7 @@ public class VerConsultas extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				listamails = ensenyarMail.main();
+				listamails = EnsenyarMail.main();
 
 				for (int i = 0; i < listamails.size(); i++) {
 					modelo.add(i, listamails.get(i).getSubject());
@@ -168,7 +168,7 @@ public class VerConsultas extends JFrame {
 
 				String mensaje = respuestatxt.getText();
 
-				mandarMail mm = null;
+				MandarMail mm = null;
 
 				String strid = listamails.get(selected).getSubject();
 				System.out.println(strid);

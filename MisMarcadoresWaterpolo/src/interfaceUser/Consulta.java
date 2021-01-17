@@ -9,7 +9,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingConstants;
 
 import Menus.MenuUser;
-import mail.mandarMail;
+import mail.MandarMail;
 
 import java.awt.Font;
 import javax.swing.JTextField;
@@ -24,7 +24,7 @@ import java.awt.event.KeyListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 
-public class consulta extends JFrame {
+public class Consulta extends JFrame {
 	private JTextField asuntotxt;
 	private JTextArea mensaje;
 	private MenuUser mi = new MenuUser();
@@ -38,7 +38,7 @@ public class consulta extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					consulta window = new consulta();
+					Consulta window = new Consulta();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -50,7 +50,7 @@ public class consulta extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public consulta() {
+	public Consulta() {
 		initialize();
 	}
 
@@ -171,7 +171,7 @@ public class consulta extends JFrame {
 				 */
 				new Thread(new Hilo()).start();
 				setVisible(false);
-				consulta cons = new consulta();
+				Consulta cons = new Consulta();
 				cons.setVisible(true);
 			}
 		});
@@ -201,7 +201,7 @@ public class consulta extends JFrame {
 						"Estas seguro de que quieres enviar un mensaje sin asunto?");
 				// SI ES QUE SI LO ENVIA
 				if (confirm == JOptionPane.YES_OPTION) {
-					mandarMail.mandarmail(mensaje.getText(), asuntotxt.getText(), idusuarioglobal);
+					MandarMail.mandarmail(mensaje.getText(), asuntotxt.getText(), idusuarioglobal);
 					JOptionPane.showMessageDialog(null, "Su consulta ha sido enviada correctamente", "CONSULTA ENVIADA",
 							JOptionPane.DEFAULT_OPTION);
 					// SI ES QUE NO PUES NO
@@ -212,7 +212,7 @@ public class consulta extends JFrame {
 				// Si el asunto y el mensaje no estan vacios no necesita preguntar nada
 			} else {
 
-				mandarMail.mandarmail(mensaje.getText(), asuntotxt.getText(), idusuarioglobal);
+				MandarMail.mandarmail(mensaje.getText(), asuntotxt.getText(), idusuarioglobal);
 				JOptionPane.showMessageDialog(null, "Su consulta ha sido enviada correctamente", "CONSULTA ENVIADA",
 						JOptionPane.DEFAULT_OPTION);
 			}

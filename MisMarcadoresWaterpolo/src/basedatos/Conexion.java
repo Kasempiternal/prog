@@ -21,16 +21,16 @@ import java.sql.*;
 import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
 
 import login.CrearCuenta;
-import objetos.usuario;
+import objetos.Usuario;
 
-public class conexion {
+public class Conexion {
 	private static final int PORT = 3306;
 	private static final String HOST = "localhost";
 	private static final String DB = "sys";
 	private static final String USUARIO = "root";
 	private static final String CONTRA = "123456789";
 
-	private static usuario u;
+	private static Usuario u;
 
 	private static Connection conexion;
 
@@ -48,7 +48,7 @@ public class conexion {
 		try {
 			conexion = datasource.getConnection();
 		} catch (SQLException ex) {
-			Logger.getLogger(" Get Connection -> " + conexion.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(" Get Connection -> " + Conexion.class.getName()).log(Level.SEVERE, null, ex);
 		}
 
 		return conexion;
@@ -58,7 +58,7 @@ public class conexion {
 		conexion = conexion;
 	}
 
-	public conexion conectar() {
+	public Conexion conectar() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			String BaseDeDatos = "jdbc:mysql://localhost/sys?user=" + USUARIO + "&password=" + CONTRA + "&useSSL=false";
@@ -277,10 +277,10 @@ public class conexion {
 		return id;
 	}
 
-	public static usuario setuserdata(String username) {
+	public static Usuario setuserdata(String username) {
 		String selectid = "SELECT * FROM usuario where nombre = '" + username + "';";
 		ResultSet rs = consultar(selectid);
-		usuario user = new usuario();
+		Usuario user = new Usuario();
 
 		try {
 			if (rs.next()) {
@@ -384,16 +384,16 @@ public class conexion {
 		}
 	}
 
-	public static List<usuario> mostrarVerificados(DefaultListModel modelo) {
+	public static List<Usuario> mostrarVerificados(DefaultListModel modelo) {
 		String select = "SELECT idusuario FROM verificado";
-		List<usuario> usuarios = new ArrayList();
+		List<Usuario> usuarios = new ArrayList();
 		int idusuario = 0;
 		int i = 0;
 		try {
 			ResultSet rs = consultar(select);
 			while (rs.next()) {
 				idusuario = rs.getInt("idusuario");
-				u = new usuario();
+				u = new Usuario();
 
 				u.setId(idusuario);
 
@@ -489,7 +489,7 @@ public class conexion {
 	}
 
 	public static void main(String[] args) {
-		conexion baseDatos = new conexion().conectar();
+		Conexion baseDatos = new Conexion().conectar();
 	}
 
 	public static void rechazarVerificacion(int idusuario) {
@@ -501,16 +501,16 @@ public class conexion {
 		System.out.println("out");
 	}
 
-	public static List<usuario> mostrarUsuarios(DefaultListModel modelo) {
+	public static List<Usuario> mostrarUsuarios(DefaultListModel modelo) {
 		// TODO Auto-generated method stub
-		usuario user = null;
-		List<usuario> listauser = new ArrayList();
+		Usuario user = null;
+		List<Usuario> listauser = new ArrayList();
 		String sql = "SELECT * FROM usuario";
 		ResultSet rs = consultar(sql);
 
 		try {
 			while (rs.next()) {
-				user = new usuario();
+				user = new Usuario();
 
 				user.setNombre(rs.getString("nombre"));
 				user.setApellido(rs.getString("apellido"));

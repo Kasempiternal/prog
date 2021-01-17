@@ -1,6 +1,6 @@
 package objetos;
 
-public class usuario {
+public class Usuario {
 
 	int id;
 	String nombre;
@@ -9,11 +9,11 @@ public class usuario {
 	String contrasenya;
 	int tipo_usuario;
 
-	public usuario() {
+	public Usuario() {
 
 	}
 
-	public usuario(int id, String nombre, String apellido, String email, String contrasenya) {
+	public Usuario(int id, String nombre, String apellido, String email, String contrasenya) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -22,7 +22,7 @@ public class usuario {
 		this.contrasenya = contrasenya;
 	}
 
-	public usuario(int id, String nombre, String apellido, String email, String contrasenya, int tipo_usuario) {
+	public Usuario(int id, String nombre, String apellido, String email, String contrasenya, int tipo_usuario) {
 		super();
 		this.id = id;
 		this.nombre = nombre;

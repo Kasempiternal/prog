@@ -1,41 +1,50 @@
-package interfaceUser;
+package interfaceAdmin;
 
-import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
 
-import javax.swing.JButton;
-import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
+
+import basedatos.Conexion;
+import interfaceUser.ExportarExcel;
+import objetos.ComboItem;
+
+import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Menus.MenuUser;
-import basedatos.conexion;
-import objetos.ComboItem;
-import java.awt.SystemColor;
 
-public class goleadores extends JFrame {
+import javax.swing.JScrollPane;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import java.awt.SystemColor;
+import javax.swing.SwingConstants;
+
+public class ClasificacionA extends JFrame {
 	private JTable table;
-	public static int idusuarioglobal = 0;
-	Connection conn = conexion.getConexion();
-	private MenuUser mi = new MenuUser();
+	Connection conn = Conexion.getConexion();
 
 	/**
 	 * Launch the application.
 	 */
-	public static void main(int id) {
-		idusuarioglobal = id;
+	public static void main(String[] args) {
+
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					goleadores window = new goleadores();
+					ClasificacionA window = new ClasificacionA();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -47,7 +56,7 @@ public class goleadores extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public goleadores() {
+	public ClasificacionA() {
 		getContentPane().setBackground(new Color(255, 255, 255));
 		initialize();
 	}
@@ -60,22 +69,10 @@ public class goleadores extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
-		JLabel ID = new JLabel("ID:");
-		ID.setBounds(10, 11, 46, 14);
-		getContentPane().add(ID);
 
-		JLabel usuario = new JLabel("Usuario:");
-		usuario.setBounds(10, 24, 54, 14);
-		getContentPane().add(usuario);
-
-		JLabel id = new JLabel(Integer.toString(idusuarioglobal));
-		id.setBounds(27, 11, 72, 14);
-		getContentPane().add(id);
-
-		JLabel user = new JLabel(conexion.getusuariodb(idusuarioglobal));
-		System.out.println(conexion.getusuariodb(idusuarioglobal));
-		user.setBounds(62, 24, 72, 14);
-		getContentPane().add(user);
+		JLabel admin = new JLabel("ADMINISTRADOR");
+		admin.setBounds(10, 11, 118, 14);
+		getContentPane().add(admin);
 
 		JLabel liga = new JLabel("Liga:");
 		liga.setBounds(27, 89, 46, 14);
@@ -85,26 +82,20 @@ public class goleadores extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 153, 844, 326);
 		getContentPane().add(scrollPane);
+		int idliga = 0;
+		// TABLA PARA NO ADMIN
 
-		int idliga = 0; // DE ALGUNA MANERA CAMBIARLO CUANDO EL USUARIO META LA LIGA DESEADA
-
-		// Para que la tabla no se pueda editar
-		DefaultTableModel dtm = new DefaultTableModel() {
-			public boolean isCellEditable(int row, int column) {
-				return false;
-			}
-		};
+		DefaultTableModel dtm = new DefaultTableModel();
 		table = new JTable();
 
 		dtm.addColumn("Posicion");
-		dtm.addColumn("Nombre");
-		dtm.addColumn("Apellido");
-		dtm.addColumn("Goles");
-		dtm.addColumn("Equipo");
-
+		dtm.addColumn("Nombre_Equipo");
+		dtm.addColumn("Puntos");
+		dtm.addColumn("Inic_Temporada");
+		dtm.addColumn("Fin_Temporada");
+		dtm.addColumn("IdEquipo");
 		table.setModel(dtm);
-		// PARA QUE EL USUARIO NO PUEDA MOVER LAS COLUMNAS DE SITIO
-		table.getTableHeader().setReorderingAllowed(false);
+
 		JScrollPane scrollPane1 = new JScrollPane();
 		scrollPane.setBounds(10, 153, 844, 326);
 		getContentPane().add(scrollPane);
@@ -112,12 +103,13 @@ public class goleadores extends JFrame {
 		scrollPane.setViewportView(table);
 
 		JLabel app = new JLabel("Mis Marcadores Waterpolo");
+		app.setHorizontalAlignment(SwingConstants.RIGHT);
 		app.setForeground(Color.BLACK);
-		app.setBounds(618, 11, 161, 14);
+		app.setBounds(664, 11, 190, 14);
 		getContentPane().add(app);
 
-		JLabel titulo = new JLabel("GOLEADORES");
-		titulo.setForeground(SystemColor.textHighlight);
+		JLabel titulo = new JLabel("CLASIFICACION");
+		titulo.setForeground(new Color(165, 42, 42));
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		titulo.setBounds(341, 22, 146, 43);
 		getContentPane().add(titulo);
@@ -129,23 +121,22 @@ public class goleadores extends JFrame {
 		ligas.addItem(new ComboItem("Primera Nacional", "1"));
 		ligas.addItem(new ComboItem("Segunda Nacional", "2"));
 
-		// VOLVER A MENU INICIO
 		JButton volver = new JButton("VOLVER");
-		volver.setBackground(new Color(135, 206, 250));
+		volver.setBackground(new Color(205, 92, 92));
 		volver.setBounds(10, 490, 89, 27);
 		getContentPane().add(volver);
 		volver.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
-				mi.setVisible(true);
+				Buscador busc = new Buscador();
+				busc.setVisible(true);
 				setVisible(false);
 			}
 		});
-
 		JButton guardar = new JButton("GUARDAR");
-		guardar.setBackground(new Color(135, 206, 250));
+		guardar.setBackground(new Color(205, 92, 92));
 		guardar.setBounds(741, 490, 113, 27);
 		getContentPane().add(guardar);
 		guardar.addActionListener(new ActionListener() {
@@ -153,20 +144,15 @@ public class goleadores extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				ExportarExcel ee = new ExportarExcel();
-				try {
-					ee.export(table);
-				} catch (Exception e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				Conexion.actualizarClasif(table);
 			}
 		});
+
 		JButton mostrar = new JButton("Mostrar");
-		mostrar.setBackground(new Color(135, 206, 250));
+		mostrar.setForeground(new Color(0, 0, 0));
+		mostrar.setBackground(new Color(205, 92, 92));
 		mostrar.setBounds(205, 83, 89, 27);
 		getContentPane().add(mostrar);
-
 		mostrar.addActionListener(new ActionListener() {
 
 			@Override
@@ -182,40 +168,27 @@ public class goleadores extends JFrame {
 				String value = ((ComboItem) item).getValue();
 				System.out.println(value);
 
-				String sqlgoleadores = "SELECT * FROM sys.` jugadores` WHERE idliga = " + value
-						+ " ORDER BY goles DESC;";
-				ResultSet rs = conexion.consultar(sqlgoleadores);
+				String sqlclasificacion = "SELECT * FROM equipos where idliga = " + value + " ORDER BY puntos DESC;";
+				ResultSet rs = Conexion.consultar(sqlclasificacion);
 				int posicion = 0;
 
 				try {
 					while (rs.next()) {
 
-						String nombre = rs.getString("nombre");
-						String apellido = rs.getString("apellido");
-						String goles = rs.getString("goles");
 						int idequipo = rs.getInt("idequipo");
-						String nombre_equipo = "";
-
-						String nombreequipo = "SELECT nombre_equipo FROM sys.equipos where idequipo=" + idequipo + "";
-						ResultSet rse = conexion.consultar(nombreequipo);
-
-						try {
-							while (rse.next()) {
-								nombre_equipo = rse.getString("nombre_equipo");
-							}
-						} catch (Exception eg) {
-
-						}
+						String rsnombre = rs.getString("nombre_equipo");
+						int rspuntos = rs.getInt("puntos");
+						Date rsdateinit = rs.getDate("inic_temporada");
+						Date rsdatefin = rs.getDate("fin_temporada");
 
 						posicion = posicion + 1;
-						dtm.addRow(new Object[] { posicion, nombre, apellido, goles, nombre_equipo });
+						dtm.addRow(new Object[] { posicion, rsnombre, rspuntos, rsdateinit, rsdatefin, idequipo });
 
 					}
 
 				} catch (Exception eg) {
 					// TODO: handle exception
 				}
-
 			}
 		});
 

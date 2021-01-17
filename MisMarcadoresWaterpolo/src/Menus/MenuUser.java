@@ -15,13 +15,13 @@ import java.awt.SystemColor;
 import javax.swing.UIManager;
 
 import aainiciador.Login;
-import basedatos.conexion;
+import basedatos.Conexion;
 import interfaceUser.CuentaUsuario;
 import interfaceUser.VerificarUsuario;
-import interfaceUser.clasificacionU;
-import interfaceUser.consulta;
-import interfaceUser.goleadores;
-import interfaceUser.resultados;
+import interfaceUser.ClasificacionU;
+import interfaceUser.Consulta;
+import interfaceUser.Goleadores;
+import interfaceUser.Resultados;
 
 public class MenuUser extends JFrame {
 
@@ -83,7 +83,7 @@ public class MenuUser extends JFrame {
 		id.setBounds(30, 11, 72, 14);
 		getContentPane().add(id);
 
-		JLabel user = new JLabel(conexion.getusuariodb(idusuarioglobal));
+		JLabel user = new JLabel(Conexion.getusuariodb(idusuarioglobal));
 		user.setBounds(55, 24, 72, 14);
 		getContentPane().add(user);
 
@@ -106,7 +106,7 @@ public class MenuUser extends JFrame {
 		clasificacion.setBackground(new Color(135, 206, 250));
 		clasificacion.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				clasificacionU cU = new clasificacionU();
+				ClasificacionU cU = new ClasificacionU();
 				cU.main(idusuarioglobal);
 				setVisible(false);
 			}
@@ -123,7 +123,7 @@ public class MenuUser extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				resultados resultados = new resultados();
+				Resultados resultados = new Resultados();
 				resultados.main(idusuarioglobal);
 				setVisible(false);
 			}
@@ -139,7 +139,7 @@ public class MenuUser extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				goleadores goleadores = new goleadores();
+				Goleadores goleadores = new Goleadores();
 				goleadores.main(idusuarioglobal);
 				setVisible(false);
 			}
@@ -169,7 +169,7 @@ public class MenuUser extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				consulta consulta = new consulta();
+				Consulta consulta = new Consulta();
 				consulta.main(idusuarioglobal);
 				setVisible(false);
 			}

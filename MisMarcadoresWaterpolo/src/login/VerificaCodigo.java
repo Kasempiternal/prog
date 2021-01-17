@@ -9,8 +9,8 @@ import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
 
 import aainiciador.Login;
-import basedatos.conexion;
-import mail.mandarMail;
+import basedatos.Conexion;
+import mail.MandarMail;
 
 import java.awt.Font;
 import javax.swing.JButton;
@@ -20,7 +20,7 @@ import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.awt.Color;
 
-public class verificaCodigo extends JFrame {
+public class VerificaCodigo extends JFrame {
 	private JTextField textcodigo;
 	public int codigoverificacion;
 
@@ -31,7 +31,7 @@ public class verificaCodigo extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					verificaCodigo window = new verificaCodigo();
+					VerificaCodigo window = new VerificaCodigo();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -43,7 +43,7 @@ public class verificaCodigo extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public verificaCodigo() {
+	public VerificaCodigo() {
 		setTitle("INTRODUCIR CODIGO");
 		initialize();
 	}
@@ -111,7 +111,7 @@ public class verificaCodigo extends JFrame {
 					setVisible(false);
 					System.out.println("Password OK");
 
-					conexion.crearCuenta(nombre, apellido, mail, contrasenya, tipo_usuario);
+					Conexion.crearCuenta(nombre, apellido, mail, contrasenya, tipo_usuario);
 
 					JOptionPane.showMessageDialog(null, "Cuenta creada correctamente. Inicie sesion.", "CUENTA CREADA",
 							JOptionPane.DEFAULT_OPTION);

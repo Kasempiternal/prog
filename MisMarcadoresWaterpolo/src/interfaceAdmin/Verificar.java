@@ -28,9 +28,9 @@ import javax.swing.event.ListSelectionListener;
 
 import Menus.MenuAdmin;
 import Menus.MenuUser;
-import basedatos.conexion;
-import mail.mail;
-import objetos.usuario;
+import basedatos.Conexion;
+import mail.Mail;
+import objetos.Usuario;
 
 import javax.imageio.ImageIO;
 import javax.swing.DefaultListCellRenderer;
@@ -42,15 +42,15 @@ import javax.swing.JScrollPane;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 
-public class verificar extends JFrame {
+public class Verificar extends JFrame {
 
 	private JList usuarios;
 	private static DefaultListModel modelo;
 	private DefaultListCellRenderer render;
 	private int selected;
-	private conexion con = new conexion();
+	private Conexion con = new Conexion();
 
-	private List<usuario> listausuario = new ArrayList();
+	private List<Usuario> listausuario = new ArrayList();
 
 	/**
 	 * Launch the application.
@@ -59,7 +59,7 @@ public class verificar extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					verificar window = new verificar();
+					Verificar window = new Verificar();
 					window.setVisible(true);
 
 				} catch (Exception e) {
@@ -72,7 +72,7 @@ public class verificar extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public verificar() {
+	public Verificar() {
 		initialize();
 	}
 
@@ -188,7 +188,7 @@ public class verificar extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				conexion.verificar(usuarios);
+				Conexion.verificar(usuarios);
 			}
 		});
 
@@ -222,7 +222,7 @@ public class verificar extends JFrame {
 			}
 		});
 
-		listausuario = conexion.mostrarVerificados(modelo);
+		listausuario = Conexion.mostrarVerificados(modelo);
 
 	}
 }

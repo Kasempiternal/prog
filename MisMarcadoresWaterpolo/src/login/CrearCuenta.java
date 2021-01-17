@@ -23,9 +23,9 @@ import javax.swing.SwingConstants;
 import javax.swing.UIManager;
 
 import aainiciador.Login;
-import basedatos.conexion;
+import basedatos.Conexion;
 import login.Loading.Hilo;
-import mail.mandarMail;
+import mail.MandarMail;
 
 import javax.swing.JTextField;
 import java.awt.Color;
@@ -232,7 +232,7 @@ public class CrearCuenta extends JFrame {
 				// COMPROBACION USUARIO EXISTENTE O NO PARA ENVIAR CODIGO AL CORREO
 				else if (contra.getText().equals(comprobacion.getText())) {
 
-					boolean usuariousado = conexion.comprobarUsuario(nombretxt.getText());
+					boolean usuariousado = Conexion.comprobarUsuario(nombretxt.getText());
 
 					if (usuariousado == true) {
 
@@ -266,7 +266,7 @@ public class CrearCuenta extends JFrame {
 		public void run() {
 			// TODO Auto-generated method stub
 			String recipiente = mailtxt.getText();
-			codigoverificacion = mandarMail.recibircodigo(recipiente);
+			codigoverificacion = MandarMail.recibircodigo(recipiente);
 
 		}
 

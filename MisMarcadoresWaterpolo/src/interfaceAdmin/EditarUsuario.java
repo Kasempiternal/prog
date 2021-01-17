@@ -15,8 +15,8 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
-import basedatos.conexion;
-import objetos.usuario;
+import basedatos.Conexion;
+import objetos.Usuario;
 
 import javax.swing.JList;
 import javax.swing.JOptionPane;
@@ -29,8 +29,8 @@ public class EditarUsuario extends JFrame {
 	private static DefaultListModel modelo;
 	private DefaultListCellRenderer render;
 	private int selected;
-	private conexion con = new conexion();
-	private List<usuario> listauser = new ArrayList();
+	private Conexion con = new Conexion();
+	private List<Usuario> listauser = new ArrayList();
 	private String valorseleccionado;
 
 	/**
@@ -97,7 +97,7 @@ public class EditarUsuario extends JFrame {
 				// TODO Auto-generated method stub
 
 				selected = list.getSelectedIndex();
-				editorCuenta ec = new editorCuenta();
+				EditorCuenta ec = new EditorCuenta();
 				int id = 0;
 
 				System.out.println(valorseleccionado + " + " + selected);
@@ -133,7 +133,7 @@ public class EditarUsuario extends JFrame {
 		list.setCellRenderer(render);
 		render.setHorizontalAlignment(SwingConstants.CENTER);
 
-		listauser = conexion.mostrarUsuarios(modelo);
+		listauser = Conexion.mostrarUsuarios(modelo);
 
 		for (int i = 0; i < listauser.size(); i++) {
 			modelo.add(i, listauser.get(i).getNombre());

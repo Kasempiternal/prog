@@ -6,10 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import Menus.MenuUser;
-import basedatos.conexion;
+import basedatos.Conexion;
 import login.AdminLogin;
 import login.CrearCuenta;
-import objetos.usuario;
+import objetos.Usuario;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -47,7 +47,7 @@ public class Login extends JFrame {
 	CrearCuenta cc = new CrearCuenta();
 	MenuUser mi = new MenuUser();
 	AdminLogin adminlog = new AdminLogin();
-	static usuario userr;
+	static Usuario userr;
 	private JTextField pass;
 
 	public static int idusuarioglobal = 0;
@@ -180,11 +180,11 @@ public class Login extends JFrame {
 					contra.setForeground(Color.RED);
 
 				} else {
-					ok = conexion.comprobarLogin(usertxt.getText(), pass.getText());
+					ok = Conexion.comprobarLogin(usertxt.getText(), pass.getText());
 
 					if (ok == true) {
-						userr = conexion.setuserdata(usertxt.getText());
-						idusuarioglobal = conexion.getid(userr.getNombre());
+						userr = Conexion.setuserdata(usertxt.getText());
+						idusuarioglobal = Conexion.getid(userr.getNombre());
 						mi.main(idusuarioglobal);
 						setVisible(false);
 					} else {

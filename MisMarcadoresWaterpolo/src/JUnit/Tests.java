@@ -8,9 +8,9 @@ import java.sql.Connection;
 import org.junit.Test;
 
 import aainiciador.Login;
-import basedatos.conexion;
-import mail.mandarMail;
-import objetos.usuario;
+import basedatos.Conexion;
+import mail.MandarMail;
+import objetos.Usuario;
 
 public class Tests {
 
@@ -25,13 +25,13 @@ public class Tests {
 		String contrasenya = "1";
 		int tipo_usuario = 2;
 
-		conexion c = new conexion();
+		Conexion c = new Conexion();
 
 		c.crearCuenta(nombre, apellido, email, contrasenya, tipo_usuario);
 		assertEquals(true, c.comprobarUsuario(nombre));
 		assertEquals(true, c.comprobarLogin(nombre, contrasenya));
 
-		usuario u = new usuario(c.getid(nombre), nombre, apellido, email, contrasenya);
+		Usuario u = new Usuario(c.getid(nombre), nombre, apellido, email, contrasenya);
 
 		assertEquals(u.getNombre(), c.getusuariodb(u.getId()));
 		assertEquals(u.getApellido(), c.getapellidodb(u.getId()));
@@ -43,11 +43,11 @@ public class Tests {
 		String texto = "Desearia una consulta";
 		String asunto = "Consulta";
 
-		mandarMail.recibircodigo(u.getEmail());
-		assertEquals("Mensaje enviado", mandarMail.mVerificado);
+		MandarMail.recibircodigo(u.getEmail());
+		assertEquals("Mensaje enviado", MandarMail.mVerificado);
 
-		mandarMail.mandarmail(texto, asunto, u.getId());
-		assertEquals("Mensaje enviado", mandarMail.mVerificado);
+		MandarMail.mandarmail(texto, asunto, u.getId());
+		assertEquals("Mensaje enviado", MandarMail.mVerificado);
 
 	}
 }

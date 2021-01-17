@@ -17,16 +17,16 @@ import java.awt.event.ActionListener;
 import javax.swing.SwingConstants;
 
 import Menus.MenuUser;
-import basedatos.conexion;
+import basedatos.Conexion;
 
-public class editorCuenta extends JFrame {
+public class EditorCuenta extends JFrame {
 
 	private JTextField usuariotxt;
 	private JTextField apellidotxt;
 	private JTextField mailtxt;
 	private JTextField contrasenyatxt;
-	private conexion basedatos = new conexion();
-	
+	private Conexion basedatos = new Conexion();
+
 	public static int idusuarioseleccionado = 0;
 
 	/**
@@ -37,7 +37,7 @@ public class editorCuenta extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					editorCuenta window = new editorCuenta();
+					EditorCuenta window = new EditorCuenta();
 					window.setVisible(true);
 
 				} catch (Exception e) {
@@ -50,7 +50,7 @@ public class editorCuenta extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public editorCuenta() {
+	public EditorCuenta() {
 		initialize();
 	}
 
@@ -136,7 +136,8 @@ public class editorCuenta extends JFrame {
 				String contrasenya = contrasenyatxt.getText();
 
 				String update = "UPDATE usuario SET nombre='" + usuario + "' , apellido='" + apellido + "' , email='"
-						+ mail + "' , contraseña='" + contrasenya + "' WHERE idusuario='" + idusuarioseleccionado + "';";
+						+ mail + "' , contraseña='" + contrasenya + "' WHERE idusuario='" + idusuarioseleccionado
+						+ "';";
 				basedatos.ejecutar(update);
 
 			}
@@ -157,7 +158,6 @@ public class editorCuenta extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				setVisible(false);
-				
 
 			}
 		});

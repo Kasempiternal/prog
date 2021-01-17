@@ -23,7 +23,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JButton;
 import java.awt.Color;
 
-public class buscador extends JFrame {
+public class Buscador extends JFrame {
 
 	private JList busqueda;
 	private static JTextField buscador;
@@ -36,7 +36,7 @@ public class buscador extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					buscador window = new buscador();
+					Buscador window = new Buscador();
 					window.setVisible(true);
 
 				} catch (Exception e) {
@@ -49,7 +49,7 @@ public class buscador extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public buscador() {
+	public Buscador() {
 		initialize();
 	}
 
@@ -181,15 +181,15 @@ public class buscador extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
 				if (busqueda.getSelectedValue().equals("Clasificacion")) {
-					clasificacionA ca = new clasificacionA();
+					ClasificacionA ca = new ClasificacionA();
 					ca.setVisible(true);
 					setVisible(false);
 				} else if (busqueda.getSelectedValue().equals("Resultados")) {
-					resultadosA res = new resultadosA();
+					ResultadosA res = new ResultadosA();
 					res.setVisible(true);
 					setVisible(false);
 				} else if (busqueda.getSelectedValue().equals("Goleadores")) {
-					goleadoresA gol = new goleadoresA();
+					GoleadoresA gol = new GoleadoresA();
 					gol.setVisible(true);
 					setVisible(false);
 				}

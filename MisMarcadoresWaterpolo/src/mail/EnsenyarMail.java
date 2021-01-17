@@ -19,15 +19,15 @@ import javax.mail.Store;
 import javax.mail.Flags.Flag;
 import javax.mail.search.FlagTerm;
 
-public class ensenyarMail {
+public class EnsenyarMail {
 	Properties propiedades = null;
 	private Session session = null;
 	private Store store = null;
 	private Folder inbox = null;
-	private mail mail;
-	private static List<mail> listamails = new ArrayList();
+	private Mail mail;
+	private static List<Mail> listamails = new ArrayList();
 
-	public List<mail> getemails() {
+	public List<Mail> getemails() {
 		System.out.println("Get emails + " + listamails.size());
 		return this.listamails;
 	}
@@ -57,7 +57,7 @@ public class ensenyarMail {
 			;
 			System.out.println("Number of mails = " + messages.length);
 			for (int i = 0; i < messages.length; i++) {
-				mail = new mail();
+				mail = new Mail();
 				Message message = messages[i];
 				Address[] from = message.getFrom();
 
@@ -128,8 +128,8 @@ public class ensenyarMail {
 		}
 	}
 
-	public static List<mail> main() {
-		ensenyarMail sample = new ensenyarMail();
+	public static List<Mail> main() {
+		EnsenyarMail sample = new EnsenyarMail();
 		sample.readMails();
 		return listamails;
 	}

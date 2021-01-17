@@ -4,7 +4,7 @@ import java.util.Date;
 
 import javax.mail.Address;
 
-public class mail {
+public class Mail {
 
 	private Date date;
 	private Address from;
@@ -12,11 +12,11 @@ public class mail {
 	private String Content;
 	private String Message;
 
-	public mail() {
+	public Mail() {
 
 	}
 
-	public mail(Date date, Address from, String subject, String content, String message) {
+	public Mail(Date date, Address from, String subject, String content, String message) {
 		super();
 		this.date = date;
 		this.from = from;

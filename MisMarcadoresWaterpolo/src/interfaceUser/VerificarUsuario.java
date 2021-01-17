@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 
 import Menus.MenuUser;
-import basedatos.conexion;
+import basedatos.Conexion;
 import objetos.JugadorVerificador;
 
 import java.awt.SystemColor;
@@ -139,7 +139,7 @@ public class VerificarUsuario extends JFrame {
 				} while (!encontrado);
 
 				System.out.println(idusuariogloblal);
-				conexion.meterimagen(direccion, idusuariogloblal, idjugador);
+				Conexion.meterimagen(direccion, idusuariogloblal, idjugador);
 
 			}
 		});
@@ -185,7 +185,7 @@ public class VerificarUsuario extends JFrame {
 
 				String selectuser = " SELECT nombre,idjugador FROM  sys.` jugadores`  ";
 
-				ResultSet rs = conexion.consultar(selectuser);
+				ResultSet rs = Conexion.consultar(selectuser);
 				int i = 0;
 				try {
 					while (rs.next()) {

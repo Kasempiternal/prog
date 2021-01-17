@@ -1,30 +1,40 @@
 package interfaceUser;
 
-import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Date;
+
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JScrollPane;
+
+import basedatos.Conexion;
+import objetos.ComboItem;
+
+import javax.swing.JList;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Menus.MenuUser;
-import basedatos.conexion;
-import objetos.ComboItem;
-import java.awt.SystemColor;
 
-public class resultados extends JFrame {
+import javax.swing.JScrollPane;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import java.awt.SystemColor;
+import javax.swing.SwingConstants;
+
+public class ClasificacionU extends JFrame {
 	private JTable table;
 	public static int idusuarioglobal = 0;
-	Connection conn = conexion.getConexion();
-	private MenuUser mi = new MenuUser();
+	Connection conn = Conexion.getConexion();
 
 	/**
 	 * Launch the application.
@@ -34,7 +44,7 @@ public class resultados extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					resultados window = new resultados();
+					ClasificacionU window = new ClasificacionU();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +56,7 @@ public class resultados extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public resultados() {
+	public ClasificacionU() {
 		getContentPane().setBackground(new Color(255, 255, 255));
 		initialize();
 	}
@@ -55,7 +65,7 @@ public class resultados extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(100, 100, 880, 569);
+		setBounds(100, 100, 880, 567);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
@@ -71,8 +81,8 @@ public class resultados extends JFrame {
 		id.setBounds(27, 11, 72, 14);
 		getContentPane().add(id);
 
-		JLabel user = new JLabel(conexion.getusuariodb(idusuarioglobal));
-		System.out.println(conexion.getusuariodb(idusuarioglobal));
+		JLabel user = new JLabel(Conexion.getusuariodb(idusuarioglobal));
+		System.out.println(Conexion.getusuariodb(idusuarioglobal));
 		user.setBounds(62, 24, 72, 14);
 		getContentPane().add(user);
 
@@ -85,7 +95,8 @@ public class resultados extends JFrame {
 		scrollPane.setBounds(10, 153, 844, 326);
 		getContentPane().add(scrollPane);
 
-		int idliga = 0; // DE ALGUNA MANERA CAMBIARLO CUANDO EL USUARIO META LA LIGA DESEADA
+		int idliga = 0;
+		// TABLA PARA NO ADMIN
 
 		// Para que la tabla no se pueda editar
 		DefaultTableModel dtm = new DefaultTableModel() {
@@ -93,13 +104,13 @@ public class resultados extends JFrame {
 				return false;
 			}
 		};
-
 		table = new JTable();
 
-		dtm.addColumn("Local");
-		dtm.addColumn("Visitante");
-		dtm.addColumn("Resultado");
-		dtm.addColumn("Goles");
+		dtm.addColumn("Posicion");
+		dtm.addColumn("Nombre_Equipo");
+		dtm.addColumn("Puntos");
+		dtm.addColumn("Inic_Temporada");
+		dtm.addColumn("Fin_Temporada");
 		table.setModel(dtm);
 
 		// PARA QUE EL USUARIO NO PUEDA MOVER LAS COLUMNAS DE SITIO
@@ -112,22 +123,23 @@ public class resultados extends JFrame {
 		scrollPane.setViewportView(table);
 
 		JLabel app = new JLabel("Mis Marcadores Waterpolo");
+		app.setHorizontalAlignment(SwingConstants.RIGHT);
 		app.setForeground(Color.BLACK);
-		app.setBounds(618, 11, 161, 14);
+		app.setBounds(664, 11, 190, 14);
 		getContentPane().add(app);
 
-		JLabel titulo = new JLabel("RESULTADOS");
+		JLabel titulo = new JLabel("CLASIFICACION");
 		titulo.setForeground(SystemColor.textHighlight);
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		titulo.setBounds(341, 22, 146, 43);
 		getContentPane().add(titulo);
 
-		JComboBox comboBox = new JComboBox();
-		comboBox.setBounds(67, 85, 113, 22);
-		getContentPane().add(comboBox);
-		comboBox.addItem(new ComboItem("Liga Premaat", "Española"));
-		comboBox.addItem(new ComboItem("Primera Nacional", "Australiana"));
-		comboBox.addItem(new ComboItem("Segunda Nacional", "Mpower"));
+		JComboBox ligas = new JComboBox();
+		ligas.setBounds(67, 85, 113, 22);
+		getContentPane().add(ligas);
+		ligas.addItem(new ComboItem("Liga Premaat", "0"));
+		ligas.addItem(new ComboItem("Primera Nacional", "1"));
+		ligas.addItem(new ComboItem("Segunda Nacional", "2"));
 
 		JButton volver = new JButton("VOLVER");
 		volver.setBackground(new Color(135, 206, 250));
@@ -136,13 +148,13 @@ public class resultados extends JFrame {
 		volver.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				// TODO Auto-generated method stub
+				MenuUser mi = new MenuUser();
 				mi.setVisible(true);
 				setVisible(false);
 			}
 		});
-
 		JButton guardar = new JButton("GUARDAR");
 		guardar.setBackground(new Color(135, 206, 250));
 		guardar.setBounds(741, 490, 113, 27);
@@ -163,7 +175,6 @@ public class resultados extends JFrame {
 		});
 
 		JButton mostrar = new JButton("Mostrar");
-		mostrar.setForeground(new Color(0, 0, 0));
 		mostrar.setBackground(new Color(135, 206, 250));
 		mostrar.setBounds(205, 83, 89, 27);
 		getContentPane().add(mostrar);
@@ -179,32 +190,30 @@ public class resultados extends JFrame {
 					}
 				}
 
-				Object item = comboBox.getSelectedItem();
+				Object item = ligas.getSelectedItem();
 				String value = ((ComboItem) item).getValue();
 				System.out.println(value);
 
-				String sqlclasificacion = "SELECT * FROM resultados WHERE liga = '" + value
-						+ "' ORDER BY idPartido ASC;";
-				ResultSet rs = conexion.consultar(sqlclasificacion);
+				String sqlclasificacion = "SELECT * FROM equipos where idliga = " + value + " ORDER BY puntos DESC;";
+				ResultSet rs = Conexion.consultar(sqlclasificacion);
 				int posicion = 0;
 
 				try {
 					while (rs.next()) {
 
-						String local = rs.getString("local");
-						String visitante = rs.getString("visitante");
-						String resultado = rs.getString("resultado");
-						String resultadonum = rs.getString("resultadonum");
+						String rsnombre = rs.getString("nombre_equipo");
+						int rspuntos = rs.getInt("puntos");
+						Date rsdateinit = rs.getDate("inic_temporada");
+						Date rsdatefin = rs.getDate("fin_temporada");
 
 						posicion = posicion + 1;
-						dtm.addRow(new Object[] { local, visitante, resultado, resultadonum });
+						dtm.addRow(new Object[] { posicion, rsnombre, rspuntos, rsdateinit, rsdatefin });
 
 					}
 
 				} catch (Exception eg) {
 					// TODO: handle exception
 				}
-
 			}
 		});
 

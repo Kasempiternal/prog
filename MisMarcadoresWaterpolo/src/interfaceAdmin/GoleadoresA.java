@@ -1,50 +1,39 @@
 package interfaceAdmin;
 
-import java.awt.Dimension;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.Date;
 
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-
-import basedatos.conexion;
-import interfaceUser.ExportarExcel;
-import objetos.ComboItem;
-
-import javax.swing.JList;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 import Menus.MenuUser;
-
-import javax.swing.JScrollPane;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
-import javax.swing.JButton;
-import javax.swing.JComboBox;
+import basedatos.Conexion;
+import interfaceUser.ExportarExcel;
+import objetos.ComboItem;
 import java.awt.SystemColor;
-import javax.swing.SwingConstants;
 
-public class clasificacionA extends JFrame {
+public class GoleadoresA extends JFrame {
 	private JTable table;
-	Connection conn = conexion.getConexion();
+	Connection conn = Conexion.getConexion();
 
 	/**
 	 * Launch the application.
 	 */
 	public static void main(String[] args) {
-
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					clasificacionA window = new clasificacionA();
+					GoleadoresA window = new GoleadoresA();
 					window.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -56,7 +45,7 @@ public class clasificacionA extends JFrame {
 	/**
 	 * Create the application.
 	 */
-	public clasificacionA() {
+	public GoleadoresA() {
 		getContentPane().setBackground(new Color(255, 255, 255));
 		initialize();
 	}
@@ -82,20 +71,17 @@ public class clasificacionA extends JFrame {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(10, 153, 844, 326);
 		getContentPane().add(scrollPane);
-		int idliga = 0;
-		// TABLA PARA NO ADMIN
 
 		DefaultTableModel dtm = new DefaultTableModel();
 		table = new JTable();
 
 		dtm.addColumn("Posicion");
-		dtm.addColumn("Nombre_Equipo");
-		dtm.addColumn("Puntos");
-		dtm.addColumn("Inic_Temporada");
-		dtm.addColumn("Fin_Temporada");
-		dtm.addColumn("IdEquipo");
+		dtm.addColumn("Nombre");
+		dtm.addColumn("Apellido");
+		dtm.addColumn("Goles");
+		dtm.addColumn("Equipo");
+		dtm.addColumn("IdJugador");
 		table.setModel(dtm);
-
 		JScrollPane scrollPane1 = new JScrollPane();
 		scrollPane.setBounds(10, 153, 844, 326);
 		getContentPane().add(scrollPane);
@@ -103,12 +89,11 @@ public class clasificacionA extends JFrame {
 		scrollPane.setViewportView(table);
 
 		JLabel app = new JLabel("Mis Marcadores Waterpolo");
-		app.setHorizontalAlignment(SwingConstants.RIGHT);
 		app.setForeground(Color.BLACK);
-		app.setBounds(664, 11, 190, 14);
+		app.setBounds(618, 11, 161, 14);
 		getContentPane().add(app);
 
-		JLabel titulo = new JLabel("CLASIFICACION");
+		JLabel titulo = new JLabel("GOLEADORES");
 		titulo.setForeground(new Color(165, 42, 42));
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		titulo.setBounds(341, 22, 146, 43);
@@ -121,6 +106,7 @@ public class clasificacionA extends JFrame {
 		ligas.addItem(new ComboItem("Primera Nacional", "1"));
 		ligas.addItem(new ComboItem("Segunda Nacional", "2"));
 
+		// VOLVER A MENU INICIO
 		JButton volver = new JButton("VOLVER");
 		volver.setBackground(new Color(205, 92, 92));
 		volver.setBounds(10, 490, 89, 27);
@@ -128,13 +114,14 @@ public class clasificacionA extends JFrame {
 		volver.addActionListener(new ActionListener() {
 
 			@Override
-			public void actionPerformed(ActionEvent arg0) {
+			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				buscador busc = new buscador();
+				Buscador busc = new Buscador();
 				busc.setVisible(true);
 				setVisible(false);
 			}
 		});
+
 		JButton guardar = new JButton("GUARDAR");
 		guardar.setBackground(new Color(205, 92, 92));
 		guardar.setBounds(741, 490, 113, 27);
@@ -144,15 +131,15 @@ public class clasificacionA extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				conexion.actualizarClasif(table);
+				Conexion.actualizarGol(table);
+
 			}
 		});
-
 		JButton mostrar = new JButton("Mostrar");
-		mostrar.setForeground(new Color(0, 0, 0));
 		mostrar.setBackground(new Color(205, 92, 92));
 		mostrar.setBounds(205, 83, 89, 27);
 		getContentPane().add(mostrar);
+
 		mostrar.addActionListener(new ActionListener() {
 
 			@Override
@@ -168,27 +155,42 @@ public class clasificacionA extends JFrame {
 				String value = ((ComboItem) item).getValue();
 				System.out.println(value);
 
-				String sqlclasificacion = "SELECT * FROM equipos where idliga = " + value + " ORDER BY puntos DESC;";
-				ResultSet rs = conexion.consultar(sqlclasificacion);
+				String sqlgoleadores = "SELECT * FROM sys.` jugadores` WHERE idliga = " + value
+						+ " ORDER BY goles DESC;";
+				ResultSet rs = Conexion.consultar(sqlgoleadores);
 				int posicion = 0;
 
 				try {
 					while (rs.next()) {
 
+						int idjugador = rs.getInt("idjugador");
+						String nombre = rs.getString("nombre");
+						String apellido = rs.getString("apellido");
+						String goles = rs.getString("goles");
 						int idequipo = rs.getInt("idequipo");
-						String rsnombre = rs.getString("nombre_equipo");
-						int rspuntos = rs.getInt("puntos");
-						Date rsdateinit = rs.getDate("inic_temporada");
-						Date rsdatefin = rs.getDate("fin_temporada");
+						String nombre_equipo = "";
+
+						String nombreequipo = "SELECT nombre_equipo FROM equipos WHERE idequipo = '" + idequipo + "' ;";
+						ResultSet rse = Conexion.consultar(nombreequipo);
+
+						try {
+							while (rs.next()) {
+								nombre_equipo = rse.getString("nombre_equipo");
+								System.out.println(nombre_equipo + " equipose");
+							}
+						} catch (Exception eg) {
+
+						}
 
 						posicion = posicion + 1;
-						dtm.addRow(new Object[] { posicion, rsnombre, rspuntos, rsdateinit, rsdatefin, idequipo });
+						dtm.addRow(new Object[] { posicion, nombre, apellido, goles, nombre_equipo, idjugador });
 
 					}
 
 				} catch (Exception eg) {
 					// TODO: handle exception
 				}
+
 			}
 		});
 
