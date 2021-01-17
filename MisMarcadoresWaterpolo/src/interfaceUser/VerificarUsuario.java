@@ -120,10 +120,12 @@ public class VerificarUsuario extends JFrame {
 				boolean encontrado = false;
 				int i = 0;
 				do {
-
+					System.out.println(i);
 					String nombres = (jd.get(i).getNombre());
+					System.out.println(nombres);
 					if (nombres.equals(valorseleccionado)) {
 
+						System.out.println("encontrado");
 						idjugador = jd.get(i).getId();
 						encontrado = true;
 					}
