@@ -102,9 +102,9 @@ public class GoleadoresA extends JFrame {
 		JComboBox ligas = new JComboBox();
 		ligas.setBounds(67, 85, 113, 22);
 		getContentPane().add(ligas);
-		ligas.addItem(new ComboItem("Liga Premaat", "0"));
-		ligas.addItem(new ComboItem("Primera Nacional", "1"));
-		ligas.addItem(new ComboItem("Segunda Nacional", "2"));
+		ligas.addItem(new ComboItem("Liga Griega", "0"));
+		ligas.addItem(new ComboItem("Liga Vasca", "1"));
+		ligas.addItem(new ComboItem("Liga Catalana", "2"));
 
 		// VOLVER A MENU INICIO
 		JButton volver = new JButton("VOLVER");
@@ -174,7 +174,7 @@ public class GoleadoresA extends JFrame {
 						ResultSet rse = Conexion.consultar(nombreequipo);
 
 						try {
-							while (rs.next()) {
+							while (rse.next()) {
 								nombre_equipo = rse.getString("nombre_equipo");
 								System.out.println(nombre_equipo + " equipose");
 							}

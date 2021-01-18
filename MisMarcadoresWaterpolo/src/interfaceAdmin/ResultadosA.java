@@ -103,9 +103,9 @@ public class ResultadosA extends JFrame {
 		JComboBox comboBox = new JComboBox();
 		comboBox.setBounds(67, 85, 113, 22);
 		getContentPane().add(comboBox);
-		comboBox.addItem(new ComboItem("Liga Premaat", "Espa�ola"));
-		comboBox.addItem(new ComboItem("Primera Nacional", "Australiana"));
-		comboBox.addItem(new ComboItem("Segunda Nacional", "Mpower"));
+		comboBox.addItem(new ComboItem("Liga Griega", "Liga Griega"));
+		comboBox.addItem(new ComboItem("Liga Vasca", "Liga Vasca"));
+		comboBox.addItem(new ComboItem("Liga Catalana", "Liga Catalana"));
 
 		JButton volver = new JButton("VOLVER");
 		volver.setBackground(new Color(205, 92, 92));
