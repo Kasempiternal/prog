@@ -131,14 +131,16 @@ public class VerificarUsuario extends JFrame {
 					}
 
 					else {
-
+						if(i == jd.size()) {
+							encontrado = true;
+							System.out.println("No se ha encontrado el jugador, prueba otra vez");
+						}
 					}
 
 					i = i + 1;
 
 				} while (!encontrado);
 
-				System.out.println(idusuariogloblal);
 				Conexion.meterimagen(direccion, idusuariogloblal, idjugador);
 
 			}

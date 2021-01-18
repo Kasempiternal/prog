@@ -15,6 +15,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.SwingConstants;
 
+import Menus.MenuAdmin;
 import basedatos.Conexion;
 import objetos.Usuario;
 
@@ -88,6 +89,10 @@ public class EditarUsuario extends JFrame {
 		btnNewButton.setBackground(new Color(205, 92, 92));
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				
+				MenuAdmin ma = new MenuAdmin();
+				ma.setVisible(true);
+				setVisible(false);
 			}
 		});
 		btnNewButton.setBounds(10, 347, 102, 34);
