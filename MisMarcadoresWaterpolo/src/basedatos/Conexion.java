@@ -101,7 +101,7 @@ public class Conexion {
 	}
 
 	public static String consultaEquipo(String nombreequipo) {
-		String selectuser = "  SELECT nombre FROM jugadores WHERE idequipo IN       (SELECT idequipo FROM equipos where nombre_equipos = '"
+		String selectuser = "  SELECT nombre FROM jugadores WHERE idequipo IN (SELECT idequipo FROM equipos where nombre_equipos = '"
 				+ nombreequipo + "')        ";
 
 		ResultSet rs = consultar(selectuser);
@@ -180,15 +180,15 @@ public class Conexion {
 
 	public static boolean comprobarLogin(String user, String contra) {
 
-		String pass = "SELECT contraseÃ±a from USUARIO WHERE nombre='" + user + "';";
+		String pass = "SELECT contraseña from USUARIO WHERE nombre='" + user + "';";
 		ResultSet rspas = consultar(pass);
 		Boolean ok = false;
 		try {
 			if (rspas.next()) {
-				if (contra.equals(rspas.getString("contraseÃ±a"))) {
+				if (contra.equals(rspas.getString("contraseña"))) {
 					ok = true;
 				} else {
-					System.out.println("contraseÃ±a no coincide");
+					System.out.println("contraseña no coincide");
 					ok = false;
 				}
 
@@ -248,12 +248,12 @@ public class Conexion {
 	}
 
 	public static String getcontrasenya(int id) {
-		String selectuser = "SELECT contraseÃ±a FROM usuario where idusuario = '" + id + "';";
+		String selectuser = "SELECT contraseña FROM usuario where idusuario = '" + id + "';";
 		ResultSet rs = consultar(selectuser);
 		String contrasenya = null;
 		try {
 			if (rs.next()) {
-				contrasenya = rs.getString("contraseÃ±a");
+				contrasenya = rs.getString("contraseña");
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -287,7 +287,7 @@ public class Conexion {
 				user.setId(rs.getInt("idusuario"));
 				user.setNombre(rs.getString("nombre"));
 				user.setApellido(rs.getString("apellido"));
-				user.setContrasenya(rs.getString("contraseÃ±a"));
+				user.setContrasenya(rs.getString("contraseña"));
 				user.setEmail(rs.getString("email"));
 
 				System.out.println(user.getNombre());

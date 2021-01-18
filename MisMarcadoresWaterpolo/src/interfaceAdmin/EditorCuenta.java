@@ -66,7 +66,7 @@ public class EditorCuenta extends JFrame {
 		// label titulo
 		JLabel titulo = new JLabel("Cuenta Usuario");
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
-		titulo.setForeground(SystemColor.textHighlight);
+		titulo.setForeground(new Color(165, 42, 42));
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
 		titulo.setBounds(0, 23, 518, 49);
 		getContentPane().add(titulo);
@@ -122,7 +122,7 @@ public class EditorCuenta extends JFrame {
 
 		// Botones
 		JButton guardar = new JButton("Guardar");
-		guardar.setBackground(new Color(135, 206, 250));
+		guardar.setBackground(new Color(205, 92, 92));
 		guardar.setBounds(311, 412, 105, 37);
 		guardar.addActionListener(new ActionListener() {
 
@@ -150,7 +150,7 @@ public class EditorCuenta extends JFrame {
 		getContentPane().add(mismarcadores);
 
 		JButton volver = new JButton("Volver");
-		volver.setBackground(new Color(135, 206, 250));
+		volver.setBackground(new Color(205, 92, 92));
 		volver.setBounds(56, 412, 105, 37);
 		volver.addActionListener(new ActionListener() {
 

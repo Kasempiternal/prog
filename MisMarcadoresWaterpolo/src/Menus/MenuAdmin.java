@@ -15,6 +15,7 @@ import javax.swing.UIManager;
 
 import aainiciador.Login;
 import interfaceAdmin.ClasificacionA;
+import interfaceAdmin.EditarUsuario;
 import interfaceAdmin.Verificar;
 import interfaceAdmin.VerConsultas;
 import interfaceAdmin.Buscador;
@@ -146,6 +147,16 @@ public class MenuAdmin extends JFrame {
 		editarusuarios.setBackground(new Color(205, 92, 92));
 		editarusuarios.setBounds(10, 301, 375, 43);
 		getContentPane().add(editarusuarios);
+		editarusuarios.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				EditarUsuario eu = new EditarUsuario();
+				eu.setVisible(true);
+				setVisible(false);
+			}
+		});
 
 		JButton Cerrar = new JButton("Cerrar");
 		Cerrar.addActionListener(new ActionListener() {

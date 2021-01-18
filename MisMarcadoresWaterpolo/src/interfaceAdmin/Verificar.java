@@ -86,7 +86,7 @@ public class Verificar extends JFrame {
 		JLabel titulo = new JLabel("VERIFICAR JUGADOR");
 		titulo.setHorizontalAlignment(SwingConstants.CENTER);
 		titulo.setFont(new Font("Tahoma", Font.PLAIN, 20));
-		titulo.setForeground(SystemColor.textHighlight);
+		titulo.setForeground(new Color(165, 42, 42));
 		titulo.setBounds(0, 28, 678, 58);
 		getContentPane().add(titulo);
 
@@ -122,7 +122,7 @@ public class Verificar extends JFrame {
 		// imagen.setIcon();
 
 		JButton volver = new JButton("VOLVER");
-		volver.setBackground(new Color(135, 206, 250));
+		volver.setBackground(new Color(205, 92, 92));
 		volver.setBounds(10, 426, 89, 29);
 		getContentPane().add(volver);
 		volver.addActionListener(new ActionListener() {
@@ -137,7 +137,7 @@ public class Verificar extends JFrame {
 		});
 
 		JButton cerrar = new JButton("CERRAR");
-		cerrar.setBackground(new Color(135, 206, 250));
+		cerrar.setBackground(new Color(205, 92, 92));
 		cerrar.setBounds(579, 423, 89, 29);
 		getContentPane().add(cerrar);
 		cerrar.addActionListener(new ActionListener() {
@@ -150,7 +150,7 @@ public class Verificar extends JFrame {
 		});
 
 		JButton rechazar = new JButton("RECHAZAR");
-		rechazar.setBackground(new Color(135, 206, 250));
+		rechazar.setBackground(new Color(205, 92, 92));
 		rechazar.setBounds(425, 372, 105, 29);
 		getContentPane().add(rechazar);
 		rechazar.setVisible(false);
@@ -179,7 +179,7 @@ public class Verificar extends JFrame {
 		});
 
 		JButton aceptar = new JButton("ACEPTAR");
-		aceptar.setBackground(new Color(135, 206, 250));
+		aceptar.setBackground(new Color(205, 92, 92));
 		aceptar.setBounds(260, 372, 105, 29);
 		getContentPane().add(aceptar);
 

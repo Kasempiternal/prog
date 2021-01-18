@@ -24,6 +24,8 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.DefaultListSelectionModel;
 import javax.swing.JButton;
+import java.awt.Font;
+import java.awt.Color;
 
 public class EditarUsuario extends JFrame {
 	private static DefaultListModel modelo;
@@ -60,35 +62,40 @@ public class EditarUsuario extends JFrame {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		setBounds(100, 100, 450, 300);
+		setBounds(100, 100, 528, 431);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 
 		JLabel lblNewLabel = new JLabel("BUSCADOR USUARIO");
-		lblNewLabel.setBounds(149, 22, 129, 16);
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setForeground(new Color(165, 42, 42));
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 20));
+		lblNewLabel.setBounds(0, 22, 512, 34);
 		getContentPane().add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("DI:");
-		lblNewLabel_1.setBounds(6, 6, 25, 16);
-		getContentPane().add(lblNewLabel_1);
-
-		JLabel lblNewLabel_2 = new JLabel("New label");
-		lblNewLabel_2.setBounds(30, 6, 61, 16);
-		getContentPane().add(lblNewLabel_2);
+		JLabel admin = new JLabel("ADMINISTRADOR");
+		admin.setBounds(6, 6, 117, 16);
+		getContentPane().add(admin);
 
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(114, 59, 196, 176);
+		scrollPane.setBounds(129, 81, 258, 222);
 		getContentPane().add(scrollPane);
 
 		JList list = new JList();
 		scrollPane.setViewportView(list);
 
 		JButton btnNewButton = new JButton("VOLVER");
-		btnNewButton.setBounds(0, 237, 117, 29);
+		btnNewButton.setBackground(new Color(205, 92, 92));
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		btnNewButton.setBounds(10, 347, 102, 34);
 		getContentPane().add(btnNewButton);
 
 		JButton editar = new JButton("EDITAR");
-		editar.setBounds(327, 127, 117, 29);
+		editar.setBackground(new Color(205, 92, 92));
+		editar.setBounds(195, 314, 117, 34);
 		getContentPane().add(editar);
 		editar.addActionListener(new ActionListener() {
 
